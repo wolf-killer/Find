@@ -13,8 +13,8 @@ visited: false
 };
  
 var airport;
-var airportLength = 20;
-var noOfPlaneHead = 4;
+var airportLength = 10;
+var noOfPlaneHead = 2;
  
 const airplane1 = [
 [ //up

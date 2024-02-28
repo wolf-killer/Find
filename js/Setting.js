@@ -1,10 +1,11 @@
 function createAirplane() {
-while (noOfPlaneHead > 0) {
-if (!createAirplaneImplement()) {
-continue;
-}
-noOfPlaneHead -= 1;
-}
+	var loopingNoOfPlaneHead = noOfPlaneHead;
+	while (loopingNoOfPlaneHead > 0) {
+		if (!createAirplaneImplement()) {
+			continue;
+		}
+		loopingNoOfPlaneHead -= 1;
+	}
 }
  
 function createAirplaneImplement(){
@@ -60,36 +61,42 @@ selectCell.visited = true;
 }
 
 function showInfo(){
-  var inputObject = [{
-    id: "inputAirportLength",
-    type: "number",
-    desc: "棋盤闊度",
-    defaultValue: airportLength,
-    prop: {
-      max: 50,
-      min: 10
-    }
-  		}, {
-    id: "inputNoOfPlaneHead",
-    type: "number",
-    desc: "飛機數量",
-    defaultValue: noOfPlaneHead,
-    prop: {
-      max: 3,
-      min: 1
-    }
-  		}];
-  var content = "<br/>";
-  ShowAlert("question",
-    "遊戲設置",
-    content,
-    "updateDefaultSetting()",
-    inputObject);
+	console.log("[DEBUG]", noOfPlaneHead);
+	var inputObject = [
+		{
+			id: "inputAirportLength",
+			type: "number",
+			desc: "棋盤闊度",
+			defaultValue: airportLength,
+			prop: {
+				max: 50,
+				min: 10
+			}
+		}, 
+		{
+			id: "inputNoOfPlaneHead",
+			type: "number",
+			desc: "飛機數量",
+			defaultValue: noOfPlaneHead,
+			prop: {
+				  max: 3,
+				  min: 1
+			}
+		}
+	];
+	var content = "<br/>";
+	ShowAlert(
+		"question",
+		"遊戲設置",
+		content,
+		"updateDefaultSetting()",
+		inputObject
+	);
 }
 
 function updateDefaultSetting() {
-  airportLength= $("#inputAirportLength").value();
-  noOfPlaneHead= $("#inputNoOfPlaneHead").value();
-  main();
+	airportLength= $("#inputAirportLength").val();
+	noOfPlaneHead= $("#inputNoOfPlaneHead").val();
+	main();
 }
 
