@@ -2,17 +2,25 @@
 <html>
   <head>
     <title>Find</title>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="cache-control" content="no-cache" />
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
     <!--<link rel="icon" type="image/x-icon" href="./image/WebIcon.png">-->
     <link rel="stylesheet" type="text/css" href="./css/Layout.css" />
     <link rel="stylesheet" type="text/css" href="./css/GeneralStyle.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanstc.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/earlyaccess/notosanstc.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     <!--icon list: https://icons.getbootstrap.com/ -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./exjs/jquery-1.11.3.min.js"></script>
@@ -26,18 +34,27 @@
 
   <body>
     <div class="w3-container">
-      <div id="menuBar" class="menuBar w3-container w3-display-topmiddle " style="width:100%;z-index: 5;">
+      <div
+        id="menuBar"
+        class="menuBar w3-container w3-display-topmiddle"
+        style="width: 100%; z-index: 5">
         <i class="bi bi-airplane-fill" onclick="displayAllAirplane()"></i>
         <i class="bi bi-pencil-square" onclick="showInfo()"></i>
         <i class="bi bi-recycle" onclick="location.reload()"></i>
       </div>
 
       <div id="playground" class="w3-display-container">
-        <table id="airport" class="w3-display-middle w3-table w3-centered"></table>
+        <table
+          id="airport"
+          class="w3-display-middle w3-table w3-centered"></table>
       </div>
-          
-      <div id="alertDiv" class="HiddenPopupInfo HiddenPopupInfo-M w3-container w3-center w3-round-xxlarge">
-        <i class="Btn-Close bi bi-x-circle-fill" onclick="CloseHiddenPopupInfo()"></i>
+
+      <div
+        id="alertDiv"
+        class="HiddenPopupInfo HiddenPopupInfo-M w3-container w3-center w3-round-xxlarge">
+        <i
+          class="Btn-Close bi bi-x-circle-fill"
+          onclick="CloseHiddenPopupInfo()"></i>
         <div id="alertTitle" class="w3-container w3-large"></div>
         <div id="alertContent" class="w3-container w3-medium"></div>
         <div id="alertAction" class="w3-container w3-medium"></div>
@@ -46,8 +63,7 @@
   </body>
 </html>
 <script>
-  $(window).on("load", function() {
+  $(window).on("load", function () {
     main();
   });
 </script>
-

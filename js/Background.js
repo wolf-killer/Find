@@ -14,7 +14,7 @@ var dots = [];
 for (var i = 0; i < dotCount; i++) {
   dots.push(new dot());
 }
- 
+
 // dots animation
 function render() {
   context.fillStyle = "#080e3b";
@@ -25,7 +25,7 @@ function render() {
   }
   requestAnimationFrame(render);
 }
- 
+
 // dots class
 // @constructor
 function dot() {
@@ -37,24 +37,21 @@ function dot() {
   this.size = Math.random() * 5 + 1;
   this.color = Math.floor(Math.random() * 256);
 }
- 
+
 // drawing dot
-dot.prototype.draw = function() {
-  
+dot.prototype.draw = function () {
   // calc polar coord to decart
-  var dx = halfx + this.rad_x * Math.cos(this.alpha / 180 * Math.PI);
-  var dy = halfy + this.rad_y * Math.sin(this.alpha / 180 * Math.PI);
+  var dx = halfx + this.rad_x * Math.cos((this.alpha / 180) * Math.PI);
+  var dy = halfy + this.rad_y * Math.sin((this.alpha / 180) * Math.PI);
   // set color
   //context.fillStyle = "rgb(" + this.color + "," + this.color + "," + this.color + ")";
   context.fillStyle = "rgb(247,247," + this.color + ")";
   // draw dot
   context.fillRect(dx, dy, this.size, this.size);
-  
 };
- 
+
 // calc new position in polar coord
-dot.prototype.move = function() {
-  
+dot.prototype.move = function () {
   this.alpha += this.speed;
   // change color
   if (Math.random() * 100 < 50) {
@@ -62,8 +59,7 @@ dot.prototype.move = function() {
   } else {
     this.color -= 1;
   }
-  
 };
- 
+
 // start animation
 render();

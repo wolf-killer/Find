@@ -6,36 +6,36 @@ canvas {
   margin: 0;
   padding: 0;
 }
-#menuBar{
-background-color: #3f446e;
-color: #ffffff;
+#menuBar {
+  background-color: #3f446e;
+  color: #ffffff;
 }
 #menuBar i {
   margin-right: 8px;
 }
-#playground{
-margin-top: 30px;
+#playground {
+  margin-top: 30px;
 }
-#airport{
-background-color: #929be890;
-border: 1px solid #452400 !important;
-margin: 2px;
+#airport {
+  background-color: #929be890;
+  border: 1px solid #452400 !important;
+  margin: 2px;
 }
-.w3-button{
-border: 1px solid black;
+.w3-button {
+  border: 1px solid black;
 }
-.airportGate{
-border: 1px solid black !important;
-padding: 2px 2px !important;
-text-align: center !important;
-    vertical-align: middle !important;
+.airportGate {
+  border: 1px solid black !important;
+  padding: 2px 2px !important;
+  text-align: center !important;
+  vertical-align: middle !important;
 }
-.planeHead{
-background-color: red !important;
+.planeHead {
+  background-color: red !important;
 }
-.planeBody{
-background-color: #946640 !important;
+.planeBody {
+  background-color: #946640 !important;
 }
-.emptyCell{
-background-color: white !important;
+.emptyCell {
+  background-color: white !important;
 }
