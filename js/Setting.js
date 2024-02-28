@@ -13,7 +13,6 @@ function createAirplaneImplement() {
   var tmpArea = airplane1PossibleArea[headDirection];
   var xHead = GetRandomBetween(airportLength + tmpArea.xEnd, tmpArea.xStart);
   var yHead = GetRandomBetween(airportLength + tmpArea.yEnd, tmpArea.yStart);
-  var check = checkAirplaneValid(headDirection, xHead, yHead);
   if (checkAirplaneValid(headDirection, xHead, yHead)) {
     var planeDemo = airplane1[headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
@@ -61,7 +60,6 @@ function selectGate(row, col) {
 }
 
 function showInfo() {
-  console.log("[DEBUG]", noOfPlaneHead);
   var inputObject = [
     {
       id: "inputAirportLength",
@@ -71,6 +69,7 @@ function showInfo() {
       prop: {
         max: 50,
         min: 10,
+        step: 5,
       },
     },
     {
@@ -81,6 +80,7 @@ function showInfo() {
       prop: {
         max: 3,
         min: 1,
+        step: 1,
       },
     },
   ];
@@ -95,7 +95,7 @@ function showInfo() {
 }
 
 function updateDefaultSetting() {
-  airportLength = $("#inputAirportLength").val();
+  airportLength = Number($("#inputAirportLength").val());
   noOfPlaneHead = $("#inputNoOfPlaneHead").val();
   main();
 }

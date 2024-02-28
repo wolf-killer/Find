@@ -7,7 +7,7 @@ function main() {
 }
 
 function initTable() {
-  console.log("[DEBUG] >> ", setHeight, "||", setWidth);
+  // console.log("[DEBUG] >> ", setHeight, "||", setWidth);
   setSquareLength = setHeight < setWidth ? setHeight - 150 : setWidth;
   setSquareLength = Floor10(setSquareLength - 50, 1);
   setSeatLength = setSquareLength / airportLength;

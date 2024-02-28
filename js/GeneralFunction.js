@@ -191,6 +191,9 @@ min: 1
             '" ' +
             ' min="' +
             inputObject[i].prop.min +
+            '" ' +
+            ' step="' +
+            inputObject[i].prop.step +
             '" ';
         }
         content += ">";
