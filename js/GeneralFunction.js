@@ -139,30 +139,30 @@ min: 1
       color +
       " w3-leftbar w3-rightbar w3-border-" +
       color +
-      " w3-large'>" +
+      " w3-large' style='padding: 4px;'>" +
       " <i class='bi " +
       icon +
       " w3-text-" +
       color +
-      "'></i>" +
+      "' style='margin-right: 10px;'></i>" +
+      "<span>" +
       title +
+      "</span>" +
       "</div>"
   );
   if (type == "question" || type == "boolean") {
     if (type == "question") {
       for (let i = 0; i < inputObject.length; i++) {
+        content += inputObject[i].desc + ": ";
+        if (inputObject[i].type == "range") {
+          content +=
+            '<span id="show' +
+            inputObject[i].id +
+            '" >' +
+            inputObject[i].defaultValue +
+            "</span>";
+        }
         content +=
-          inputObject[i].desc +
-          ': ' ;
-				if (inputObject[i].type == "range") {
-					content +=
-						'<span id="show' +
-						inputObject[i].id +
-						'" >' + 
-						inputObject[i].defaultValue + 
-						'</span>';
-				}
-				content +=
           '<input class="w3-input w3-border"' +
           ' id="' +
           inputObject[i].id +
@@ -183,10 +183,10 @@ min: 1
             '" ' +
             ' step="' +
             inputObject[i].prop.step +
-            '" ' + 
-						'oninput= "updateRangeDisplay(\'' + 
-						inputObject[i].id +
-						'\')"' ;
+            '" ' +
+            "oninput= \"updateRangeDisplay('" +
+            inputObject[i].id +
+            "')\"";
         }
         content += ">";
       }
@@ -308,26 +308,28 @@ function DecimalAdjust(type, value, exp) {
   return Number(`${newMagnitude}e${+newExponent + exp}`);
 }
 const Floor10 = (value, exp) => DecimalAdjust("floor", value, exp);
-function ShowVmenu(){
-	var x = document.getElementById("Vmenu");
+function ShowVmenu() {
+  var x = document.getElementById("Vmenu");
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
-  } else { 
+  } else {
     x.className = x.className.replace(" w3-show", "");
   }
 }
-function updateRangeDisplay(field){
-	var slider = document.getElementById(field);
-	var fieldOutput = document.getElementById("show"+field);
-	fieldOutput.innerHTML = slider.value;
-	if(field == "inputAirportLength"){
-		var nextInputField = document.getElementById("inputNoOfPlaneHead");
-		var nextInputFieldOutput = document.getElementById("showinputNoOfPlaneHead");
-		var maxPlane = Math.floor(slider.value / 3);
-		if(nextInputField.value > maxPlane){
-			nextInputFieldOutput.innerHTML = maxPlane;
-			nextInputField.value = maxPlane;
-		}
-		nextInputField.setAttribute("max", maxPlane);
-	}
+function updateRangeDisplay(field) {
+  var slider = document.getElementById(field);
+  var fieldOutput = document.getElementById("show" + field);
+  fieldOutput.innerHTML = slider.value;
+  if (field == "inputAirportLength") {
+    var nextInputField = document.getElementById("inputNoOfPlaneHead");
+    var nextInputFieldOutput = document.getElementById(
+      "showinputNoOfPlaneHead"
+    );
+    var maxPlane = Math.floor(slider.value / 3);
+    if (nextInputField.value > maxPlane) {
+      nextInputFieldOutput.innerHTML = maxPlane;
+      nextInputField.value = maxPlane;
+    }
+    nextInputField.setAttribute("max", maxPlane);
+  }
 }

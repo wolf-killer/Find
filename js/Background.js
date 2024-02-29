@@ -44,17 +44,17 @@ dot.prototype.draw = function () {
   // calc polar coord to decart
   var dx = halfx + this.rad_x * Math.cos((this.alpha / 180) * Math.PI);
   var dy = halfy + this.rad_y * Math.sin((this.alpha / 180) * Math.PI);
-  
+
   // set color
   // context.fillStyle = "rgb(" + this.color + "," + this.color + "," + this.color + ")";
   context.fillStyle = "rgb(247,247," + this.color + ")"; // base on Yellow
-  
+
   // set font size
   context.font = this.fontSize + "px FontAwesome";
-  
+
   // draw dot
   // context.fillRect(dx, dy, this.size, this.size);
-  
+
   // draw flight
   context.fillText("\uf072", dx, dy);
 };

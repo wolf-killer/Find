@@ -59,7 +59,7 @@ function selectGate(row, col) {
   selectCell.visited = true;
 }
 
-function createSampleAirplane(){
+function createSampleAirplane() {
   sampleAirport = [];
   for (var row = 0; row < sampleAirportLength; row++) {
     var airportGate = [];
@@ -69,16 +69,16 @@ function createSampleAirplane(){
     sampleAirport.push(airportGate);
   }
 
-	var headDirection = 0;
+  var headDirection = 0;
   var xHead = 0;
   var yHead = 2;
-	var planeDemo = airplane1[headDirection];
-	for (var i = 0; i < planeDemo.length; i++) {
-      var xAdjust = xHead + planeDemo[i].x;
-      var yAdjust = yHead - planeDemo[i].y;
-      sampleAirport[xAdjust][yAdjust].cellDefinition = planeBody;
-    }
-    sampleAirport[xHead][yHead].cellDefinition = planeHead;
+  var planeDemo = airplane1[headDirection];
+  for (var i = 0; i < planeDemo.length; i++) {
+    var xAdjust = xHead + planeDemo[i].x;
+    var yAdjust = yHead - planeDemo[i].y;
+    sampleAirport[xAdjust][yAdjust].cellDefinition = planeBody;
+  }
+  sampleAirport[xHead][yHead].cellDefinition = planeHead;
 }
 
 function showInfo() {
@@ -122,37 +122,31 @@ function updateDefaultSetting() {
   main();
 }
 
-function showSamplePlaneDialog(){
+function showSamplePlaneDialog() {
   createSampleAirplane();
-  var html = "<table class='sampleAirport w3-center w3-col-middle w3-panel' style='zoom:2.5'>";
+  var html = "<table class='sampleAirport w3-panel' style='zoom:2.5'>";
   for (var row = 0; row < sampleAirportLength; row++) {
     html += "<tr>";
-    var airportGate = [];
     for (var col = 0; col < sampleAirportLength; col++) {
-      html +="<td class='airportGate";
+      html += "<td class='airportGate";
       switch (sampleAirport[row][col].cellDefinition) {
         case planeHead: {
-          html +=" planeHead";
+          html += " planeHead";
           break;
         }
         case planeBody: {
-          html +=" planeBody";
+          html += " planeBody";
           break;
         }
         default: {
-          html +=" emptyCell";
+          html += " emptyCell";
           break;
         }
       }
       html += "'></td>";
     }
     html += "</tr>";
-    
   }
   html += "</table>";
-  ShowAlert(
-    "remark",
-    "模板",
-    html
-  );
+  ShowAlert("remark", "模板", html);
 }
