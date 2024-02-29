@@ -80,7 +80,7 @@ function showInfo() {
       desc: "棋盤闊度",
       defaultValue: airportLength,
       prop: {
-        max: 50,
+        max: 30,
         min: 10,
         step: 5,
       },
@@ -91,7 +91,7 @@ function showInfo() {
       desc: "飛機數量",
       defaultValue: noOfPlaneHead,
       prop: {
-        max: 3,
+        max: Math.floor(airportLength / 3),
         min: 1,
         step: 1,
       },

@@ -321,7 +321,7 @@ function updateRangeDisplay(field){
 	if(field == "inputAirportLength"){
 		var nextInputField = document.getElementById("inputNoOfPlaneHead");
 		var nextInputFieldOutput = document.getElementById("showinputNoOfPlaneHead");
-		var maxPlane = Math.floor(slider.value / 2);
+		var maxPlane = Math.floor(slider.value / 3);
 		if(nextInputField.value > maxPlane){
 			nextInputFieldOutput.innerHTML = maxPlane;
 			nextInputField.value = maxPlane;
