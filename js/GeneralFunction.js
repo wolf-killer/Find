@@ -1,25 +1,3 @@
-function DecimalAdjust(type, value, exp) {
-  type = String(type);
-  if (!["round", "floor", "ceil"].includes(type)) {
-    throw new TypeError(
-      "The type of decimal adjustment must be one of 'round', 'floor', or 'ceil'."
-    );
-  }
-  exp = Number(exp);
-  value = Number(value);
-  if (exp % 1 !== 0 || Number.isNaN(value)) {
-    return NaN;
-  } else if (exp === 0) {
-    return Math[type](value);
-  }
-  const [magnitude, exponent = 0] = value.toString().split("e");
-  const adjustedValue = Math[type](`${magnitude}e${exponent - exp}`);
-  // Shift back
-  const [newMagnitude, newExponent = 0] = adjustedValue.toString().split("e");
-  return Number(`${newMagnitude}e${+newExponent + exp}`);
-}
-const Floor10 = (value, exp) => DecimalAdjust("floor", value, exp);
-
 var setWidth = document.documentElement.scrollWidth;
 var setHeight = document.documentElement.scrollHeight;
 
@@ -173,8 +151,17 @@ min: 1
       for (let i = 0; i < inputObject.length; i++) {
         content +=
           inputObject[i].desc +
-          ": " +
-          '<input class="w3-input w3-border" ' +
+          ': ' ;
+				if (inputObject[i].type == "range") {
+					content +=
+						'<span id="show' +
+						inputObject[i].id +
+						'" >' + 
+						inputObject[i].defaultValue + 
+						'</span>';
+				}
+				content +=
+          '<input class="w3-input w3-border"' +
           ' id="' +
           inputObject[i].id +
           '" ' +
@@ -184,7 +171,7 @@ min: 1
           ' value="' +
           inputObject[i].defaultValue +
           '" ';
-        if (inputObject[i].type == "number") {
+        if (inputObject[i].type == "range") {
           content +=
             ' max="' +
             inputObject[i].prop.max +
@@ -194,7 +181,10 @@ min: 1
             '" ' +
             ' step="' +
             inputObject[i].prop.step +
-            '" ';
+            '" ' + 
+						'oninput= "updateRangeDisplay(\'' + 
+						inputObject[i].id +
+						'\')"' ;
         }
         content += ">";
       }
@@ -295,7 +285,27 @@ function ShowHoverTag(e) {
     tag.css("display", "none");
   }, 2000); // 1000ms = 1s
 }
-
+function DecimalAdjust(type, value, exp) {
+  type = String(type);
+  if (!["round", "floor", "ceil"].includes(type)) {
+    throw new TypeError(
+      "The type of decimal adjustment must be one of 'round', 'floor', or 'ceil'."
+    );
+  }
+  exp = Number(exp);
+  value = Number(value);
+  if (exp % 1 !== 0 || Number.isNaN(value)) {
+    return NaN;
+  } else if (exp === 0) {
+    return Math[type](value);
+  }
+  const [magnitude, exponent = 0] = value.toString().split("e");
+  const adjustedValue = Math[type](`${magnitude}e${exponent - exp}`);
+  // Shift back
+  const [newMagnitude, newExponent = 0] = adjustedValue.toString().split("e");
+  return Number(`${newMagnitude}e${+newExponent + exp}`);
+}
+const Floor10 = (value, exp) => DecimalAdjust("floor", value, exp);
 function ShowVmenu(){
 	var x = document.getElementById("Vmenu");
   if (x.className.indexOf("w3-show") == -1) {
@@ -303,4 +313,19 @@ function ShowVmenu(){
   } else { 
     x.className = x.className.replace(" w3-show", "");
   }
+}
+function updateRangeDisplay(field){
+	var slider = document.getElementById(field);
+	var fieldOutput = document.getElementById("show"+field);
+	fieldOutput.innerHTML = slider.value;
+	if(field == "inputAirportLength"){
+		var nextInputField = document.getElementById("inputNoOfPlaneHead");
+		var nextInputFieldOutput = document.getElementById("showinputNoOfPlaneHead");
+		var maxPlane = Math.floor(slider.value / 2);
+		if(nextInputField.value > maxPlane){
+			nextInputFieldOutput.innerHTML = maxPlane;
+			nextInputField.value = maxPlane;
+		}
+		nextInputField.setAttribute("max", maxPlane);
+	}
 }
