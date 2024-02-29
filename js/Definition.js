@@ -12,6 +12,8 @@ const defaultCell = {
   visited: false,
 };
 
+var sampleAirport;
+
 var airport;
 var airportLength = 10;
 var noOfPlaneHead = 2;
@@ -77,3 +79,4 @@ const airplane1PossibleArea = [
   { xStart: 2, xEnd: -3, yStart: 0, yEnd: -4 }, //left
   { xStart: 2, xEnd: -3, yStart: 3, yEnd: -1 }, //right
 ];
+
