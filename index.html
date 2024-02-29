@@ -54,6 +54,10 @@
 						<i class="bi bi-recycle"></i>
 						<span class="w3-hide-medium">重新開始</span>
 					</a>
+					<a href="#" class="w3-bar-item w3-button w3-hide-small" onclick="showSamplePlaneDialog();ShowVmenu();">
+						<i class="bi bi-binoculars"></i>
+					  <span class="w3-hide-medium">查看模板</span>
+					</a>
 				</div>
 				<div id="Vmenu" class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
 					<a href="#" class="w3-bar-item w3-button" onclick="displayAllAirplane();ShowVmenu();">
@@ -68,6 +72,10 @@
 						<i class="bi bi-recycle"></i>
 						<span class="w3-hide-medium">重新開始</span>
 					</a>
+					<a href="#" class="w3-bar-item w3-button" onclick="showSamplePlaneDialog();ShowVmenu();">
+					  <i class="bi bi-binoculars"></i>
+					  <span class="w3-hide-medium">查看模板</span>
+					</a>
 				</div>
 			</header>
 
@@ -76,6 +84,8 @@
           id="airport"
           class="w3-display-middle w3-table w3-centered"></table>
       </div>
+      
+      <div id="Overlay"></div>
 
       <div
         id="alertDiv"

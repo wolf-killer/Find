@@ -60,7 +60,16 @@ function selectGate(row, col) {
 }
 
 function createSampleAirplane(){
-	var headDirection = 1;
+  sampleAirport = [];
+  for (var row = 0; row < sampleAirportLength; row++) {
+    var airportGate = [];
+    for (var col = 0; col < sampleAirportLength; col++) {
+      airportGate.push({ ...defaultCell });
+    }
+    sampleAirport.push(airportGate);
+  }
+
+	var headDirection = 0;
   var xHead = 0;
   var yHead = 2;
 	var planeDemo = airplane1[headDirection];
@@ -111,4 +120,39 @@ function updateDefaultSetting() {
   airportLength = Number($("#inputAirportLength").val());
   noOfPlaneHead = $("#inputNoOfPlaneHead").val();
   main();
+}
+
+function showSamplePlaneDialog(){
+  createSampleAirplane();
+  var html = "<table class='sampleAirport w3-center w3-col-middle w3-panel' style='zoom:2.5'>";
+  for (var row = 0; row < sampleAirportLength; row++) {
+    html += "<tr>";
+    var airportGate = [];
+    for (var col = 0; col < sampleAirportLength; col++) {
+      html +="<td class='airportGate";
+      switch (sampleAirport[row][col].cellDefinition) {
+        case planeHead: {
+          html +=" planeHead";
+          break;
+        }
+        case planeBody: {
+          html +=" planeBody";
+          break;
+        }
+        default: {
+          html +=" emptyCell";
+          break;
+        }
+      }
+      html += "'></td>";
+    }
+    html += "</tr>";
+    
+  }
+  html += "</table>";
+  ShowAlert(
+    "remark",
+    "模板",
+    html
+  );
 }

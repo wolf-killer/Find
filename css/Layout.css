@@ -16,7 +16,7 @@ canvas {
 #playground {
   margin-top: 30px;
 }
-#airport {
+#airport, .sampleAirport {
   background-color: #929be890;
   border: 1px solid #452400 !important;
   margin: 2px;

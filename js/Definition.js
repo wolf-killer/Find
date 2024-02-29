@@ -13,6 +13,7 @@ const defaultCell = {
 };
 
 var sampleAirport;
+var sampleAirportLength = 5;
 
 var airport;
 var airportLength = 10;

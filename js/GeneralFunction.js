@@ -74,6 +74,7 @@ function AdjustY(input) {
   $(".HiddenPopupInfo").css("max-height", setHeight - 40);
 }
 function CloseHiddenPopupInfo() {
+  $("#Overlay").hide();
   $(".HiddenPopupInfo").css("display", "none");
   $(".ActionPopup").css("display", "none");
 }
@@ -112,6 +113,7 @@ min: 1
 }
 }];
 */
+  $("#Overlay").show();
   $("#alertDiv").removeClass("alertMode questionMode remarkMode");
   var icon, color;
   if (type == "alert") {
