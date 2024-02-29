@@ -295,3 +295,12 @@ function ShowHoverTag(e) {
     tag.css("display", "none");
   }, 2000); // 1000ms = 1s
 }
+
+function ShowVmenu(){
+	var x = document.getElementById("Vmenu");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else { 
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
