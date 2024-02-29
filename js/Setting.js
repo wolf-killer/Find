@@ -59,11 +59,24 @@ function selectGate(row, col) {
   selectCell.visited = true;
 }
 
+function createSampleAirplane(){
+	var headDirection = 1;
+  var xHead = 0;
+  var yHead = 2;
+	var planeDemo = airplane1[headDirection];
+	for (var i = 0; i < planeDemo.length; i++) {
+      var xAdjust = xHead + planeDemo[i].x;
+      var yAdjust = yHead - planeDemo[i].y;
+      sampleAirport[xAdjust][yAdjust].cellDefinition = planeBody;
+    }
+    sampleAirport[xHead][yHead].cellDefinition = planeHead;
+}
+
 function showInfo() {
   var inputObject = [
     {
       id: "inputAirportLength",
-      type: "number",
+      type: "range",
       desc: "棋盤闊度",
       defaultValue: airportLength,
       prop: {
@@ -74,7 +87,7 @@ function showInfo() {
     },
     {
       id: "inputNoOfPlaneHead",
-      type: "number",
+      type: "range",
       desc: "飛機數量",
       defaultValue: noOfPlaneHead,
       prop: {
