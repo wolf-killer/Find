@@ -4,15 +4,11 @@ body {
   overflow-y: hidden;
   font-family: "cwTeXYen", "Noto Sans TC", "微軟正黑體", "黑體-繁", sans-serif !important;
 }
-/*
-.wolf-btn {
-  background-color: rgba(162, 255, 255, 0.7) !important;
-  color: black !important;
-  border: 1px solid rgba(0, 145, 145) !important;
-  padding: 1px 8px !important;
-  border-radius: 50%;
-}*/
-
+.MenuBar {
+  background-color: #3f446e;
+  color: #ffffff;
+	align-self: center !important;
+}
 .PopupInfo {
   background-color: rgba(40, 215, 215, 0.5);
   width: 90%;
