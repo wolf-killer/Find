@@ -1,19 +1,20 @@
 var setSquareLength = 0;
 
 function main() {
+	SET_WINDOW();
   initTable();
   appendSeat();
   createAirplane();
 }
 
 function initTable() {
-  // console.log("[DEBUG] >> ", setHeight, "||", setWidth);
-  setSquareLength = setHeight < setWidth ? setHeight - 150 : setWidth;
+  // console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
+  setSquareLength = setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;
   setSquareLength = Floor10(setSquareLength - 50, 1);
   setSeatLength = setSquareLength / airportLength;
   $("#playground").css(
     "height",
-    setHeight < setWidth ? setHeight - 150 : setWidth
+    setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth
   );
   $("#airport").css("height", setSquareLength);
   $("#airport").css("width", setSquareLength);
