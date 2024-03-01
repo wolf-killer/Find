@@ -69,8 +69,12 @@ function displayAllAirplane() {
       airport[row][col].visited = true;
     }
   }
-  gameStepCount = airportLength * airportLength;
-  gameRemainHead = 0;
+  
+  if (gameStepCount <= 0) {
+    gameStepCount = airportLength * airportLength;
+    gameRemainHead = 0;
+  }
+  
   $("#showGameStepCount").text(gameStepCount);
   $("#showGameRemainHead").text(gameRemainHead);
 }
