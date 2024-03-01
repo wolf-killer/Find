@@ -107,7 +107,8 @@ function showInfo() {
       },
     },
   ];
-  var content = "<br/>";
+  var content = "使用模板: "
+  content += getSamplePlaneHtml();
 	var actionList = [{
 					desc: "確認",
 					action: "updateDefaultSetting()",
@@ -128,9 +129,9 @@ function updateDefaultSetting() {
   main();
 }
 
-function showSamplePlaneDialog() {
+function getSamplePlaneHtml() {
   createSampleAirplane();
-  var html = "<table class='sampleAirport w3-panel' style='zoom:2.5'>";
+  var html = "<table class='sampleAirport' style='zoom:2.5'>";
   for (var row = 0; row < sampleAirportLength; row++) {
     html += "<tr>";
     for (var col = 0; col < sampleAirportLength; col++) {
@@ -154,9 +155,10 @@ function showSamplePlaneDialog() {
     html += "</tr>";
   }
   html += "</table>";
-  SHOW_ALERT("REMARK", "模板", html, [{
-					desc: "遊戲設置",
-					action: "updateDefaultSetting()",
-					closeDialog: true
-				}]);
+  return html;
+}
+
+function showSamplePlaneDialog(){
+  var sampleAirplaneHtml = getSamplePlaneHtml();
+  SHOW_ALERT("REMARK", "模板", sampleAirplaneHtml);
 }
