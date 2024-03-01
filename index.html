@@ -43,7 +43,7 @@
         <a
           href="javascript:void(0)"
           class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
-          onclick="ShowVmenu()"
+          onclick="SHOW_V_MENU()"
           >&#9776;</a
         >
         <div id="Hmenu">
@@ -78,32 +78,32 @@
         </div>
         <div
           id="Vmenu"
-          class="w3-bar-block w3-hide w3-hide-large w3-hide-medium">
+          class="w3-bar-block w3-hide-large w3-hide-medium">
           <a
             href="#"
             class="w3-bar-item w3-button"
-            onclick="displayAllAirplane();ShowVmenu();">
+            onclick="displayAllAirplane();SHOW_V_MENU();">
             <i class="bi bi-airplane-fill"></i>
             <span class="w3-hide-medium">公佈結果</span>
           </a>
           <a
             href="#"
             class="w3-bar-item w3-button"
-            onclick="showInfo();ShowVmenu();">
+            onclick="showInfo();SHOW_V_MENU();">
             <i class="bi bi-pencil-square"></i>
             <span class="w3-hide-medium">更改遊戲設定</span>
           </a>
           <a
             href="#"
             class="w3-bar-item w3-button"
-            onclick="main();ShowVmenu();">
+            onclick="main();SHOW_V_MENU();">
             <i class="bi bi-recycle"></i>
             <span class="w3-hide-medium">重新開始</span>
           </a>
           <a
             href="#"
             class="w3-bar-item w3-button"
-            onclick="showSamplePlaneDialog();ShowVmenu();">
+            onclick="showSamplePlaneDialog();SHOW_V_MENU();">
             <i class="bi bi-binoculars"></i>
             <span class="w3-hide-medium">查看模板</span>
           </a>
@@ -119,12 +119,13 @@
       <div id="Overlay"></div>
 
       <div
-        id="alertDiv"
+        id="PopupDialog"
         class="HiddenPopupInfo HiddenPopupInfo-M w3-container w3-center w3-round-xxlarge">
         <i
           class="Btn-Close bi bi-x-circle-fill"
-          onclick="CloseHiddenPopupInfo()"></i>
-        <div id="alertTitle" class="w3-container w3-large"></div>
+          onclick="CLOSE_ALL_POPUP()"></i>
+        <!--
+				<div id="PopupDialog_Title" class="w3-container w3-display-container w3-large"></div>-->
         <div
           id="alertContent"
           class="w3-container w3-medium"
