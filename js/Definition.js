@@ -19,6 +19,9 @@ var airport;
 var airportLength = 10;
 var noOfPlaneHead = 2;
 
+var gameStepCount = 0;
+var gameRemainHead = noOfPlaneHead;
+
 const airplane1 = [
   [
     //up

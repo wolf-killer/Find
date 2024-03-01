@@ -94,7 +94,7 @@ function CLOSE_ALL_POPUP() {
   $(".ActionPopup").css("display", "none");
 }
 
-function SHOW_ALERT(type, title, content, actionBtn = [], inputObject) {
+function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject) {
 	/* Support Type: 
 			1. ALERT
 			2. QUESTION
@@ -126,8 +126,12 @@ function SHOW_ALERT(type, title, content, actionBtn = [], inputObject) {
 	type = type.toUpperCase();
   
   $("#Overlay").show();
-  $("#PopupDialog").removeClass("Dialog-ALERT Dialog-QUESTION Dialog-REMARK");
-	$("#PopupDialog").addClass("Dialog-" + type);
+  var dialogDiv = $("#PopupDialog");
+  
+  dialogDiv.removeClass("Dialog-ALERT Dialog-QUESTION Dialog-REMARK");
+  dialogDiv.removeClass("HiddenPopupInfo-S HiddenPopupInfo-M HiddenPopupInfo-L");
+	dialogDiv.addClass("Dialog-" + type);
+	dialogDiv.addClass("HiddenPopupInfo-" + size);
 	
   if (type == "ALERT") {
     icon = "bi-exclamation-diamond-fill";
@@ -140,7 +144,6 @@ function SHOW_ALERT(type, title, content, actionBtn = [], inputObject) {
     color = "blue";
   }
 	
-	var dialogDiv = $("#PopupDialog");
 	dialogDiv.html("");
 	
 /* ADD DIALOG TITLE SECTION */	

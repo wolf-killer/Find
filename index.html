@@ -46,7 +46,7 @@
           onclick="SHOW_V_MENU()"
           >&#9776;</a
         >
-        <div id="Hmenu">
+        <div id="Hmenu" class="w3-right">
           <a
             href="#"
             class="w3-bar-item w3-button w3-hide-small"
@@ -120,19 +120,13 @@
 
       <div
         id="PopupDialog"
-        class="HiddenPopupInfo HiddenPopupInfo-M w3-container w3-center w3-round-xxlarge">
-        <i
-          class="Btn-Close bi bi-x-circle-fill"
-          onclick="CLOSE_ALL_POPUP()"></i>
-        <!--
-				<div id="PopupDialog_Title" class="w3-container w3-display-container w3-large"></div>-->
-        <div
-          id="alertContent"
-          class="w3-container w3-medium"
-          style="display: inline-grid"></div>
-        <div id="alertAction" class="w3-container w3-medium"></div>
+        class="HiddenPopupInfo w3-container w3-center w3-round-xxlarge">
       </div>
-      <footer class="w3-container w3-bottom w3-margin-top w3-right MenuBar">
+      <footer class="w3-container w3-bottom w3-margin-top MenuBar">
+        <span id="result" class="w3-center">
+          使用: <span id="showGameStepCount"></span> | 
+          剩余: <span id="showGameRemainHead"></span>
+        </span>
         <span class="w3-right">@Freda Wong</span>
       </footer>
     </div>

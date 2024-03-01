@@ -1,4 +1,8 @@
 function createAirplane() {
+  gameStepCount = 0;
+  gameRemainHead = noOfPlaneHead;
+  $("#showGameStepCount").text(gameStepCount);
+  $("#showGameRemainHead").text(gameRemainHead);
   var loopingNoOfPlaneHead = noOfPlaneHead;
   while (loopingNoOfPlaneHead > 0) {
     if (!createAirplaneImplement()) {
@@ -41,7 +45,7 @@ function checkAirplaneValid(headDirection, xHead, yHead) {
 
 function selectGate(row, col) {
   var selectCell = airport[row][col];
-  if (!selectCell.visited)
+  if (!selectCell.visited){
     switch (selectCell.cellDefinition) {
       case planeHead: {
         $("#airportGate_" + row + "_" + col).addClass("planeHead");
@@ -56,7 +60,9 @@ function selectGate(row, col) {
         break;
       }
     }
-  selectCell.visited = true;
+    selectCell.visited = true;
+    updateGameResult(selectCell.cellDefinition);
+  }
 }
 
 function createSampleAirplane() {
@@ -115,6 +121,7 @@ function showInfo() {
 					closeDialog: true
 				}];
   SHOW_ALERT(
+    "M", 
     "QUESTION",
     "遊戲設置",
     content,
@@ -160,5 +167,23 @@ function getSamplePlaneHtml() {
 
 function showSamplePlaneDialog(){
   var sampleAirplaneHtml = getSamplePlaneHtml();
-  SHOW_ALERT("REMARK", "模板", sampleAirplaneHtml);
+  SHOW_ALERT("S", "REMARK", "模板", sampleAirplaneHtml);
 }
+
+ function updateGameResult(cellDefinition) {
+  gameStepCount++;
+  if(cellDefinition == planeHead){
+    gameRemainHead--;
+  }
+  $("#showGameStepCount").text(gameStepCount);
+  $("#showGameRemainHead").text(gameRemainHead);
+  if(gameRemainHead==0){
+    var showContent = "一共使用" + gameStepCount + "步！";
+    SHOW_ALERT("M", "ALERT", "恭喜尋找成功！", showContent)
+    updateGameOver();
+  }
+ }
+ 
+ function updateGameOver() {
+  displayAllAirplane();
+ }
