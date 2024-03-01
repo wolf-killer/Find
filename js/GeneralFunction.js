@@ -1,7 +1,9 @@
-var setWidth = document.documentElement.scrollWidth;
-var setHeight = document.documentElement.scrollHeight;
+var screenWidth = document.documentElement.scrollWidth;
+var screenHeight = document.documentElement.scrollHeight;
+var setScreenWidth = document.documentElement.scrollWidth;
+var setScreenHeight = document.documentElement.scrollHeight;
 
-var GetUrlParameter = function GetUrlParameter(sParam) {
+function GET_URL_PARAM(sParam) {
   var sPageURL = window.location.search.substring(1),
     sURLVariables = sPageURL.split("&"),
     sParameterName,
@@ -17,7 +19,8 @@ var GetUrlParameter = function GetUrlParameter(sParam) {
   }
   return false;
 };
-function GoPage(pageName, param) {
+
+function GO_PAGE(pageName, param) {
   path = "./" + pageName + ".html?";
   Object.entries(param).forEach((entry) => {
     const [key, value] = entry;
@@ -25,267 +28,241 @@ function GoPage(pageName, param) {
   });
   window.location.href = path;
 }
-function SetWindow() {
-  setWidth = GetUrlParameter("setWidth")
-    ? GetUrlParameter("setWidth")
-    : document.documentElement.scrollWidth;
-  setHeight = GetUrlParameter("setHeight")
-    ? GetUrlParameter("setHeight")
-    : document.documentElement.scrollHeight;
-  console.log("Available width/height: " + setWidth + "*" + screen.availHeight);
-  $("#FixScreen").css("height", setHeight);
-  $("#FixScreen").css("width", setWidth);
-  $("#seatingPlan").css("height", setHeight);
-  $("#seatingPlan").css("width", setWidth);
-  $(".PopupInfo").css("max-height", setHeight - 10);
-  $(".HiddenPopupInfo").css("max-height", setHeight - 40);
-}
-function ManualAdjustXY() {
-  var x = $("#manualX").val();
-  var y = $("#manualY").val();
 
-  AdjustX(x);
-  AdjustY(y);
+function SET_WINDOW() {
+	// Auto set full screen for $("#FixScrren")
+  setScreenWidth = GET_URL_PARAM("setScreenWidth")
+    ? GET_URL_PARAM("setScreenWidth")
+    : screenWidth;
+  setScreenHeight = GET_URL_PARAM("setScreenHeight")
+    ? GET_URL_PARAM("setScreenHeight")
+    : screenHeight;
+  console.log("Available width/height: " + setScreenWidth + "*" + screen.availHeight);
+  $("#FixScreen").css("height", setScreenHeight);
+  $("#FixScreen").css("width", setScreenWidth);
+  $(".PopupInfo").css("max-height", setScreenHeight - 10);
+  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 40);
 }
-function AdjustX(input) {
+
+function MANUAL_ADJUST_SCREEN_SIZE_BY_DIALOG(x, y) {
+  //var x = $("#manualX").val();
+  //var y = $("#manualY").val();
+  MANUAL_ADJUST_SCREEN_WIDTH(x);
+  MANUAL_ADJUST_SCREEN_HEIGHT(y);
+}
+
+function MANUAL_ADJUST_SCREEN_WIDTH(input) {
   if (input == "-") {
-    setWidth = parseInt(setWidth) - 10;
+    setScreenWidth = parseInt(setScreenWidth) - 10;
   } else if (input == "+") {
-    setWidth = parseInt(setWidth) + 10;
+    setScreenWidth = parseInt(setScreenWidth) + 10;
   } else {
-    setWidth = parseInt(input);
+    setScreenWidth = parseInt(input);
   }
-  $("#FixScreen").css("height", setHeight);
-  $("#FixScreen").css("width", setWidth);
-  $(".PopupInfo").css("max-height", setHeight - 10);
-  $(".HiddenPopupInfo").css("max-height", setHeight - 40);
+  $("#FixScreen").css("height", setScreenHeight);
+  $("#FixScreen").css("width", setScreenWidth);
+  $(".PopupInfo").css("max-height", setScreenHeight - 10);
+  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 40);
 }
-function AdjustY(input) {
+
+function MANUAL_ADJUST_SCREEN_HEIGHT(input) {
   if (input == "-") {
-    setHeight = parseInt(setHeight) - 10;
+    setScreenHeight = parseInt(setScreenHeight) - 10;
   } else if (input == "+") {
-    setHeight = parseInt(setHeight) + 10;
+    setScreenHeight = parseInt(setScreenHeight) + 10;
   } else {
-    setHeight = parseInt(input);
+    setScreenHeight = parseInt(input);
   }
-  $("#FixScreen").css("height", setHeight);
-  $("#FixScreen").css("width", setWidth);
-  $(".PopupInfo").css("max-height", setHeight - 10);
-  $(".HiddenPopupInfo").css("max-height", setHeight - 40);
+  $("#FixScreen").css("height", setScreenHeight);
+  $("#FixScreen").css("width", setScreenWidth);
+  $(".PopupInfo").css("max-height", setScreenHeight - 10);
+  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 40);
 }
-function CloseHiddenPopupInfo() {
+
+function SHOW_V_MENU() {
+	var bool = $("#Vmenu").css("display") == "none";
+	if(bool){
+		$("#Vmenu").css("display", "block");
+	} else {
+		$("#Vmenu").css("display", "none");
+	}
+}
+
+function CLOSE_ALL_POPUP() {
   $("#Overlay").hide();
   $(".HiddenPopupInfo").css("display", "none");
   $(".ActionPopup").css("display", "none");
 }
-function ExtandSection(icon, sectionName) {
-  if ($("#" + sectionName).hasClass("w3-show")) {
-    $(icon).removeClass("bi-caret-up-fill");
-    $(icon).addClass("bi-caret-down-fill");
-    $("#" + sectionName).removeClass("w3-show");
-    $("#" + sectionName).addClass("w3-hide");
-  } else {
-    $(icon).removeClass("bi-caret-down-fill");
-    $(icon).addClass("bi-caret-up-fill");
-    $("#" + sectionName).removeClass("w3-hide");
-    $("#" + sectionName).addClass("w3-show");
-  }
-}
-function UpdateBtn(mode, version) {
-  $("." + mode).removeClass("wolf-btn-selected");
-  $("#" + version).addClass("wolf-btn-selected");
-  if (mode == "versionMode") {
-    versionMode = version;
-  } else if (mode == "windowMode") {
-    windowMode = version;
-  }
-}
-function ShowAlert(type, title, content, nextAction, inputObject) {
+
+function SHOW_ALERT(type, title, content, actionBtn = [], inputObject) {
+	/* Support Type: 
+			1. ALERT
+			2. QUESTION
+			3. Remark
+	*/
+	/*
+		Sample actionBtn
+			var actionBtn = [
+				{
+					desc: "關閉",
+					action: "CLOSE_ALL_POPUP()",
+					closeDialog: true
+				}
+			]
+	*/
   /* Sample inputObject
-var inputObject = [{
-id: id,
-type: type,
-desc: desc,
-defaultValue: defaultValue,
-prop: {
-max: max,
-min: 1
-}
-}];
-*/
+			var inputObject = [{
+			id: id,
+			type: type,
+			desc: desc,
+			defaultValue: defaultValue,
+			prop: {
+			max: max,
+			min: 1
+			}
+			}];
+	*/
+	var icon, color;
+	type = type.toUpperCase();
+  
   $("#Overlay").show();
-  $("#alertDiv").removeClass("alertMode questionMode remarkMode");
-  var icon, color;
-  if (type == "alert") {
+  $("#PopupDialog").removeClass("Dialog-ALERT Dialog-QUESTION Dialog-REMARK");
+	$("#PopupDialog").addClass("Dialog-" + type);
+	
+  if (type == "ALERT") {
     icon = "bi-exclamation-diamond-fill";
     color = "red";
-    $("#alertDiv").addClass("alertMode");
-  } else if (type == "question" || type == "boolean") {
+  } else if (type == "QUESTION") {
     icon = "bi-question-diamond-fill";
     color = "yellow";
-    $("#alertDiv").addClass("questionMode");
   } else {
     icon = "bi-bookmark-star-fill";
     color = "blue";
-    $("#alertDiv").addClass("remarkMode");
   }
-  if (nextAction != null) {
-    nextAction = "CloseHiddenPopupInfo(); " + nextAction;
-  } else {
-    nextAction = "CloseHiddenPopupInfo();";
+	
+	var dialogDiv = $("#PopupDialog");
+	dialogDiv.html("");
+	
+/* ADD DIALOG TITLE SECTION */	
+	var newTitleDiv = $("<div></div>");
+	newTitleDiv.addClass("PopupDialog_Title w3-container w3-large w3-leftbar w3-rightbar");
+	newTitleDiv.addClass("w3-pale-" + color);
+	newTitleDiv.addClass("w3-border-" + color);
+	
+	var newTitleIcon = $("<i></i>");
+	newTitleIcon.addClass("bi");
+	newTitleIcon.addClass(icon);
+	newTitleIcon.addClass("w3-text-"+color);
+	newTitleIcon.css("margin-right", "10px");
+	
+	var newTitleDesc = $("<span></span>");
+	newTitleDesc.html(title);
+	
+	var newCloseBtn = $("<i></i>");
+	newCloseBtn.addClass("PopupDialog_CloseBtn bi bi-x")
+	newCloseBtn.attr('onClick', "CLOSE_ALL_POPUP()");
+	
+	newTitleDiv.append(newTitleIcon);
+	newTitleDiv.append(newTitleDesc);
+	newTitleDiv.append(newCloseBtn);
+	
+	dialogDiv.prepend(newTitleDiv);
+
+/* ADD DIALOG CONTENT SECTION */	
+	var newContentDiv = $("<div></div>");
+	newContentDiv.addClass("PopupDialog_Content w3-container w3-medium");
+	
+	var newContentDesc = $("<div></div>");
+	newContentDesc.css("display", "inline-grid");
+	newContentDesc.html(content);
+	
+	if(type == "QUESTION"){
+		var newContentInputSection = $("<div></div>");
+		for (let i = 0; i < inputObject.length; i++) {
+			var newContentInputDesc = $("<div></div>");
+			newContentInputDesc.text(inputObject[i].desc + ": ");
+			newContentInputSection.append(newContentInputDesc);
+			
+			var newContentInput = $("<input>");
+				newContentInput.addClass("w3-input w3-border");
+				newContentInput.attr("id", inputObject[i].id);
+				newContentInput.attr("type", inputObject[i].type);				
+				newContentInput.attr("value", inputObject[i].defaultValue);
+			
+			if (inputObject[i].type == "range") {
+				var newContentInputRangeDesc = $("<span></span>");
+				newContentInputRangeDesc.attr("id", "show"+inputObject[i].id);
+				newContentInputRangeDesc.text(inputObject[i].defaultValue);
+				newContentInputDesc.append(newContentInputRangeDesc);
+				
+				newContentInput.attr("max", inputObject[i].prop.max);
+				newContentInput.attr("min", inputObject[i].prop.min);
+				newContentInput.attr("step", inputObject[i].prop.step);
+				var affectValue = inputObject[i].prop['affectValue'] ? inputObject[i].prop['affectValue'] : '';
+				console.log(affectValue);
+				newContentInput.attr('oninput', "UPDATERANGEDISPLAY('" + inputObject[i].id + "', '" + affectValue +"' )");
+				newContentInputSection.append(newContentInput);
+			}
+		}
+	}
+	
+	newContentDiv.append(newContentDesc);
+	newContentDiv.append(newContentInputSection);
+	
+	dialogDiv.append(newContentDiv);
+	
+/* ADD DIALOG ACTION SECTION */	
+	var newActionDiv = $("<div></div>");
+	newActionDiv.addClass("PopupDialog_Action w3-container w3-medium");
+	
+  if (actionBtn && actionBtn.length > 0) {
+		for(let i=0; i < actionBtn.length; i++){
+			if(actionBtn[i].closeDialog){
+				actionBtn[i].action = actionBtn[i].action + "; CLOSE_ALL_POPUP();";
+			}
+		}
   }
-  $("#alertTitle").html(
-    "<div class='w3-display-container w3-center w3-col-middle w3-pale-" +
-      color +
-      " w3-leftbar w3-rightbar w3-border-" +
-      color +
-      " w3-large' style='padding: 4px;'>" +
-      " <i class='bi " +
-      icon +
-      " w3-text-" +
-      color +
-      "' style='margin-right: 10px;'></i>" +
-      "<span>" +
-      title +
-      "</span>" +
-      "</div>"
-  );
-  if (type == "question" || type == "boolean") {
-    if (type == "question") {
-      for (let i = 0; i < inputObject.length; i++) {
-        content += inputObject[i].desc + ": ";
-        if (inputObject[i].type == "range") {
-          content +=
-            '<span id="show' +
-            inputObject[i].id +
-            '" >' +
-            inputObject[i].defaultValue +
-            "</span>";
-        }
-        content +=
-          '<input class="w3-input w3-border"' +
-          ' id="' +
-          inputObject[i].id +
-          '" ' +
-          ' type="' +
-          inputObject[i].type +
-          '" ' +
-          ' value="' +
-          inputObject[i].defaultValue +
-          '" ';
-        if (inputObject[i].type == "range") {
-          content +=
-            ' max="' +
-            inputObject[i].prop.max +
-            '" ' +
-            ' min="' +
-            inputObject[i].prop.min +
-            '" ' +
-            ' step="' +
-            inputObject[i].prop.step +
-            '" ' +
-            "oninput= \"updateRangeDisplay('" +
-            inputObject[i].id +
-            "')\"";
-        }
-        content += ">";
-      }
-    }
-    $("#alertContent").html(content);
-    $("#alertAction").html(
-      '<button class="wolf-btn w3-btn w3-round-large w3-pale-' +
-        color +
-        " w3-border-" +
-        color +
-        '" onclick="' +
-        nextAction +
-        '">' +
-        "確認" +
-        "</button>" +
-        '<button class="wolf-btn w3-btn w3-round-large w3-pale-' +
-        color +
-        " w3-border-" +
-        color +
-        '" onclick="CloseHiddenPopupInfo()">' +
-        "取消" +
-        "</button>"
-    );
-  } else {
-    $("#alertContent").html(content);
-    $("#alertAction").html(
-      '<button class="wolf-btn w3-btn w3-round-large w3-pale-' +
-        color +
-        " w3-border-" +
-        color +
-        '" onclick="' +
-        nextAction +
-        '">' +
-        "關閉" +
-        "</button>"
-    );
-  }
-  $("#alertDiv").css("display", "block");
+	actionBtn.push({
+		desc: "關閉",
+		action: "CLOSE_ALL_POPUP();",
+		closeDialog: true
+	});
+	
+	for(let i = 0; i < actionBtn.length; i++){
+		var newActionBtn = $("<button></button>");
+		newActionBtn.addClass("PopupDialog_ActionBtn w3-btn w3-round-large");
+		newActionBtn.addClass("w3-pale-" + color);
+		newActionBtn.addClass("w3-border-" + color);
+		newActionBtn.attr('onClick', actionBtn[i].action);
+		newActionBtn.text(actionBtn[i].desc);
+		newActionDiv.append(newActionBtn);
+	}
+	
+	dialogDiv.append(newActionDiv);
+
+  $("#PopupDialog").css("display", "block");
 }
-function ShowLog(nextAction) {
-  let actionDesc = "關閉";
-  if (nextAction == "startConfirmRole()") actionDesc = "開始確認身份";
-  if (nextAction != null) {
-    nextAction = "CloseHiddenPopupInfo(); " + nextAction;
-  } else {
-    nextAction = "CloseHiddenPopupInfo();";
+
+function UPDATERANGEDISPLAY(field, affectNextField) {
+  var slider = $("#" + field);
+  var fieldOutput = $("#show" + field);
+  fieldOutput.html(slider.val());
+  if (affectNextField.length > 0) {
+    var nextInputField = $("#" + affectNextField);
+    var nextInputFieldOutput = $("#show" + affectNextField);
+		if(affectNextField = "inputNoOfPlaneHead"){
+    var maxPlane = Math.floor(slider.val() / 3);
+    if (nextInputField.val() > maxPlane) {
+			nextInputFieldOutput.html(maxPlane);
+			nextInputField.val(maxPlane);
+          }
+    nextInputField.attr("max", maxPlane);
+		}
   }
-  $("#logAction").html(
-    "<i class='wolf-btn-close bi bi-x-circle-fill' onclick='" +
-      nextAction +
-      "'></i>" +
-      "<button class='wolf-btn w3-btn w3-round-large w3-pale-blue w3-border-blue' onclick='" +
-      nextAction +
-      "'>" +
-      actionDesc +
-      "</button>"
-  );
-  $("#logDiv").show();
 }
-function GetRandom() {
-  var randomBuffer = new Uint32Array(1);
-  window.crypto.getRandomValues(randomBuffer);
-  return randomBuffer[0] / (0xffffffff + 1);
-}
+
 function GetRandomBetween(max, min) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function CreateButton(onclickfn, icon, display, hover) {
-  var btn =
-    "<span class='wolf-tag w3-medium btn-" +
-    icon +
-    "' onclick='ShowHoverTag($(this))' ondblclick='" +
-    onclickfn +
-    "' >";
-  if (icon != null) btn += "<i class='bi " + icon + " wolf-btn w3-btn'></i>";
-  if (display != null) btn += '<span style="">' + display + "</span>";
-  if (hover != null) btn += '<span class="wolf-hovertag">' + hover + "</span>";
-  btn += "</span>";
-  return btn;
-}
-function RemoveButton(iconList) {
-  for (let i = 0; i < iconList.length; i++) {
-    $("." + iconList[i]).remove();
-  }
-}
-function ShowHoverTag(e) {
-  var tag = $(e.context.querySelector(".wolf-hovertag"));
-  if (tag.length == 0) {
-    e.dblclick();
-    return;
-  }
-  if (tag.css("display") == "block") {
-    e.dblclick();
-  } else {
-    tag.css("display", "block");
-  }
-  setTimeout(function () {
-    tag.css("display", "none");
-  }, 2000); // 1000ms = 1s
 }
 function DecimalAdjust(type, value, exp) {
   type = String(type);
@@ -308,28 +285,3 @@ function DecimalAdjust(type, value, exp) {
   return Number(`${newMagnitude}e${+newExponent + exp}`);
 }
 const Floor10 = (value, exp) => DecimalAdjust("floor", value, exp);
-function ShowVmenu() {
-  var x = document.getElementById("Vmenu");
-  if (x.className.indexOf("w3-show") == -1) {
-    x.className += " w3-show";
-  } else {
-    x.className = x.className.replace(" w3-show", "");
-  }
-}
-function updateRangeDisplay(field) {
-  var slider = document.getElementById(field);
-  var fieldOutput = document.getElementById("show" + field);
-  fieldOutput.innerHTML = slider.value;
-  if (field == "inputAirportLength") {
-    var nextInputField = document.getElementById("inputNoOfPlaneHead");
-    var nextInputFieldOutput = document.getElementById(
-      "showinputNoOfPlaneHead"
-    );
-    var maxPlane = Math.floor(slider.value / 3);
-    if (nextInputField.value > maxPlane) {
-      nextInputFieldOutput.innerHTML = maxPlane;
-      nextInputField.value = maxPlane;
-    }
-    nextInputField.setAttribute("max", maxPlane);
-  }
-}
