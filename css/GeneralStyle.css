@@ -9,6 +9,9 @@ body {
   color: #ffffff;
   align-self: center !important;
 }
+#Vmenu{
+	display: none;
+}
 .PopupInfo {
   background-color: rgba(40, 215, 215, 0.5);
   width: 90%;
@@ -59,23 +62,42 @@ body {
   left: 5% !important;
   width: 90% !important;
 }
-.alertMode {
+.PopupDialog_CloseBtn{
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	cursor: pointer;
+}
+.PopupDialog_Title{
+	width: 90%;
+	margin-top: 10px !important;
+	margin-bottom: 10px !important;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 10px !important;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+.PopupDialog_ActionBtn{
+	margin: 10px;
+}
+
+.Dialog-ALERT {
   top: 20%;
   background-color: rgba(255, 208, 208, 0.95);
   border: 3px solid red;
 }
-.questionMode {
+.Dialog-QUESTION {
   top: 20%;
   background-color: rgba(245, 255, 210, 0.95);
   border: 3px solid yellow;
 }
-.remarkMode {
+.Dialog-REMARK {
   top: 20%;
   background-color: rgba(210, 255, 255, 0.95);
   border: 3px solid blue;
-}
-#alertAction > button {
-  margin: 0px 16px;
 }
 .Btn-Close {
   position: absolute;
