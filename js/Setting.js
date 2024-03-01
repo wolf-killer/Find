@@ -92,6 +92,7 @@ function showInfo() {
         max: 30,
         min: 10,
         step: 5,
+				affectValue: "inputNoOfPlaneHead",
       },
     },
     {
@@ -107,11 +108,16 @@ function showInfo() {
     },
   ];
   var content = "<br/>";
-  ShowAlert(
-    "question",
+	var actionList = [{
+					desc: "確認",
+					action: "updateDefaultSetting()",
+					closeDialog: true
+				}];
+  SHOW_ALERT(
+    "QUESTION",
     "遊戲設置",
     content,
-    "updateDefaultSetting()",
+		actionList,
     inputObject
   );
 }
@@ -148,5 +154,9 @@ function showSamplePlaneDialog() {
     html += "</tr>";
   }
   html += "</table>";
-  ShowAlert("remark", "模板", html);
+  SHOW_ALERT("REMARK", "模板", html, [{
+					desc: "遊戲設置",
+					action: "updateDefaultSetting()",
+					closeDialog: true
+				}]);
 }
