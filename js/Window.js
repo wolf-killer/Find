@@ -10,7 +10,7 @@ function main() {
 function initTable() {
   // console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
   setSquareLength = setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;
-  setSquareLength = Floor10(setSquareLength - 50, 1);
+  setSquareLength = DECIMALADJUST("floor", setSquareLength - 50, 1);
   setSeatLength = setSquareLength / airportLength;
   $("#playground").css(
     "height",
