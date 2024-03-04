@@ -15,8 +15,8 @@ function createAirplane() {
 function createAirplaneImplement() {
   var headDirection = Math.floor(Math.random() * 4);
   var tmpArea = airplane1PossibleArea[headDirection];
-  var xHead = GetRandomBetween(airportLength + tmpArea.xEnd, tmpArea.xStart);
-  var yHead = GetRandomBetween(airportLength + tmpArea.yEnd, tmpArea.yStart);
+  var xHead = GETRANDOMBETWEEN(airportLength + tmpArea.xEnd, tmpArea.xStart);
+  var yHead = GETRANDOMBETWEEN(airportLength + tmpArea.yEnd, tmpArea.yStart);
   if (checkAirplaneValid(headDirection, xHead, yHead)) {
     var planeDemo = airplane1[headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
@@ -113,8 +113,12 @@ function showInfo() {
       },
     },
   ];
-  var content = "使用模板: "
-  content += getSamplePlaneHtml();
+	
+	var newContent = $("<div></div>");
+	newContent.css("margin-bottom", "20px");
+	newContent.text("使用模板: ");
+	newContent.append(getSamplePlaneHtml());
+	
 	var actionList = [{
 					desc: "確認",
 					action: "updateDefaultSetting()",
@@ -124,7 +128,7 @@ function showInfo() {
     "M", 
     "QUESTION",
     "遊戲設置",
-    content,
+    newContent,
 		actionList,
     inputObject
   );
@@ -138,36 +142,44 @@ function updateDefaultSetting() {
 
 function getSamplePlaneHtml() {
   createSampleAirplane();
-  var html = "<table class='sampleAirport' style='zoom:2.5'>";
+	var setSampleAirportWidth = setScreenWidth * 0.25;
+	var setSampleAirportHeight = setScreenWidth * 0.25;
+	
+	var newSampleAirport = $("<table></table>");
+	newSampleAirport.addClass("sampleAirport w3-table");
+	newSampleAirport.css("width", setSampleAirportWidth + "px");
+	newSampleAirport.css("height", setSampleAirportHeight + "px");
+	newSampleAirport.css("margin", "auto");
+	
   for (var row = 0; row < sampleAirportLength; row++) {
-    html += "<tr>";
+		var newSampleAirportRow = $("<tr></tr>");
     for (var col = 0; col < sampleAirportLength; col++) {
-      html += "<td class='airportGate";
+			var newSampleAirportCol = $("<td></td>");
+			newSampleAirportCol.addClass("airportGate");
       switch (sampleAirport[row][col].cellDefinition) {
         case planeHead: {
-          html += " planeHead";
+					newSampleAirportCol.addClass("planeHead");
           break;
         }
         case planeBody: {
-          html += " planeBody";
+					newSampleAirportCol.addClass("planeBody");
           break;
         }
         default: {
-          html += " emptyCell";
+					newSampleAirportCol.addClass("emptyCell");
           break;
         }
       }
-      html += "'></td>";
+			newSampleAirportRow.append(newSampleAirportCol);
     }
-    html += "</tr>";
+		newSampleAirport.append(newSampleAirportRow);
   }
-  html += "</table>";
-  return html;
+  return newSampleAirport;
 }
 
 function showSamplePlaneDialog(){
   var sampleAirplaneHtml = getSamplePlaneHtml();
-  SHOW_ALERT("S", "REMARK", "模板", sampleAirplaneHtml);
+  SHOW_ALERT("M", "REMARK", "模板", sampleAirplaneHtml);
 }
 
  function updateGameResult(cellDefinition) {
@@ -179,7 +191,7 @@ function showSamplePlaneDialog(){
   $("#showGameRemainHead").text(gameRemainHead);
   if(gameRemainHead==0){
     var showContent = "一共使用" + gameStepCount + "步！";
-    SHOW_ALERT("M", "ALERT", "恭喜尋找成功！", showContent)
+    SHOW_ALERT("M", "ALERT", "恭喜尋找成功！", showContent, [], [], "bi-balloon-heart-fill");
     updateGameOver();
   }
  }
