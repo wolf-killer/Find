@@ -94,11 +94,11 @@ function CLOSE_ALL_POPUP() {
   $(".ActionPopup").css("display", "none");
 }
 
-function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject) {
+function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = [], icon = null) {
 	/* Support Type: 
 			1. ALERT
 			2. QUESTION
-			3. Remark
+			3. REMARK
 	*/
 	/*
 		Sample actionBtn
@@ -122,7 +122,7 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject) {
 			}
 			}];
 	*/
-	var icon, color;
+	var color;
 	type = type.toUpperCase();
   
   $("#Overlay").show();
@@ -134,13 +134,13 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject) {
 	dialogDiv.addClass("HiddenPopupInfo-" + size);
 	
   if (type == "ALERT") {
-    icon = "bi-exclamation-diamond-fill";
+    icon = icon ? icon: "bi-exclamation-diamond-fill";
     color = "red";
   } else if (type == "QUESTION") {
-    icon = "bi-question-diamond-fill";
+    icon = icon ? icon: "bi-question-diamond-fill";
     color = "yellow";
   } else {
-    icon = "bi-bookmark-star-fill";
+    icon = icon ? icon: "bi-bookmark-star-fill";
     color = "blue";
   }
 	
@@ -176,8 +176,9 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject) {
 	newContentDiv.addClass("PopupDialog_Content w3-container w3-medium");
 	
 	var newContentDesc = $("<div></div>");
-	newContentDesc.css("display", "inline-grid");
-	newContentDesc.html(content);
+	newContentDesc.addClass("w3-center");
+	// newContentDesc.html(content);
+	newContentDesc.append(content);
 	
 	if(type == "QUESTION"){
 		var newContentInputSection = $("<div></div>");
@@ -264,10 +265,12 @@ function UPDATERANGEDISPLAY(field, affectNextField) {
   }
 }
 
-function GetRandomBetween(max, min) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
+// -- MATHS FUNCTION -- 
+function GETRANDOMBETWEEN(max, min) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function DecimalAdjust(type, value, exp) {
+
+function DECIMALADJUST(type, value, exp) {
   type = String(type);
   if (!["round", "floor", "ceil"].includes(type)) {
     throw new TypeError(
@@ -287,4 +290,3 @@ function DecimalAdjust(type, value, exp) {
   const [newMagnitude, newExponent = 0] = adjustedValue.toString().split("e");
   return Number(`${newMagnitude}e${+newExponent + exp}`);
 }
-const Floor10 = (value, exp) => DecimalAdjust("floor", value, exp);
