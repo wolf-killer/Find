@@ -21,6 +21,8 @@ canvas {
   background-color: #929be890;
   border: 1px solid #452400 !important;
   margin: 2px;
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 .w3-button {
   border: 1px solid black;
