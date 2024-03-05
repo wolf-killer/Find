@@ -183,7 +183,7 @@ function getSamplePlaneHtml() {
 }
 
 function displaySampleAirplane(){
-  $("#playground").append(getSamplePlaneHtml());
+  $("#tips").html(getSamplePlaneHtml());
 }
 
 function showSamplePlaneDialog(){
