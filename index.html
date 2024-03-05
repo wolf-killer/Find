@@ -38,8 +38,16 @@
 
   <body>
     <div class="">
-      <header class="w3-top w3-bar MenuBar">
-        <span class="w3-bar-item">尋找重點</span>
+      <div class="w3-top w3-bar MenuBar">
+        <a
+          href="#"
+          class="w3-bar-item w3-button"
+          onclick="displaySampleAirplane()">
+          <i class="bi bi-airplane-fill"></i>
+        </a>
+        <span class="w3-bar-item" style="padding-left:4px;padding-right:4px;">
+          尋找重點
+        </span>
         <a
           href="javascript:void(0)"
           class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
@@ -71,7 +79,7 @@
           <a
             href="#"
             class="w3-bar-item w3-button w3-hide-small"
-            onclick="showSamplePlaneDialog();ShowVmenu();">
+            onclick="showSamplePlaneDialog();">
             <i class="bi bi-binoculars"></i>
             <span class="w3-hide-medium">查看模板</span>
           </a>
@@ -108,27 +116,32 @@
             <span class="w3-hide-medium">查看模板</span>
           </a>
         </div>
-      </header>
-
-      <div id="playground" class="w3-display-container">
+      </div>
+      <div class="w3-container">
+  <hr>
+      <div id="playground" class="w3-cell-row">
         <table
           id="airport"
-          class="w3-display-middle w3-table w3-centered"></table>
+          class="w3-table w3-center"></table>
       </div>
-
+</div>
       <div id="Overlay"></div>
 
       <div
         id="PopupDialog"
         class="HiddenPopupInfo w3-container w3-center w3-round-xxlarge">
       </div>
-      <footer class="w3-container w3-bottom w3-margin-top MenuBar">
-        <span id="result" class="w3-center">
-          使用: <span id="showGameStepCount"></span> | 
-          剩余: <span id="showGameRemainHead"></span>
+      <div class="w3-container w3-bar w3-bottom w3-margin-top MenuBar">
+        <span id="result">
+          使用: 
+          <span id="showGameStepCount"></span> | 
+          剩余: 
+          <span id="showGameRemainHead"></span>
         </span>
-        <span class="w3-right">@Freda Wong</span>
-      </footer>
+        <span class="w3-right">
+          @Freda Wong
+        </span>
+      </div>
     </div>
   </body>
 </html>

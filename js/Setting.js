@@ -182,6 +182,10 @@ function getSamplePlaneHtml() {
   return newSampleAirport;
 }
 
+function displaySampleAirplane(){
+  $("#playground").append(getSamplePlaneHtml());
+}
+
 function showSamplePlaneDialog(){
   var sampleAirplaneHtml = getSamplePlaneHtml();
   SHOW_ALERT("M", "REMARK", "模板", sampleAirplaneHtml);
