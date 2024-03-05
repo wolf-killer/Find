@@ -5,26 +5,29 @@ function createAirplane() {
   $("#showGameRemainHead").text(gameRemainHead);
   var loopingNoOfPlaneHead = noOfPlaneHead;
   while (loopingNoOfPlaneHead > 0) {
-    if (!createAirplaneImplement()) {
+    if (!createAirplaneImplement(loopingNoOfPlaneHead)) {
       continue;
     }
     loopingNoOfPlaneHead -= 1;
   }
 }
 
-function createAirplaneImplement() {
+function createAirplaneImplement(loopingNoOfPlaneHead) {
   var headDirection = Math.floor(Math.random() * 4);
   var tmpArea = airplane1PossibleArea[headDirection];
   var xHead = GETRANDOMBETWEEN(airportLength + tmpArea.xEnd, tmpArea.xStart);
   var yHead = GETRANDOMBETWEEN(airportLength + tmpArea.yEnd, tmpArea.yStart);
   if (checkAirplaneValid(headDirection, xHead, yHead)) {
+		var planeId = loopingNoOfPlaneHead;
     var planeDemo = airplane1[headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
       var xAdjust = xHead + planeDemo[i].x;
       var yAdjust = yHead - planeDemo[i].y;
       airport[xAdjust][yAdjust].cellDefinition = planeBody;
+			airport[xAdjust][yAdjust].planeId = planeId;
     }
     airport[xHead][yHead].cellDefinition = planeHead;
+		airport[xHead][yHead].planeId = planeId;
     return true;
   } else {
     return false;
@@ -44,19 +47,21 @@ function checkAirplaneValid(headDirection, xHead, yHead) {
 }
 
 function selectGate(row, col) {
+	CLOSE_ALL_POPUP();
   var selectCell = airport[row][col];
   if (!selectCell.visited){
+		var selectCellNode = $("#airportGate_" + row + "_" + col);
     switch (selectCell.cellDefinition) {
       case planeHead: {
-        $("#airportGate_" + row + "_" + col).addClass("planeHead");
-        break;
+        selectCellNode.addClass("planeHead");
+				break;
       }
       case planeBody: {
-        $("#airportGate_" + row + "_" + col).addClass("planeBody");
+        selectCellNode.addClass("planeBody");
         break;
       }
       default: {
-        $("#airportGate_" + row + "_" + col).addClass("emptyCell");
+        selectCellNode.addClass("emptyCell");
         break;
       }
     }
