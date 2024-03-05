@@ -36,6 +36,7 @@ function appendSeat() {
         col +
         "' " +
         "class='airportGate' " +
+				"style='display: inherif;'" + 
         "onClick='selectGate(" +
         row +
         "," +
