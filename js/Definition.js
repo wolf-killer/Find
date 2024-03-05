@@ -9,6 +9,7 @@ const emptyCell = 0;
 
 const defaultCell = {
   cellDefinition: emptyCell,
+	planeId: null,
   visited: false,
 };
 
