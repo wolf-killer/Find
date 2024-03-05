@@ -90,7 +90,8 @@ function SHOW_V_MENU() {
 
 function CLOSE_ALL_POPUP() {
   $("#Overlay").hide();
-  $(".HiddenPopupInfo").css("display", "none");
+  $("#Vmenu").css("display", "none");
+	$(".HiddenPopupInfo").css("display", "none");
   $(".ActionPopup").css("display", "none");
 }
 
