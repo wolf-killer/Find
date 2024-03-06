@@ -5,21 +5,27 @@ function main() {
   initTable();
   appendSeat();
   createAirplane();
+	displaySampleAirplane();
 }
 
 function initTable() {
-  // console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
+  console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
+	let setMaxLength = 700;
+	setScreenWidth = setScreenWidth > setMaxLength ? 500 : setScreenWidth;
   setSquareLength = setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;
   setSquareLength = DECIMALADJUST("floor", setSquareLength - 50, 1);
   setSeatLength = setSquareLength / airportLength;
-  $("#playground").css(
+  /*
+	$("#playground").css(
     "height",
     setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth
   );
+	*/
   $("#airport").css("height", setSquareLength);
   $("#airport").css("width", setSquareLength);
   $(".airportGate").css("width", setSeatLength);
   $(".airportGate").css("height", setSeatLength);
+	
 }
 
 function appendSeat() {
