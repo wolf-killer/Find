@@ -70,7 +70,7 @@ function selectGate(row, col) {
   }
 }
 
-function createSampleAirplane() {
+function createSampleAirplane(direction) {
   sampleAirport = [];
   for (var row = 0; row < sampleAirportLength; row++) {
     var airportGate = [];
@@ -80,9 +80,10 @@ function createSampleAirplane() {
     sampleAirport.push(airportGate);
   }
 
-  var headDirection = 0;
-  var xHead = 0;
-  var yHead = 2;
+  var headDirection = direction;
+  var xHead = direction == 1 ? airplane1PossibleArea[headDirection].xStart+1: airplane1PossibleArea[headDirection].xStart;
+  var yHead = direction == 2 ? airplane1PossibleArea[headDirection].yStart+1: airplane1PossibleArea[headDirection].yStart;
+	
   var planeDemo = airplane1[headDirection];
   for (var i = 0; i < planeDemo.length; i++) {
     var xAdjust = xHead + planeDemo[i].x;
@@ -122,7 +123,7 @@ function showInfo() {
 	var newContent = $("<div></div>");
 	newContent.css("margin-bottom", "20px");
 	newContent.text("使用模板: ");
-	newContent.append(getSamplePlaneHtml());
+	newContent.append(getSamplePlaneHtml(false, 0));
 	
 	var actionList = [{
 					desc: "確認",
@@ -145,13 +146,17 @@ function updateDefaultSetting() {
   main();
 }
 
-function getSamplePlaneHtml() {
-  createSampleAirplane();
+function getSamplePlaneHtml(transparent, direction) {
+  createSampleAirplane(direction);
 	var setSampleAirportWidth = setScreenWidth * 0.25;
 	var setSampleAirportHeight = setScreenWidth * 0.25;
 	
 	var newSampleAirport = $("<table></table>");
-	newSampleAirport.addClass("sampleAirport w3-table");
+	if(transparent){
+		newSampleAirport.addClass("transparentSampleAirport w3-table");
+	}else{
+		newSampleAirport.addClass("sampleAirport w3-table");
+	}
 	newSampleAirport.css("width", setSampleAirportWidth + "px");
 	newSampleAirport.css("height", setSampleAirportHeight + "px");
 	newSampleAirport.css("margin", "auto");
@@ -172,6 +177,9 @@ function getSamplePlaneHtml() {
         }
         default: {
 					newSampleAirportCol.addClass("emptyCell");
+					if(transparent){
+						newSampleAirportCol.addClass("transparentCell");
+					}
           break;
         }
       }
@@ -183,11 +191,18 @@ function getSamplePlaneHtml() {
 }
 
 function displaySampleAirplane(){
-  $("#tips").html(getSamplePlaneHtml());
+	var sameplePlaneHtml = $("<div></div>");
+	sameplePlaneHtml.addClass("flex-container");
+	sameplePlaneHtml.css("display", "flex");
+	var directionArray = [3,0,1,2];
+	for(var i=0; i<directionArray.length; i++){
+		sameplePlaneHtml.append(getSamplePlaneHtml(true, directionArray[i]));
+	}
+  $(".infoSamplePlane").html(sameplePlaneHtml);
 }
 
 function showSamplePlaneDialog(){
-  var sampleAirplaneHtml = getSamplePlaneHtml();
+  var sampleAirplaneHtml = getSamplePlaneHtml(false, 0);
   SHOW_ALERT("M", "REMARK", "模板", sampleAirplaneHtml);
 }
 
