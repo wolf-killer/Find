@@ -7,7 +7,6 @@ body {
 .MenuBar {
   background-color: #3f446e;
   color: #ffffff;
-  align-self: center !important;
 }
 #Vmenu{
 	display: none;
@@ -24,7 +23,7 @@ body {
   z-index: 50;
 }
 #Overlay {
-  position: fixed; /* Sit on top of the page content */
+  position: fixed; 
   display: none; /* Hidden by default */
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
@@ -83,7 +82,6 @@ body {
 .PopupDialog_ActionBtn{
 	margin: 10px;
 }
-
 .Dialog-ALERT {
   top: 20%;
   background-color: rgba(255, 208, 208, 0.95);
@@ -104,4 +102,28 @@ body {
   right: 10px;
   top: 10px;
   z-index: 99;
+}
+.Tooltip {
+  position: relative;
+  display: inline-block !important;
+  border-bottom: 1px dotted black;
+}
+.Tooltip .Tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+.Tooltip:hover .Tooltiptext {
+  visibility: visible;
 }
