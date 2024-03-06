@@ -3,6 +3,37 @@ var screenHeight = document.documentElement.scrollHeight;
 var setScreenWidth = document.documentElement.scrollWidth;
 var setScreenHeight = document.documentElement.scrollHeight;
 
+/* Draggable Function */
+const d = {};
+document.addEventListener("mousedown", (e) => {
+	const closestDialog = e.target.closest("#PopupDialog");
+	const isCardTitle = e.target.classList.contains("PopupDialog_Title");
+	const isCardTitleSpan = e.target.tagName == "SPAN" && e.target.parentElement.classList.contains("PopupDialog_Title");
+	const isTargetCorrect = isCardTitle || isCardTitleSpan;
+	if (e.button === 0 && closestDialog != null && isTargetCorrect) {
+		// element which can be used to move element
+		d.el = closestDialog; // element which should be moved
+		d.mouseStartX = e.clientX;
+		d.mouseStartY = e.clientY;
+		d.elStartX = d.el.getBoundingClientRect().left;
+		d.elStartY = d.el.getBoundingClientRect().top;
+		d.el.style.position = "fixed";
+		d.el.style.margin = 0;
+		d.oldTransition = d.el.style.transition;
+		d.el.style.transition = "none";
+	}
+});
+document.addEventListener("mousemove", (e) => {
+	if (d.el === undefined) return;
+	d.el.style.left = Math.min(Math.max(d.elStartX + e.clientX - d.mouseStartX, 0), window.innerWidth - d.el.getBoundingClientRect().width) + "px";
+	d.el.style.top = Math.min(Math.max(d.elStartY + e.clientY - d.mouseStartY, 0), window.innerHeight - d.el.getBoundingClientRect().height) + "px";
+});
+document.addEventListener("mouseup", () => {
+	if (d.el === undefined) return;
+	d.el.style.transition = d.oldTransition;
+	d.el = undefined;
+});
+
 function GET_URL_PARAM(sParam) {
   var sPageURL = window.location.search.substring(1),
     sURLVariables = sPageURL.split("&"),
