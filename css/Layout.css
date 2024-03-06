@@ -6,20 +6,39 @@ canvas {
   margin: 0;
   padding: 0;
 }
-#menuBar {
-  background-color: #3f446e;
-  color: #ffffff;
+#fullPlayground {
+	margin-top: 50px;
+	text-align: center;
+	align-content: center;
+	display: flex;
+	justify-content: center;
+	color: #FFFFFF;
+	flex-wrap: wrap;
 }
-#menuBar i {
-  margin-right: 8px;
+#info {
+	display: block;
+	flex: 100%;
+	justify-content: center;
 }
 #playground {
-  margin-top: 30px;
+	display: flex;
+	flex: 100%;
+	justify-content: center;
 }
-#airport,
-.sampleAirport {
+@media (min-width: 992px) {
+  #info, #playground {
+    flex: 50%;
+  }
+}
+#airport, 
+.sampleAirport{
   background-color: #929be890;
   border: 1px solid #452400 !important;
+  margin: 2px;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.transparentSampleAirport {
   margin: 2px;
 	border-collapse: collapse;
 	border-spacing: 0;
@@ -41,4 +60,9 @@ canvas {
 }
 .emptyCell {
   background-color: white !important;
+}
+.transparentCell {
+	background-color: #ffffff !important;
+  border: 0px !important;
+  opacity: 0 !important;
 }
