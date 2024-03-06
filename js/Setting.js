@@ -1,8 +1,8 @@
 function createAirplane() {
   gameStepCount = 0;
   gameRemainHead = noOfPlaneHead;
-  $("#showGameStepCount").text(gameStepCount);
-  $("#showGameRemainHead").text(gameRemainHead);
+  $(".showGameStepCount").text(gameStepCount);
+  $(".showGameRemainHead").text(gameRemainHead);
   var loopingNoOfPlaneHead = noOfPlaneHead;
   while (loopingNoOfPlaneHead > 0) {
     if (!createAirplaneImplement(loopingNoOfPlaneHead)) {
@@ -211,8 +211,8 @@ function showSamplePlaneDialog(){
   if(cellDefinition == planeHead){
     gameRemainHead--;
   }
-  $("#showGameStepCount").text(gameStepCount);
-  $("#showGameRemainHead").text(gameRemainHead);
+  $(".showGameStepCount").text(gameStepCount);
+  $(".showGameRemainHead").text(gameRemainHead);
   if(gameRemainHead==0){
     var showContent = "一共使用" + gameStepCount + "步！";
     SHOW_ALERT("M", "ALERT", "恭喜尋找成功！", showContent, [], [], "bi-balloon-heart-fill");

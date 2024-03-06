@@ -21,6 +21,7 @@ canvas {
 	justify-content: center;
 }
 #playground {
+  margin-top: 10px;
 	display: flex;
 	flex: 100%;
 	justify-content: center;
