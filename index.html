@@ -38,110 +38,112 @@
 
   <body>
     <div class="w3-top w3-bar MenuBar">
-        <span class="w3-bar-item">
-          <i class="bi bi-airplane-fill"></i>
-					尋找重點
-        </span>
-        <a
-          href="javascript:void(0)"
-          class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium Tooltip"
-          onclick="SHOW_V_MENU()">
-					&#9776;
+			<span class="w3-bar-item">
+				<i class="bi bi-airplane-fill"></i>
+				尋找重點
+			</span>
+			<a
+				href="javascript:void(0)"
+				class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium Tooltip"
+				onclick="SHOW_V_MENU(!IS_V_MENU_ACTIVE())">
+				&#9776;
+			</a>
+			<div id="Hmenu" class="w3-right">
+				<a
+					href="#"
+					class="w3-bar-item w3-button w3-hide-small"
+					onclick="displayAllAirplane()">
+					<i class="bi bi-clipboard2-data"></i>
+					<span class="w3-hide-medium">公佈結果</span>
 				</a>
-        <div id="Hmenu" class="w3-right">
-          <a
-            href="#"
-            class="w3-bar-item w3-button w3-hide-small"
-            onclick="displayAllAirplane()">
-            <i class="bi bi-clipboard2-data"></i>
-            <span class="w3-hide-medium">公佈結果</span>
-          </a>
-          <a
-            href="#"
-            class="w3-bar-item w3-button w3-hide-small"
-            onclick="showUpdateDialog()">
-            <i class="bi bi-pencil-square"></i>
-            <span class="w3-hide-medium">更改遊戲設定</span>
-          </a>
-          <a
-            href="#"
-            class="w3-bar-item w3-button w3-hide-small"
-            onclick="main()">
-            <i class="bi bi-recycle"></i>
-            <span class="w3-hide-medium">重新開始</span>
-          </a>
-          <a
-            href="#"
-            class="w3-bar-item w3-button w3-hide-small"
-            onclick="showSamplePlaneDialog();">
-            <i class="bi bi-binoculars"></i>
-            <span class="w3-hide-medium">查看模板</span>
-          </a>
-        </div>
-        <div
-          id="Vmenu"
-          class="w3-bar-block w3-hide-large w3-hide-medium">
-          <a
-            href="#"
-            class="w3-bar-item w3-button"
-            onclick="displayAllAirplane();SHOW_V_MENU();">
-            <i class="bi bi-clipboard2-data"></i>
-            <span class="w3-hide-medium">公佈結果</span>
-          </a>
-          <a
-            href="#"
-            class="w3-bar-item w3-button"
-            onclick="showUpdateDialog();SHOW_V_MENU();">
-            <i class="bi bi-pencil-square"></i>
-            <span class="w3-hide-medium">更改遊戲設定</span>
-          </a>
-          <a
-            href="#"
-            class="w3-bar-item w3-button"
-            onclick="main();SHOW_V_MENU();">
-            <i class="bi bi-recycle"></i>
-            <span class="w3-hide-medium">重新開始</span>
-          </a>
-          <a
-            href="#"
-            class="w3-bar-item w3-button"
-            onclick="showSamplePlaneDialog();SHOW_V_MENU();">
-            <i class="bi bi-binoculars"></i>
-            <span class="w3-hide-medium">查看模板</span>
-          </a>
-        </div>
-      </div>
-      <div id="fullPlayground" class="w3-container" style="width: 100%; text-align:center;">
-				<div id="info" class="w3-hide-large"> 
-					棋盤中隱藏多架飛機，</br>
-					玩家需通過推理找出全部紅色的飛機頭。<br/>
-					<span class="result">
-					  使用:
-					  <span class="showGameStepCount"></span> |
-					  剩余:
-					  <span class="showGameRemainHead"></span>
-					</span></br>
-					飛機模型：
-					<div id="infoSamplePlane" class="infoSamplePlane"></div>
-				</div>
-				<div id="playground">
-					<table
-						id="airport"
-						class="w3-table w3-center"></table>
-				</div>
-				<div id="largeInfo" class="w3-hide-medium w3-hide-small"> 
-					棋盤中隱藏多架飛機，</br>
-					玩家需通過推理找出全部紅色的飛機頭。<br />
-					<span class="result">
-					  使用:
-					  <span class="showGameStepCount"></span> |
-					  剩余:
-					  <span class="showGameRemainHead"></span>
-					</span></br>
-					飛機模型：
-					<div id="largeInfoSamplePlane" class="infoSamplePlane"></div>
-				</div>
+				<a
+					href="#"
+					class="w3-bar-item w3-button w3-hide-small"
+					onclick="showUpdateDialog()">
+					<i class="bi bi-pencil-square"></i>
+					<span class="w3-hide-medium">更改遊戲設定</span>
+				</a>
+				<a
+					href="#"
+					class="w3-bar-item w3-button w3-hide-small"
+					onclick="main()">
+					<i class="bi bi-recycle"></i>
+					<span class="w3-hide-medium">重新開始</span>
+				</a>
+				<a
+					href="#"
+					class="w3-bar-item w3-button w3-hide-small"
+					onclick="showSamplePlaneDialog();">
+					<i class="bi bi-binoculars"></i>
+					<span class="w3-hide-medium">查看模板</span>
+				</a>
 			</div>
+			<div
+				id="Vmenu"
+				class="w3-bar-block w3-hide-large w3-hide-medium">
+				<a
+					href="#"
+					class="w3-bar-item w3-button"
+					onclick="displayAllAirplane();SHOW_V_MENU(false);">
+					<i class="bi bi-clipboard2-data"></i>
+					<span class="w3-hide-medium">公佈結果</span>
+				</a>
+				<a
+					href="#"
+					class="w3-bar-item w3-button"
+					onclick="showUpdateDialog();SHOW_V_MENU(false);">
+					<i class="bi bi-pencil-square"></i>
+					<span class="w3-hide-medium">更改遊戲設定</span>
+				</a>
+				<a
+					href="#"
+					class="w3-bar-item w3-button"
+					onclick="main();SHOW_V_MENU(false);">
+					<i class="bi bi-recycle"></i>
+					<span class="w3-hide-medium">重新開始</span>
+				</a>
+				<a
+					href="#"
+					class="w3-bar-item w3-button"
+					onclick="showSamplePlaneDialog();SHOW_V_MENU(false);">
+					<i class="bi bi-binoculars"></i>
+					<span class="w3-hide-medium">查看模板</span>
+				</a>
+				<div id="VmenuOverlay" onclick="SHOW_V_MENU(false);"></div>
+			</div>
+		</div>
+		
+		<div id="fullPlayground" class="w3-container" style="width: 100%; text-align:center;">
+			<div id="info" class="w3-hide-large"> 
+				棋盤中隱藏多架飛機，</br>
+				玩家需通過推理找出全部紅色的飛機頭。<br/>
+				<span class="result">
+					使用:
+					<span class="showGameStepCount"></span> |
+					剩余:
+					<span class="showGameRemainHead"></span>
+				</span></br>
+				飛機模型：
+				<div id="infoSamplePlane" class="infoSamplePlane"></div>
+			</div>
+			<div id="playground">
+				<table
+					id="airport"
+					class="w3-table w3-center"></table>
+			</div>
+			<div id="largeInfo" class="w3-hide-medium w3-hide-small"> 
+				棋盤中隱藏多架飛機，</br>
+				玩家需通過推理找出全部紅色的飛機頭。<br />
+				<span class="result">
+					使用:
+					<span class="showGameStepCount"></span> |
+					剩余:
+					<span class="showGameRemainHead"></span>
+				</span></br>
+				飛機模型：
+				<div id="largeInfoSamplePlane" class="infoSamplePlane"></div>
+			</div>
+		</div>
 
 		<div id="Overlay" onclick="CLOSE_ALL_POPUP()">
 		</div>
@@ -162,6 +164,7 @@
 				@Freda Wong
 			</span>
 		</div>
+
   </body>
 </html>
 <script>
