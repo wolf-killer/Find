@@ -118,19 +118,22 @@ function SHOW_OVERLAY(show) {
   }
 }
 
-function SHOW_V_MENU() {
-	var bool = $("#Vmenu").css("display") == "none";
-	if(bool){
-		$("#Vmenu").css("display", "block");
-		//
+function SHOW_V_MENU(show) {
+	if(show){
+		$("#Vmenu").show();
+		$("#VmenuOverlay").css("height", setScreenHeight);
 	} else {
-		$("#Vmenu").css("display", "none");
+		$("#Vmenu").hide();
 	}
+}
+
+function IS_V_MENU_ACTIVE() {
+	return $("#Vmenu").css("display") == "block";
 }
 
 function CLOSE_ALL_POPUP() {
   SHOW_OVERLAY(false);
-  $("#Vmenu").css("display", "none");
+  SHOW_V_MENU(false);
 	$(".HiddenPopupInfo").css("display", "none");
   $(".ActionPopup").css("display", "none");
 }
