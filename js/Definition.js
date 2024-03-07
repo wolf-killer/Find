@@ -21,8 +21,8 @@ var instructionAirportLength = 10;
 var noOfInstructionAirplane = 3;
 var instructionAirplaneLocation = [
 	{ xStart: 0, yStart: 7, direction: 0, airplaneId: 1},
-	{ xStart: 3, yStart: 0, direction: 2, airplaneId: 1},
-	{ xStart: 5, yStart: 6, direction: 0, airplaneId: 1}
+	{ xStart: 4, yStart: 0, direction: 2, airplaneId: 1},
+	{ xStart: 9, yStart: 6, direction: 1, airplaneId: 1}
 ]
 
 var airport;

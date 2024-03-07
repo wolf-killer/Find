@@ -217,18 +217,17 @@ function createInstructionAirplane() {
   }
 	
 	var loopingNoOfPlaneHead = noOfInstructionAirplane;
-	for(var i=0; i< noOfInstructionAirplane; i++){
+	for(var i=0; i< instructionAirplaneLocation.length; i++){
 		createInstructionAirplaneImplement(i);
 	}
 }
 
 function createInstructionAirplaneImplement(loopingNoOfPlaneHead) {
-	console.log("loopingNoOfPlaneHead", loopingNoOfPlaneHead);
   var headDirection = instructionAirplaneLocation[loopingNoOfPlaneHead].direction;
   var xHead = instructionAirplaneLocation[loopingNoOfPlaneHead].xStart;
   var yHead = instructionAirplaneLocation[loopingNoOfPlaneHead].yStart;
   
-	if (checkAirplaneValid(headDirection, xHead, yHead)) {
+	if (true) {
 		var planeId = loopingNoOfPlaneHead;
     var planeDemo = airplane1[headDirection];
     for (var i = 0; i < planeDemo.length; i++) {

@@ -9,7 +9,7 @@ function main() {
 }
 
 function initTable() {
-  console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
+  //console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
 	let setMaxLength = 700;
 	setScreenWidth = setScreenWidth > setMaxLength ? 500 : setScreenWidth;
   setSquareLength = setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;

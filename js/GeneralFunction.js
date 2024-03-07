@@ -68,7 +68,7 @@ function SET_WINDOW() {
   setScreenHeight = GET_URL_PARAM("setScreenHeight")
     ? GET_URL_PARAM("setScreenHeight")
     : screenHeight;
-  console.log("Available width/height: " + setScreenWidth + "*" + screen.availHeight);
+  //console.log("Available width/height: " + setScreenWidth + "*" + screen.availHeight);
   $("#FixScreen").css("height", setScreenHeight);
   $("#FixScreen").css("width", setScreenWidth);
   $(".PopupInfo").css("max-height", setScreenHeight - 10);
