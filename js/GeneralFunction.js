@@ -110,17 +110,26 @@ function MANUAL_ADJUST_SCREEN_HEIGHT(input) {
   $(".HiddenPopupInfo").css("max-height", setScreenHeight - 40);
 }
 
+function SHOW_OVERLAY(show) {
+  if(show){
+    $("#Overlay").show();
+  } else {
+    $("#Overlay").hide();
+  }
+}
+
 function SHOW_V_MENU() {
 	var bool = $("#Vmenu").css("display") == "none";
 	if(bool){
 		$("#Vmenu").css("display", "block");
+		//
 	} else {
 		$("#Vmenu").css("display", "none");
 	}
 }
 
 function CLOSE_ALL_POPUP() {
-  $("#Overlay").hide();
+  SHOW_OVERLAY(false);
   $("#Vmenu").css("display", "none");
 	$(".HiddenPopupInfo").css("display", "none");
   $(".ActionPopup").css("display", "none");

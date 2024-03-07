@@ -93,7 +93,7 @@ function createSampleAirplane(direction) {
   sampleAirport[xHead][yHead].cellDefinition = planeHead;
 }
 
-function showInfo() {
+function showUpdateDialog() {
   var inputObject = [
     {
       id: "inputAirportLength",
@@ -131,7 +131,7 @@ function showInfo() {
 					closeDialog: true
 				}];
   SHOW_ALERT(
-    "M", 
+    "L", 
     "QUESTION",
     "遊戲設置",
     newContent,

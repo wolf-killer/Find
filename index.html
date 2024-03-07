@@ -38,7 +38,7 @@
 
   <body>
     <div class="w3-top w3-bar MenuBar">
-        <span class="w3-bar-item" style="padding-left:4px; padding-right:4px;">
+        <span class="w3-bar-item">
           <i class="bi bi-airplane-fill"></i>
 					尋找重點
         </span>
@@ -53,13 +53,13 @@
             href="#"
             class="w3-bar-item w3-button w3-hide-small"
             onclick="displayAllAirplane()">
-            <i class="bi bi-airplane-fill"></i>
+            <i class="bi bi-clipboard2-data"></i>
             <span class="w3-hide-medium">公佈結果</span>
           </a>
           <a
             href="#"
             class="w3-bar-item w3-button w3-hide-small"
-            onclick="showInfo()">
+            onclick="showUpdateDialog()">
             <i class="bi bi-pencil-square"></i>
             <span class="w3-hide-medium">更改遊戲設定</span>
           </a>
@@ -85,13 +85,13 @@
             href="#"
             class="w3-bar-item w3-button"
             onclick="displayAllAirplane();SHOW_V_MENU();">
-            <i class="bi bi-airplane-fill"></i>
+            <i class="bi bi-clipboard2-data"></i>
             <span class="w3-hide-medium">公佈結果</span>
           </a>
           <a
             href="#"
             class="w3-bar-item w3-button"
-            onclick="showInfo();SHOW_V_MENU();">
+            onclick="showUpdateDialog();SHOW_V_MENU();">
             <i class="bi bi-pencil-square"></i>
             <span class="w3-hide-medium">更改遊戲設定</span>
           </a>
@@ -143,7 +143,7 @@
 				</div>
 			</div>
 
-		<div id="Overlay">
+		<div id="Overlay" onclick="CLOSE_ALL_POPUP()">
 		</div>
 
 		<div
