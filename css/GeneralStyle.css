@@ -5,13 +5,18 @@ body {
   font-family: "cwTeXYen", "Noto Sans TC", "微軟正黑體", "黑體-繁", sans-serif !important;
 }
 .MenuBar {
-  z-index: 99;
-  background-color: #3f446e;
+	background-color: #3f446e90;
   color: #ffffff;
 }
-#Vmenu{
-	display: none;
+.MenuBar .w3-bar-item {
+	background-color: #3f446e;
+  color: #ffffff;
 }
+#Vmenu {
+	display: none;
+	height:100%;
+}
+
 .PopupInfo {
   background-color: rgba(40, 215, 215, 0.5);
   width: 90%;
@@ -32,9 +37,9 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
+  background-color: rgba(0, 0, 0, 0.5) !important; /* Black background with opacity */
   z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+	/*cursor: pointer; /* Add a pointer on hover */
 }
 .HiddenPopupInfo {
   display: none; /* Hidden by default */
