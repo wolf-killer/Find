@@ -285,18 +285,27 @@ function getInstructionAirportHtml() {
 function showInstructionDialog(){
 	var newInstructionTab = $("<div></div>");
 	newInstructionTab.css("display", "flex");
+	newInstructionTab.css("flex-wrap", "wrap")
 	
-	var newInstructionText = $("<div></div>");
-	newInstructionText.css("flex", "50%");
-	newInstructionText.text("棋盤中隱藏多架飛機，玩家需通過推理找出全部紅色的飛機頭。");
+	var newInstructionTitle1 = $("<div></div>");
+	newInstructionTitle1.addClass("instructionTab");
+	//newInstructionTitle1.css("display", "flex")
+	//flex: 0 0 100%; /* flex-grow, flex-shrink, flex-basis */
+	newInstructionTitle1.css("flex-basis", "100%");
+	newInstructionTitle1.text("遊戲規則");
+	
+	var newInstructionText1 = $("<div></div>");
+	newInstructionText1.css("flex", "50%");
+	newInstructionText1.text("棋盤中隱藏多架如圖所示的飛機，玩家需透過推理，以最少的步數找出全部紅色的飛機頭。");
 	
 	var newInstructionAirport = $("<div></div>");
 	newInstructionAirport.css("flex", "50%");
 	newInstructionAirport.append(getInstructionAirportHtml());
 	
-	newInstructionTab.append(newInstructionText);
+	newInstructionTab.append(newInstructionTitle1)
+	newInstructionTab.append(newInstructionText1);
 	newInstructionTab.append(newInstructionAirport);
-	SHOW_ALERT("L", "REMARK", "遊戲說明", newInstructionTab);
+	SHOW_ALERT("L", "REMARK", "說明", newInstructionTab);
 }
 
  function updateGameResult(cellDefinition) {

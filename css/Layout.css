@@ -20,6 +20,10 @@ canvas {
 	flex: 100%;
 	justify-content: center;
 }
+#infoSamplePlane{
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
 #playground {
   margin-top: 10px;
 	display: flex;
@@ -66,4 +70,13 @@ canvas {
 	background-color: #ffffff !important;
   border: 0px !important;
   opacity: 0 !important;
+}
+.result {
+ margin-top: 5px;
+ margin-bottom: 5px;
+}
+.showGameStepCount, 
+.showGameRemainHead {
+  font-weight: bold; 
+  text-decoration: underline;
 }
