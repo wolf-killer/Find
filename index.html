@@ -53,16 +53,16 @@
 				<a
 					href="#"
 					class="w3-bar-item w3-button w3-hide-small"
-					onclick="displayAllAirplane()">
-					<i class="bi bi-clipboard2-data"></i>
-					<span class="w3-hide-medium">公佈結果</span>
+					onclick="showUpdateDialog()">
+					<i class="bi bi-pencil-square"></i>
+					<span class="w3-hide-medium">更改遊戲設定</span>
 				</a>
 				<a
 					href="#"
 					class="w3-bar-item w3-button w3-hide-small"
-					onclick="showUpdateDialog()">
-					<i class="bi bi-pencil-square"></i>
-					<span class="w3-hide-medium">更改遊戲設定</span>
+					onclick="displayAllAirplane()">
+					<i class="bi bi-clipboard2-data"></i>
+					<span class="w3-hide-medium">公佈結果</span>
 				</a>
 				<a
 					href="#"
@@ -71,24 +71,17 @@
 					<i class="bi bi-recycle"></i>
 					<span class="w3-hide-medium">重新開始</span>
 				</a>
-				<a
+				<!-- <a
 					href="#"
 					class="w3-bar-item w3-button w3-hide-small"
 					onclick="showSamplePlaneDialog();">
 					<i class="bi bi-binoculars"></i>
 					<span class="w3-hide-medium">查看模板</span>
-				</a>
+				</a> -->
 			</div>
 			<div
 				id="Vmenu"
 				class="w3-bar-block w3-hide-large w3-hide-medium">
-				<a
-					href="#"
-					class="w3-bar-item w3-button"
-					onclick="displayAllAirplane();SHOW_V_MENU(false);">
-					<i class="bi bi-clipboard2-data"></i>
-					<span class="w3-hide-medium">公佈結果</span>
-				</a>
 				<a
 					href="#"
 					class="w3-bar-item w3-button"
@@ -99,17 +92,24 @@
 				<a
 					href="#"
 					class="w3-bar-item w3-button"
+					onclick="displayAllAirplane();SHOW_V_MENU(false);">
+					<i class="bi bi-clipboard2-data"></i>
+					<span class="w3-hide-medium">公佈結果</span>
+				</a>
+				<a
+					href="#"
+					class="w3-bar-item w3-button"
 					onclick="main();SHOW_V_MENU(false);">
 					<i class="bi bi-recycle"></i>
 					<span class="w3-hide-medium">重新開始</span>
 				</a>
-				<a
+				<!-- <a
 					href="#"
 					class="w3-bar-item w3-button"
 					onclick="showSamplePlaneDialog();SHOW_V_MENU(false);">
 					<i class="bi bi-binoculars"></i>
 					<span class="w3-hide-medium">查看模板</span>
-				</a>
+				</a> -->
 				<div id="VmenuOverlay" onclick="SHOW_V_MENU(false);"></div>
 			</div>
 		</div>
