@@ -80,3 +80,16 @@ canvas {
   font-weight: bold; 
   text-decoration: underline;
 }
+.instructionTab {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex: 0 0 100%; */
+  /* flex-grow, flex-shrink, flex-basis */
+}
+.instructionTitle {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.instructionContent {
+  
+}

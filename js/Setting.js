@@ -281,24 +281,24 @@ function getInstructionAirportHtml() {
   return newInstructionAirport;
 }
 
-
 function showInstructionDialog(){
 	var newInstructionTab = $("<div></div>");
-	newInstructionTab.css("display", "flex");
-	newInstructionTab.css("flex-wrap", "wrap")
-	
+	newInstructionTab.addClass("instructionTab");
+
 	var newInstructionTitle1 = $("<div></div>");
-	newInstructionTitle1.addClass("instructionTab");
+	newInstructionTitle1.addClass("instructionTitle");
 	//newInstructionTitle1.css("display", "flex")
-	//flex: 0 0 100%; /* flex-grow, flex-shrink, flex-basis */
+	//
 	newInstructionTitle1.css("flex-basis", "100%");
 	newInstructionTitle1.text("遊戲規則");
 	
 	var newInstructionText1 = $("<div></div>");
+	newInstructionText1.addClass("instructionContent");
 	newInstructionText1.css("flex", "50%");
 	newInstructionText1.text("棋盤中隱藏多架如圖所示的飛機，玩家需透過推理，以最少的步數找出全部紅色的飛機頭。");
 	
 	var newInstructionAirport = $("<div></div>");
+	newInstructionAirport.addClass("instructionContent");
 	newInstructionAirport.css("flex", "50%");
 	newInstructionAirport.append(getInstructionAirportHtml());
 	
