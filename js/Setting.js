@@ -287,9 +287,6 @@ function showInstructionDialog(){
 
 	var newInstructionTitle1 = $("<div></div>");
 	newInstructionTitle1.addClass("instructionTitle");
-	//newInstructionTitle1.css("display", "flex")
-	//
-	newInstructionTitle1.css("flex-basis", "100%");
 	newInstructionTitle1.text("遊戲規則");
 	
 	var newInstructionText1 = $("<div></div>");
@@ -302,9 +299,16 @@ function showInstructionDialog(){
 	newInstructionAirport.css("flex", "50%");
 	newInstructionAirport.append(getInstructionAirportHtml());
 	
-	newInstructionTab.append(newInstructionTitle1)
+	newInstructionTab.append(newInstructionTitle1);
 	newInstructionTab.append(newInstructionText1);
 	newInstructionTab.append(newInstructionAirport);
+	
+	var newInstructionTitle2 = $("<div></div>");
+	newInstructionTitle2.addClass("instructionTitle");
+	newInstructionTitle2.text("遊戲設定");
+	
+	//newInstructionTab.append(newInstructionTitle2);
+	
 	SHOW_ALERT("L", "REMARK", "說明", newInstructionTab);
 }
 

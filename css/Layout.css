@@ -87,8 +87,10 @@ canvas {
   /* flex-grow, flex-shrink, flex-basis */
 }
 .instructionTitle {
+  margin-top: 8px;
   font-weight: bold;
   text-decoration: underline;
+  flex-basis: 100%;
 }
 .instructionContent {
   
