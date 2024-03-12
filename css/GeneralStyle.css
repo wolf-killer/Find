@@ -4,17 +4,20 @@ body {
   overflow-y: hidden;
   font-family: "cwTeXYen", "Noto Sans TC", "微軟正黑體", "黑體-繁", sans-serif !important;
 }
+
 .MenuBar {
-	background-color: #3f446e90;
+  background-color: #3f446e90;
   color: #ffffff;
 }
+
 .MenuBar .w3-bar-item {
-	background-color: #3f446e;
+  background-color: #3f446e;
   color: #ffffff;
 }
+
 #Vmenu {
-	display: none;
-	height:100%;
+  display: none;
+  height: 100%;
 }
 
 .PopupInfo {
@@ -28,22 +31,30 @@ body {
   left: 5%;
   z-index: 50;
 }
+
 #Overlay {
-  position: fixed; 
-  display: none; /* Hidden by default */
-  width: 100%; /* Full width (cover the whole page) */
-  height: 100%; /* Full height (cover the whole page) */
+  position: fixed;
+  display: none;
+  /* Hidden by default */
+  width: 100%;
+  /* Full width (cover the whole page) */
+  height: 100%;
+  /* Full height (cover the whole page) */
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5) !important; /* Black background with opacity */
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-	/*cursor: pointer; /* Add a pointer on hover */
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  /* Black background with opacity */
+  z-index: 2;
+  /* Specify a stack order in case you're using a different order for other elements */
+  /*cursor: pointer; /* Add a pointer on hover */
 }
+
 .HiddenPopupInfo {
-  display: none; /* Hidden by default */
-  overflow-y: auto;
+  display: none;
+  /* Hidden by default */
+  overflow-y: hidden;
   overflow-x: hidden;
   /*position: relative;*/
   position: absolute !important;
@@ -55,62 +66,87 @@ body {
   left: 5%;
   z-index: 99;
 }
+
 .HiddenPopupInfo-S {
   left: 25% !important;
   width: 50% !important;
 }
+
 .HiddenPopupInfo-M {
   left: 15% !important;
   width: 70% !important;
 }
+
 .HiddenPopupInfo-L {
   left: 5% !important;
   width: 90% !important;
 }
-.PopupDialog_CloseBtn{
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	cursor: pointer;
+
+.PopupDialog_CloseBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
-.PopupDialog_Title{
-	width: 90%;
-	margin-top: 10px !important;
-	margin-bottom: 10px !important;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 10px !important;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	position: relative;
+
+.PopupDialog_Title {
+  width: 90%;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
-.PopupDialog_ActionBtn{
-	margin: 10px;
+
+.PopupDialog_Content {
+  overflow-y: auto;
+  max-height: 50vh;
 }
+
+.PopupDialog_ActionBtn {
+  margin: 10px;
+}
+
+.Dialog-SUCCESS {
+  background: rgba(255, 208, 208, 0.95);
+  border: 3px solid red;
+  background-image: url('../image/SuccessFire.gif');
+  background-size: cover;
+}
+
+.Dialog-SUCCESS .PopupDialog_Title {
+  background: rgba(255, 208, 208, 0.7) !important;
+  border-color:
+    linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%),
+    linear-gradient(127deg, rgba(0, 255, 0, .8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%) !important;
+}
+
 .Dialog-ALERT {
   background-color: rgba(255, 208, 208, 0.95);
   border: 3px solid red;
 }
+
 .Dialog-QUESTION {
   background-color: rgba(245, 255, 210, 0.95);
   border: 3px solid yellow;
 }
+
 .Dialog-REMARK {
-  background-color: rgba(210, 255, 255, 0.95);
+  background: rgba(210, 255, 255, 0.95);
   border: 3px solid blue;
 }
-.Btn-Close {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  z-index: 99;
-}
+
 .Tooltip {
   position: relative;
   display: inline-block !important;
   border-bottom: 1px dotted black;
 }
+
 .Tooltip .Tooltiptext {
   visibility: hidden;
   width: 120px;
@@ -119,7 +155,7 @@ body {
   text-align: center;
   border-radius: 6px;
   padding: 5px 0;
-  
+
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
@@ -127,6 +163,7 @@ body {
   left: 50%;
   margin-left: -60px;
 }
+
 .Tooltip:hover .Tooltiptext {
   visibility: visible;
 }

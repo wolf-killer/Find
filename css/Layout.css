@@ -6,92 +6,115 @@ canvas {
   margin: 0;
   padding: 0;
 }
+
 #fullPlayground {
-	margin-top: 50px;
-	text-align: center;
-	align-content: center;
-	display: flex;
-	justify-content: center;
-	color: #FFFFFF;
-	flex-wrap: wrap;
+  margin-top: 50px;
+  text-align: center;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-wrap: wrap;
 }
+
 #info {
-	display: block;
-	flex: 100%;
-	justify-content: center;
+  display: block;
+  flex: 100%;
+  justify-content: center;
 }
-#infoSamplePlane{
+
+#infoSamplePlane {
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
 #playground {
   margin-top: 10px;
-	display: flex;
-	flex: 100%;
-	justify-content: center;
+  display: flex;
+  flex: 100%;
+  justify-content: center;
 }
+
 @media (min-width: 992px) {
-  #info, #playground {
+
+  #info,
+  #playground {
     flex: 50%;
   }
 }
-#airport, 
-.sampleAirport{
+
+#airport,
+.sampleAirport {
   background-color: #929be890;
   border: 1px solid #452400 !important;
   margin: 2px;
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
+
 .transparentSampleAirport {
   margin: 2px;
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
+
 .w3-button {
   border: 1px solid black;
 }
+
 .airportGate {
   border: 1px solid black !important;
   padding: 2px 2px !important;
   text-align: center !important;
   vertical-align: middle !important;
 }
+
 .planeHead {
   background-color: red !important;
 }
+
 .planeBody {
   background-color: #946640 !important;
 }
+
 .emptyCell {
   background-color: white !important;
 }
+
 .transparentCell {
-	background-color: #ffffff !important;
+  background-color: #ffffff !important;
   border: 0px !important;
   opacity: 0 !important;
 }
+
 .result {
- margin-top: 5px;
- margin-bottom: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-.showGameStepCount, 
+
+.showGameStepCount,
 .showGameRemainHead {
-  font-weight: bold; 
+  font-weight: bold;
   text-decoration: underline;
 }
+
 .instructionTab {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   /* flex: 0 0 100%; */
   /* flex-grow, flex-shrink, flex-basis */
 }
+
 .instructionTitle {
   margin-top: 8px;
   font-weight: bold;
   text-decoration: underline;
   flex-basis: 100%;
 }
+
 .instructionContent {
-  
+  flex: 50%;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }

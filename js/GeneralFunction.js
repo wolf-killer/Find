@@ -6,32 +6,32 @@ var setScreenHeight = document.documentElement.scrollHeight;
 /* Draggable Function */
 const d = {};
 document.addEventListener("mousedown", (e) => {
-	const closestDialog = e.target.closest("#PopupDialog");
-	const isCardTitle = e.target.classList.contains("PopupDialog_Title");
-	const isCardTitleSpan = e.target.tagName == "SPAN" && e.target.parentElement.classList.contains("PopupDialog_Title");
-	const isTargetCorrect = isCardTitle || isCardTitleSpan;
-	if (e.button === 0 && closestDialog != null && isTargetCorrect) {
-		// element which can be used to move element
-		d.el = closestDialog; // element which should be moved
-		d.mouseStartX = e.clientX;
-		d.mouseStartY = e.clientY;
-		d.elStartX = d.el.getBoundingClientRect().left;
-		d.elStartY = d.el.getBoundingClientRect().top;
-		d.el.style.position = "fixed";
-		d.el.style.margin = 0;
-		d.oldTransition = d.el.style.transition;
-		d.el.style.transition = "none";
-	}
+  const closestDialog = e.target.closest("#PopupDialog");
+  const isCardTitle = e.target.classList.contains("PopupDialog_Title");
+  const isCardTitleSpan = e.target.tagName == "SPAN" && e.target.parentElement.classList.contains("PopupDialog_Title");
+  const isTargetCorrect = isCardTitle || isCardTitleSpan;
+  if (e.button === 0 && closestDialog != null && isTargetCorrect) {
+    // element which can be used to move element
+    d.el = closestDialog; // element which should be moved
+    d.mouseStartX = e.clientX;
+    d.mouseStartY = e.clientY;
+    d.elStartX = d.el.getBoundingClientRect().left;
+    d.elStartY = d.el.getBoundingClientRect().top;
+    d.el.style.position = "fixed";
+    d.el.style.margin = 0;
+    d.oldTransition = d.el.style.transition;
+    d.el.style.transition = "none";
+  }
 });
 document.addEventListener("mousemove", (e) => {
-	if (d.el === undefined) return;
-	d.el.style.left = Math.min(Math.max(d.elStartX + e.clientX - d.mouseStartX, 0), window.innerWidth - d.el.getBoundingClientRect().width) + "px";
-	d.el.style.top = Math.min(Math.max(d.elStartY + e.clientY - d.mouseStartY, 0), window.innerHeight - d.el.getBoundingClientRect().height) + "px";
+  if (d.el === undefined) return;
+  d.el.style.left = Math.min(Math.max(d.elStartX + e.clientX - d.mouseStartX, 0), window.innerWidth - d.el.getBoundingClientRect().width) + "px";
+  d.el.style.top = Math.min(Math.max(d.elStartY + e.clientY - d.mouseStartY, 0), window.innerHeight - d.el.getBoundingClientRect().height) + "px";
 });
 document.addEventListener("mouseup", () => {
-	if (d.el === undefined) return;
-	d.el.style.transition = d.oldTransition;
-	d.el = undefined;
+  if (d.el === undefined) return;
+  d.el.style.transition = d.oldTransition;
+  d.el = undefined;
 });
 
 function GET_URL_PARAM(sParam) {
@@ -43,9 +43,9 @@ function GET_URL_PARAM(sParam) {
     sParameterName = sURLVariables[i].split("=");
 
     if (sParameterName[0] === sParam) {
-      return sParameterName[1] === undefined
-        ? true
-        : decodeURIComponent(sParameterName[1]);
+      return sParameterName[1] === undefined ?
+        true :
+        decodeURIComponent(sParameterName[1]);
     }
   }
   return false;
@@ -61,13 +61,13 @@ function GO_PAGE(pageName, param) {
 }
 
 function SET_WINDOW() {
-	// Auto set full screen for $("#FixScrren")
-  setScreenWidth = GET_URL_PARAM("setScreenWidth")
-    ? GET_URL_PARAM("setScreenWidth")
-    : screenWidth;
-  setScreenHeight = GET_URL_PARAM("setScreenHeight")
-    ? GET_URL_PARAM("setScreenHeight")
-    : screenHeight;
+  // Auto set full screen for $("#FixScrren")
+  setScreenWidth = GET_URL_PARAM("setScreenWidth") ?
+    GET_URL_PARAM("setScreenWidth") :
+    screenWidth;
+  setScreenHeight = GET_URL_PARAM("setScreenHeight") ?
+    GET_URL_PARAM("setScreenHeight") :
+    screenHeight;
   //console.log("Available width/height: " + setScreenWidth + "*" + screen.availHeight);
   $("#FixScreen").css("height", setScreenHeight);
   $("#FixScreen").css("width", setScreenWidth);
@@ -111,7 +111,7 @@ function MANUAL_ADJUST_SCREEN_HEIGHT(input) {
 }
 
 function SHOW_OVERLAY(show) {
-  if(show){
+  if (show) {
     $("#Overlay").show();
   } else {
     $("#Overlay").hide();
@@ -119,41 +119,46 @@ function SHOW_OVERLAY(show) {
 }
 
 function SHOW_V_MENU(show) {
-	if(show){
-		$("#Vmenu").show();
-		$("#VmenuOverlay").css("height", setScreenHeight);
-	} else {
-		$("#Vmenu").hide();
-	}
+  if (show) {
+    $("#VmenuOpen").hide();
+    $("#VmenuClose").show();
+    $("#Vmenu").show();
+    $("#VmenuOverlay").css("height", setScreenHeight);
+  } else {
+    $("#Vmenu").hide();
+    $("#VmenuOpen").show();
+    $("#VmenuClose").hide();
+  }
 }
 
 function IS_V_MENU_ACTIVE() {
-	return $("#Vmenu").css("display") == "block";
+  return $("#Vmenu").css("display") == "block";
 }
 
 function CLOSE_ALL_POPUP() {
   SHOW_OVERLAY(false);
   SHOW_V_MENU(false);
-	$(".HiddenPopupInfo").css("display", "none");
+  $(".HiddenPopupInfo").css("display", "none");
   $(".ActionPopup").css("display", "none");
 }
 
 function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = [], icon = null) {
-	/* Support Type: 
-			1. ALERT
-			2. QUESTION
-			3. REMARK
-	*/
-	/*
-		Sample actionBtn
-			var actionBtn = [
-				{
-					desc: "關閉",
-					action: "CLOSE_ALL_POPUP()",
-					closeDialog: true
-				}
-			]
-	*/
+  /* Support Type: 
+  		1. ALERT
+  		2. QUESTION
+  		3. REMARK
+  		4. SUCCESS
+  */
+  /*
+  	Sample actionBtn
+  		var actionBtn = [
+  			{
+  				desc: "關閉",
+  				action: "CLOSE_ALL_POPUP()",
+  				closeDialog: true
+  			}
+  		]
+  */
   /* Sample inputObject
 			var inputObject = [{
 			id: id,
@@ -166,127 +171,138 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
 			}
 			}];
 	*/
-	var color;
-	type = type.toUpperCase();
-  
+  var color;
+  type = type.toUpperCase();
+
   $("#Overlay").show();
   var dialogDiv = $("#PopupDialog");
-  
-  dialogDiv.removeClass("Dialog-ALERT Dialog-QUESTION Dialog-REMARK");
+
+  dialogDiv.removeClass("Dialog-ALERT Dialog-QUESTION Dialog-REMARK Dialog-SUCCESS");
   dialogDiv.removeClass("HiddenPopupInfo-S HiddenPopupInfo-M HiddenPopupInfo-L");
-	dialogDiv.addClass("Dialog-" + type);
-	dialogDiv.addClass("HiddenPopupInfo-" + size);
-	
+  dialogDiv.addClass("Dialog-" + type);
+  dialogDiv.addClass("HiddenPopupInfo-" + size);
+
   if (type == "ALERT") {
-    icon = icon ? icon: "bi-exclamation-diamond-fill";
+    icon = icon ? icon : "bi-exclamation-diamond-fill";
     color = "red";
   } else if (type == "QUESTION") {
-    icon = icon ? icon: "bi-question-diamond-fill";
+    icon = icon ? icon : "bi-question-diamond-fill";
     color = "yellow";
+  } else if (type == "SUCCESS") {
+    icon = icon ? icon : "bi-balloon-heart-fill";
+    color = "red";
   } else {
-    icon = icon ? icon: "bi-bookmark-star-fill";
+    icon = icon ? icon : "bi-bookmark-star-fill";
     color = "blue";
   }
-	
-	dialogDiv.html("");
-	
-/* ADD DIALOG TITLE SECTION */	
-	var newTitleDiv = $("<div></div>");
-	newTitleDiv.addClass("PopupDialog_Title w3-container w3-large w3-leftbar w3-rightbar");
-	newTitleDiv.addClass("w3-pale-" + color);
-	newTitleDiv.addClass("w3-border-" + color);
-	
-	var newTitleIcon = $("<i></i>");
-	newTitleIcon.addClass("bi");
-	newTitleIcon.addClass(icon);
-	newTitleIcon.addClass("w3-text-"+color);
-	newTitleIcon.css("margin-right", "10px");
-	
-	var newTitleDesc = $("<span></span>");
-	newTitleDesc.html(title);
-	
-	var newCloseBtn = $("<i></i>");
-	newCloseBtn.addClass("PopupDialog_CloseBtn bi bi-x")
-	newCloseBtn.attr('onClick', "CLOSE_ALL_POPUP()");
-	
-	newTitleDiv.append(newTitleIcon);
-	newTitleDiv.append(newTitleDesc);
-	newTitleDiv.append(newCloseBtn);
-	
-	dialogDiv.prepend(newTitleDiv);
 
-/* ADD DIALOG CONTENT SECTION */	
-	var newContentDiv = $("<div></div>");
-	newContentDiv.addClass("PopupDialog_Content w3-container w3-medium");
-	
-	var newContentDesc = $("<div></div>");
-	newContentDesc.addClass("w3-center");
-	// newContentDesc.html(content);
-	newContentDesc.append(content);
-	
-	if(type == "QUESTION"){
-		var newContentInputSection = $("<div></div>");
-		for (let i = 0; i < inputObject.length; i++) {
-			var newContentInputDesc = $("<div></div>");
-			newContentInputDesc.text(inputObject[i].desc + ": ");
-			newContentInputSection.append(newContentInputDesc);
-			
-			var newContentInput = $("<input>");
-				newContentInput.addClass("w3-input w3-border");
-				newContentInput.attr("id", inputObject[i].id);
-				newContentInput.attr("type", inputObject[i].type);				
-				newContentInput.attr("value", inputObject[i].defaultValue);
-			
-			if (inputObject[i].type == "range") {
-				var newContentInputRangeDesc = $("<span></span>");
-				newContentInputRangeDesc.attr("id", "show"+inputObject[i].id);
-				newContentInputRangeDesc.text(inputObject[i].defaultValue);
-				newContentInputDesc.append(newContentInputRangeDesc);
-				
-				newContentInput.attr("max", inputObject[i].prop.max);
-				newContentInput.attr("min", inputObject[i].prop.min);
-				newContentInput.attr("step", inputObject[i].prop.step);
-				var affectValue = inputObject[i].prop['affectValue'] ? inputObject[i].prop['affectValue'] : '';
-				console.log(affectValue);
-				newContentInput.attr('oninput', "UPDATERANGEDISPLAY('" + inputObject[i].id + "', '" + affectValue +"' )");
-				newContentInputSection.append(newContentInput);
-			}
-		}
-	}
-	
-	newContentDiv.append(newContentDesc);
-	newContentDiv.append(newContentInputSection);
-	
-	dialogDiv.append(newContentDiv);
-	
-/* ADD DIALOG ACTION SECTION */	
-	var newActionDiv = $("<div></div>");
-	newActionDiv.addClass("PopupDialog_Action w3-container w3-medium");
-	
-  if (actionBtn && actionBtn.length > 0) {
-		for(let i=0; i < actionBtn.length; i++){
-			if(actionBtn[i].closeDialog){
-				actionBtn[i].action = actionBtn[i].action + "; CLOSE_ALL_POPUP();";
-			}
-		}
+  dialogDiv.html("");
+
+  /* ADD DIALOG TITLE SECTION */
+  var newTitleDiv = $("<div></div>");
+  newTitleDiv.addClass("PopupDialog_Title w3-container w3-large w3-leftbar w3-rightbar");
+  newTitleDiv.addClass("w3-pale-" + color);
+  newTitleDiv.addClass("w3-border-" + color);
+
+  var newTitleIcon = $("<i></i>");
+  newTitleIcon.addClass("bi");
+  newTitleIcon.addClass(icon);
+  newTitleIcon.addClass("w3-text-" + color);
+  newTitleIcon.css("margin-right", "10px");
+
+  var newTitleIcon2 = $("<i></i>");
+  newTitleIcon2.addClass("bi");
+  newTitleIcon2.addClass(icon);
+  newTitleIcon2.addClass("w3-text-" + color);
+  newTitleIcon2.css("margin-left", "10px");
+
+  var newTitleDesc = $("<span></span>");
+  newTitleDesc.html(title);
+
+  var newCloseBtn = $("<i></i>");
+  newCloseBtn.addClass("PopupDialog_CloseBtn bi bi-x")
+  newCloseBtn.attr('onClick', "CLOSE_ALL_POPUP()");
+
+  newTitleDiv.append(newTitleIcon);
+  newTitleDiv.append(newTitleDesc);
+  if (type == "SUCCESS")
+    newTitleDiv.append(newTitleIcon2)
+  newTitleDiv.append(newCloseBtn);
+
+  dialogDiv.prepend(newTitleDiv);
+
+  /* ADD DIALOG CONTENT SECTION */
+  var newContentDiv = $("<div></div>");
+  newContentDiv.addClass("PopupDialog_Content w3-container w3-medium");
+
+  var newContentDesc = $("<div></div>");
+  newContentDesc.addClass("w3-center");
+  // newContentDesc.html(content);
+  newContentDesc.append(content);
+
+  if (type == "QUESTION") {
+    var newContentInputSection = $("<div></div>");
+    for (let i = 0; i < inputObject.length; i++) {
+      var newContentInputDesc = $("<div></div>");
+      newContentInputDesc.text(inputObject[i].desc + ": ");
+      newContentInputSection.append(newContentInputDesc);
+
+      var newContentInput = $("<input>");
+      newContentInput.addClass("w3-input w3-border");
+      newContentInput.attr("id", inputObject[i].id);
+      newContentInput.attr("type", inputObject[i].type);
+      newContentInput.attr("value", inputObject[i].defaultValue);
+
+      if (inputObject[i].type == "range") {
+        var newContentInputRangeDesc = $("<span></span>");
+        newContentInputRangeDesc.attr("id", "show" + inputObject[i].id);
+        newContentInputRangeDesc.text(inputObject[i].defaultValue);
+        newContentInputDesc.append(newContentInputRangeDesc);
+
+        newContentInput.attr("max", inputObject[i].prop.max);
+        newContentInput.attr("min", inputObject[i].prop.min);
+        newContentInput.attr("step", inputObject[i].prop.step);
+        var affectValue = inputObject[i].prop['affectValue'] ? inputObject[i].prop['affectValue'] : '';
+        console.log(affectValue);
+        newContentInput.attr('oninput', "UPDATERANGEDISPLAY('" + inputObject[i].id + "', '" + affectValue + "' )");
+        newContentInputSection.append(newContentInput);
+      }
+    }
   }
-	actionBtn.push({
-		desc: "關閉",
-		action: "CLOSE_ALL_POPUP();",
-		closeDialog: true
-	});
-	
-	for(let i = 0; i < actionBtn.length; i++){
-		var newActionBtn = $("<button></button>");
-		newActionBtn.addClass("PopupDialog_ActionBtn w3-btn w3-round-large");
-		newActionBtn.addClass("w3-pale-" + color);
-		newActionBtn.addClass("w3-border-" + color);
-		newActionBtn.attr('onClick', actionBtn[i].action);
-		newActionBtn.text(actionBtn[i].desc);
-		newActionDiv.append(newActionBtn);
-	}
-	
-	dialogDiv.append(newActionDiv);
+
+  newContentDiv.append(newContentDesc);
+  newContentDiv.append(newContentInputSection);
+
+  dialogDiv.append(newContentDiv);
+
+  /* ADD DIALOG ACTION SECTION */
+  var newActionDiv = $("<div></div>");
+  newActionDiv.addClass("PopupDialog_Action w3-container w3-medium");
+
+  if (actionBtn && actionBtn.length > 0) {
+    for (let i = 0; i < actionBtn.length; i++) {
+      if (actionBtn[i].closeDialog) {
+        actionBtn[i].action = actionBtn[i].action + "; CLOSE_ALL_POPUP();";
+      }
+    }
+  }
+  actionBtn.push({
+    desc: "關閉",
+    action: "CLOSE_ALL_POPUP();",
+    closeDialog: true
+  });
+
+  for (let i = 0; i < actionBtn.length; i++) {
+    var newActionBtn = $("<button></button>");
+    newActionBtn.addClass("PopupDialog_ActionBtn w3-btn w3-round-large");
+    newActionBtn.addClass("w3-pale-" + color);
+    newActionBtn.addClass("w3-border-" + color);
+    newActionBtn.attr('onClick', actionBtn[i].action);
+    newActionBtn.text(actionBtn[i].desc);
+    newActionDiv.append(newActionBtn);
+  }
+
+  dialogDiv.append(newActionDiv);
 
   $("#PopupDialog").css("display", "block");
 }
@@ -298,20 +314,20 @@ function UPDATERANGEDISPLAY(field, affectNextField) {
   if (affectNextField.length > 0) {
     var nextInputField = $("#" + affectNextField);
     var nextInputFieldOutput = $("#show" + affectNextField);
-		if(affectNextField = "inputNoOfPlaneHead"){
-    var maxPlane = Math.floor(slider.val() / 3);
-    if (nextInputField.val() > maxPlane) {
-			nextInputFieldOutput.html(maxPlane);
-			nextInputField.val(maxPlane);
-          }
-    nextInputField.attr("max", maxPlane);
-		}
+    if (affectNextField = "inputNoOfPlaneHead") {
+      var maxPlane = Math.floor(slider.val() / 3);
+      if (nextInputField.val() > maxPlane) {
+        nextInputFieldOutput.html(maxPlane);
+        nextInputField.val(maxPlane);
+      }
+      nextInputField.attr("max", maxPlane);
+    }
   }
 }
 
 // -- MATHS FUNCTION -- 
 function GETRANDOMBETWEEN(max, min) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function DECIMALADJUST(type, value, exp) {

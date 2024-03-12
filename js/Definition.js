@@ -9,7 +9,7 @@ const emptyCell = 0;
 
 const defaultCell = {
   cellDefinition: emptyCell,
-	planeId: null,
+  planeId: null,
   visited: false,
 };
 
@@ -20,9 +20,9 @@ var instructionAirport;
 var instructionAirportLength = 10;
 var noOfInstructionAirplane = 3;
 var instructionAirplaneLocation = [
-	{ xStart: 0, yStart: 7, direction: 0, airplaneId: 1},
-	{ xStart: 4, yStart: 0, direction: 2, airplaneId: 1},
-	{ xStart: 9, yStart: 6, direction: 1, airplaneId: 1}
+  { xStart: 0, yStart: 7, direction: 0, airplaneId: 1 },
+  { xStart: 4, yStart: 0, direction: 2, airplaneId: 1 },
+  { xStart: 9, yStart: 6, direction: 1, airplaneId: 1 }
 ]
 
 var airport;
@@ -31,6 +31,39 @@ var noOfPlaneHead = 2;
 
 var gameStepCount = 0;
 var gameRemainHead = noOfPlaneHead;
+
+/* 
+ Instruction
+*/
+
+const screenInstruction = [
+  {
+    id: 0,
+    text: "",
+    img: ""
+    },
+  {
+    id: 1,
+    text: "<i class='bi bi-airplane-fill'></i> 查看遊戲說明</br>" +
+      "<i class='bi bi-three-dots-vertical'></i> 展開遊戲選單</br>" +
+      "<i class='bi bi-three-dots'></i> 折疊遊戲選單",
+    img: "./image/ScreenTop.png"
+    },
+  {
+    id: 2,
+    text: "<i class='bi bi-pencil-square'></i> 更改遊戲設定</br>" +
+      "<i class='bi bi-clipboard2-data'></i> 公佈遊戲結果</br>" +
+      "<i class='bi bi-recycle'></i> 重新開始遊戲</br>",
+    img: "./image/ScreenMenu.png"
+    },
+  {
+    id: 3,
+    text: "<i class='bi bi-1-square'></i> 選擇飛機模型</br>" +
+      "<i class='bi bi-2-square'></i> 設定棋盤大小</br>" +
+      "<i class='bi bi-3-square'></i> 設定模型數量</br>",
+    img: "./image/ScreenSetting.png"
+    }
+  ]
 
 const airplane1 = [
   [

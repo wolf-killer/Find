@@ -1,163 +1,128 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Find</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="cache-control" content="no-cache" />
-    <meta
-      name="viewport"
-      content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
-    <link rel="icon" type="image/x-icon" href="./image/WebIcon.png" />
-    <link rel="stylesheet" type="text/css" href="./css/Layout.css" />
-    <link rel="stylesheet" type="text/css" href="./css/GeneralStyle.css" />
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/earlyaccess/notosanstc.css" />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" />
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <!--icon list: https://fontawesome.com/icons/ -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
-    <!--icon list: https://icons.getbootstrap.com/ -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./exjs/jquery-1.11.3.min.js"></script>
-    <script src="./exjs/long-press-event.min.js"></script>
-    <script src="./js/Background.js"></script>
-    <script src="./js/GeneralFunction.js"></script>
-    <script src="./js/Window.js"></script>
-    <script src="./js/Setting.js"></script>
-    <script src="./js/Definition.js"></script>
-  </head>
 
-  <body>
-    <div class="w3-top w3-bar MenuBar">
-			<span class="w3-bar-item"
-			onclick="showInstructionDialog()">
-				<i class="bi bi-airplane-fill"></i>
-				尋找重點
-			</span>
-			<a
-				href="javascript:void(0)"
-				class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium Tooltip"
-				onclick="SHOW_V_MENU(!IS_V_MENU_ACTIVE())">
-				&#9776;
-			</a>
-			<div id="Hmenu" class="w3-right">
-				<a
-					href="#"
-					class="w3-bar-item w3-button w3-hide-small"
-					onclick="showUpdateDialog()">
-					<i class="bi bi-pencil-square"></i>
-					<span class="w3-hide-medium">更改遊戲設定</span>
-				</a>
-				<a
-					href="#"
-					class="w3-bar-item w3-button w3-hide-small"
-					onclick="displayAllAirplane()">
-					<i class="bi bi-clipboard2-data"></i>
-					<span class="w3-hide-medium">公佈結果</span>
-				</a>
-				<a
-					href="#"
-					class="w3-bar-item w3-button w3-hide-small"
-					onclick="main()">
-					<i class="bi bi-recycle"></i>
-					<span class="w3-hide-medium">重新開始</span>
-				</a>
-				<!-- <a
+<head>
+  <title>Find</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no" />
+  <link rel="icon" type="image/x-icon" href="./image/WebIcon.png" />
+  <link rel="stylesheet" type="text/css" href="./css/Layout.css" />
+  <link rel="stylesheet" type="text/css" href="./css/GeneralStyle.css" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/notosanstc.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexyen.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!--icon list: https://fontawesome.com/icons/ -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
+  <!--icon list: https://icons.getbootstrap.com/ -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./exjs/jquery-1.11.3.min.js"></script>
+  <script src="./exjs/long-press-event.min.js"></script>
+  <script src="./js/Background.js"></script>
+  <script src="./js/GeneralFunction.js"></script>
+  <script src="./js/Window.js"></script>
+  <script src="./js/Setting.js"></script>
+  <script src="./js/Definition.js"></script>
+</head>
+
+<body>
+  <div class="w3-top w3-bar MenuBar">
+    <span class="w3-bar-item" onclick="showInstructionDialog()">
+      <i class="bi bi-airplane-fill"></i>
+      尋找重點
+    </span>
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium Tooltip" onclick="SHOW_V_MENU(!IS_V_MENU_ACTIVE())">
+      <i id="VmenuOpen" class="bi bi-three-dots-vertical"></i>
+      <i id="VmenuClose" class="bi bi-three-dots" style="display:none;"></i>
+    </a>
+    <div id="Hmenu" class="w3-right">
+      <a href="#" class="w3-bar-item w3-button w3-hide-small" onclick="showUpdateDialog()">
+        <i class="bi bi-pencil-square"></i>
+        <span class="w3-hide-medium">更改遊戲設定</span>
+      </a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small" onclick="displayAllAirplane()">
+        <i class="bi bi-clipboard2-data"></i>
+        <span class="w3-hide-medium">公佈遊戲結果</span>
+      </a>
+      <a href="#" class="w3-bar-item w3-button w3-hide-small" onclick="main()">
+        <i class="bi bi-recycle"></i>
+        <span class="w3-hide-medium">重新開始遊戲</span>
+      </a>
+      <!-- <a
 					href="#"
 					class="w3-bar-item w3-button w3-hide-small"
 					onclick="showSamplePlaneDialog();">
 					<i class="bi bi-binoculars"></i>
 					<span class="w3-hide-medium">查看模板</span>
 				</a> -->
-			</div>
-			<div
-				id="Vmenu"
-				class="w3-bar-block w3-hide-large w3-hide-medium">
-				<a
+    </div>
+    <div id="Vmenu" class="w3-bar-block w3-hide-large w3-hide-medium">
+      <a href="#" class="w3-bar-item w3-button" onclick="showUpdateDialog();SHOW_V_MENU(false);">
+        <i class="bi bi-pencil-square"></i>
+        <span class="w3-hide-medium">更改遊戲設定</span>
+      </a>
+      <a href="#" class="w3-bar-item w3-button" onclick="displayAllAirplane();SHOW_V_MENU(false);">
+        <i class="bi bi-clipboard2-data"></i>
+        <span class="w3-hide-medium">公佈遊戲結果</span>
+      </a>
+      <a href="#" class="w3-bar-item w3-button" onclick="main();SHOW_V_MENU(false);">
+        <i class="bi bi-recycle"></i>
+        <span class="w3-hide-medium">重新開始遊戲</span>
+      </a>
+      <!--<a
 					href="#"
 					class="w3-bar-item w3-button"
-					onclick="showUpdateDialog();SHOW_V_MENU(false);">
-					<i class="bi bi-pencil-square"></i>
-					<span class="w3-hide-medium">更改遊戲設定</span>
-				</a>
-				<a
-					href="#"
-					class="w3-bar-item w3-button"
-					onclick="displayAllAirplane();SHOW_V_MENU(false);">
-					<i class="bi bi-clipboard2-data"></i>
-					<span class="w3-hide-medium">公佈結果</span>
-				</a>
-				<a
-					href="#"
-					class="w3-bar-item w3-button"
-					onclick="main();SHOW_V_MENU(false);">
-					<i class="bi bi-recycle"></i>
-					<span class="w3-hide-medium">重新開始</span>
-				</a>
-				<!-- <a
-					href="#"
-					class="w3-bar-item w3-button"
-					onclick="showSamplePlaneDialog();SHOW_V_MENU(false);">
+					onclick="showTestingDialog();SHOW_V_MENU(false);">
 					<i class="bi bi-binoculars"></i>
-					<span class="w3-hide-medium">查看模板</span>
-				</a> -->
-				<div id="VmenuOverlay" onclick="SHOW_V_MENU(false);"></div>
-			</div>
-		</div>
-		
-		<div id="fullPlayground" class="w3-container" style="width: 100%; text-align:center;">
-			<div id="info" class=""> 
-				棋盤中隱藏多架飛機，</br>
-				玩家需透過推理找出全部紅色的飛機頭。<br />
-				<span class="result">
-					使用步數:
-					<span class="showGameStepCount"></span> |
-					剩餘重點:
-					<span class="showGameRemainHead"></span>
-				</span></br>
-				飛機模型：
-				<div id="infoSamplePlane" class="infoSamplePlane"></div>
-			</div>
-			<div id="playground">
-				<table
-					id="airport"
-					class="w3-table w3-center"></table>
-			</div>
-		</div>
+					<span class="w3-hide-medium">測試</span>
+				</a>-->
+      <div id="VmenuOverlay" onclick="SHOW_V_MENU(false);"></div>
+    </div>
+  </div>
 
-		<div id="Overlay" onclick="CLOSE_ALL_POPUP()">
-		</div>
+  <div id="fullPlayground" class="w3-container" style="width: 100%; text-align:center;">
+    <div id="info" class="">
+      棋盤中隱藏多架飛機，</br>
+      玩家需透過推理找出全部紅色的飛機頭。<br />
+      <span class="result">
+        使用步數:
+        <span class="showGameStepCount"></span> |
+        剩餘重點:
+        <span class="showGameRemainHead"></span>
+      </span></br>
+      飛機模型：
+      <div id="infoSamplePlane" class="infoSamplePlane"></div>
+    </div>
+    <div id="playground">
+      <table id="airport" class="w3-table w3-center"></table>
+    </div>
+  </div>
 
-		<div
-			id="PopupDialog"
-			class="HiddenPopupInfo w3-container w3-center w3-round-xxlarge">
-		</div>
-      
-		<div class="w3-container w3-bar w3-bottom w3-margin-top MenuBar">
-			<span class="result">
-				使用: 
-				<span class="showGameStepCount"></span> | 
-				剩餘: 
-				<span class="showGameRemainHead"></span>
-			</span>
-			<span class="w3-right">
-				@Freda Wong
-			</span>
-		</div>
+  <div id="Overlay" onclick="CLOSE_ALL_POPUP()">
+  </div>
 
-  </body>
+  <div id="PopupDialog" class="HiddenPopupInfo w3-container w3-center w3-round-xxlarge">
+  </div>
+
+  <div class="w3-container w3-bar w3-bottom w3-margin-top MenuBar">
+    <span class="result">
+      使用:
+      <span class="showGameStepCount"></span> |
+      剩餘:
+      <span class="showGameRemainHead"></span>
+    </span>
+    <span class="w3-right">
+      @Freda Wong
+    </span>
+  </div>
+
+</body>
+
 </html>
 <script>
-  $(window).on("load", function () {
+  $(window).on("load", function() {
     main();
   });
 </script>

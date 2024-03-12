@@ -1,17 +1,17 @@
 var setSquareLength = 0;
 
 function main() {
-	SET_WINDOW();
+  SET_WINDOW();
   initTable();
   appendSeat();
   createAirplane();
-	displaySampleAirplane();
+  displaySampleAirplane();
 }
 
 function initTable() {
   //console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
-	let setMaxLength = 700;
-	setScreenWidth = setScreenWidth > setMaxLength ? 500 : setScreenWidth;
+  let setMaxLength = 700;
+  setScreenWidth = setScreenWidth > setMaxLength ? 500 : setScreenWidth;
   setSquareLength = setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;
   setSquareLength = DECIMALADJUST("floor", setSquareLength - 50, 1);
   setSeatLength = setSquareLength / airportLength;
@@ -25,7 +25,7 @@ function initTable() {
   $("#airport").css("width", setSquareLength);
   $(".airportGate").css("width", setSeatLength);
   $(".airportGate").css("height", setSeatLength);
-	
+
 }
 
 function appendSeat() {
@@ -42,7 +42,7 @@ function appendSeat() {
         col +
         "' " +
         "class='airportGate' " +
-				"style='display: inherif;'" + 
+        "style='display: inherif;'" +
         "onClick='selectGate(" +
         row +
         "," +
@@ -76,12 +76,12 @@ function displayAllAirplane() {
       airport[row][col].visited = true;
     }
   }
-  
+
   if (gameStepCount <= 0) {
     gameStepCount = airportLength * airportLength;
     gameRemainHead = 0;
   }
-  
+
   $("#showGameStepCount").text(gameStepCount);
   $("#showGameRemainHead").text(gameRemainHead);
 }
