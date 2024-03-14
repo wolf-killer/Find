@@ -14,12 +14,12 @@ function createAirplane() {
 
 function createAirplaneImplement(loopingNoOfPlaneHead) {
   var headDirection = Math.floor(Math.random() * 4);
-  var tmpArea = airplane1PossibleArea[headDirection];
+  var tmpArea = airplanePossibleArea[0][headDirection];
   var xHead = GETRANDOMBETWEEN(airportLength + tmpArea.xEnd, tmpArea.xStart);
   var yHead = GETRANDOMBETWEEN(airportLength + tmpArea.yEnd, tmpArea.yStart);
   if (checkAirplaneValid(headDirection, xHead, yHead)) {
     var planeId = loopingNoOfPlaneHead;
-    var planeDemo = airplane1[headDirection];
+    var planeDemo = airplane[0][headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
       var xAdjust = xHead + planeDemo[i].x;
       var yAdjust = yHead - planeDemo[i].y;
@@ -36,7 +36,7 @@ function createAirplaneImplement(loopingNoOfPlaneHead) {
 
 function checkAirplaneValid(headDirection, xHead, yHead) {
   var valid = true;
-  var planeDemo = airplane1[headDirection];
+  var planeDemo = airplane[0][headDirection];
   for (var i = 0; i < planeDemo.length; i++) {
     var xAdjust = xHead + planeDemo[i].x;
     var yAdjust = yHead - planeDemo[i].y;
@@ -134,10 +134,10 @@ function createSampleAirplane(direction) {
   }
 
   var headDirection = direction;
-  var xHead = direction == 1 ? airplane1PossibleArea[headDirection].xStart + 1 : airplane1PossibleArea[headDirection].xStart;
-  var yHead = direction == 2 ? airplane1PossibleArea[headDirection].yStart + 1 : airplane1PossibleArea[headDirection].yStart;
+  var xHead = direction == 1 ? airplanePossibleArea[0][headDirection].xStart + 1 : airplanePossibleArea[0][headDirection].xStart;
+  var yHead = direction == 2 ? airplanePossibleArea[0][headDirection].yStart + 1 : airplanePossibleArea[0][headDirection].yStart;
 
-  var planeDemo = airplane1[headDirection];
+  var planeDemo = airplane[0][headDirection];
   for (var i = 0; i < planeDemo.length; i++) {
     var xAdjust = xHead + planeDemo[i].x;
     var yAdjust = yHead - planeDemo[i].y;
@@ -229,7 +229,7 @@ function createInstructionAirplaneImplement(loopingNoOfPlaneHead) {
 
   if (true) {
     var planeId = loopingNoOfPlaneHead;
-    var planeDemo = airplane1[headDirection];
+    var planeDemo = airplane[0][headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
       var xAdjust = xHead + planeDemo[i].x;
       var yAdjust = yHead - planeDemo[i].y;
