@@ -100,7 +100,7 @@ function showUpdateDialog() {
   var newContent = $("<div></div>");
   newContent.css("margin-bottom", "20px");
   newContent.text("使用模板: ");
-  newContent.append(getSamplePlaneHtml(false, 0));
+  newContent.append(getSamplePlaneHtml(false, 0, 0));
 
   var actionList = [{
     desc: "確認",
@@ -123,7 +123,7 @@ function updateDefaultSetting() {
   main();
 }
 
-function createSampleAirplane(direction) {
+function createSampleAirplane(direction, graphics) {
   sampleAirport = [];
   for (var row = 0; row < sampleAirportLength; row++) {
     var airportGate = [];
@@ -134,10 +134,10 @@ function createSampleAirplane(direction) {
   }
 
   var headDirection = direction;
-  var xHead = direction == 1 ? airplanePossibleArea[0][headDirection].xStart + 1 : airplanePossibleArea[0][headDirection].xStart;
-  var yHead = direction == 2 ? airplanePossibleArea[0][headDirection].yStart + 1 : airplanePossibleArea[0][headDirection].yStart;
+  var xHead = graphics == 0 && direction == 1 ? airplanePossibleArea[graphics][headDirection].xStart + 1 : airplanePossibleArea[graphics][headDirection].xStart;
+  var yHead = graphics == 0 && direction == 2 ? airplanePossibleArea[graphics][headDirection].yStart + 1 : airplanePossibleArea[graphics][headDirection].yStart;
 
-  var planeDemo = airplane[0][headDirection];
+  var planeDemo = airplane[graphics][headDirection];
   for (var i = 0; i < planeDemo.length; i++) {
     var xAdjust = xHead + planeDemo[i].x;
     var yAdjust = yHead - planeDemo[i].y;
@@ -146,10 +146,10 @@ function createSampleAirplane(direction) {
   sampleAirport[xHead][yHead].cellDefinition = planeHead;
 }
 
-function getSamplePlaneHtml(transparent, direction) {
-  createSampleAirplane(direction);
-  var setSampleAirportWidth = setScreenWidth * 0.25;
-  var setSampleAirportHeight = setScreenWidth * 0.25;
+function getSamplePlaneHtml(transparent, direction, graphics) {
+  createSampleAirplane(direction, graphics);
+  var setSampleAirportWidth = setScreenWidth * 0.2;
+  var setSampleAirportHeight = setScreenWidth * 0.2;
 
   var newSampleAirport = $("<table></table>");
   if (transparent) {
@@ -196,14 +196,14 @@ function displaySampleAirplane() {
   sameplePlaneHtml.css("display", "flex");
   var directionArray = [3, 0, 1, 2];
   for (var i = 0; i < directionArray.length; i++) {
-    sameplePlaneHtml.append(getSamplePlaneHtml(true, directionArray[i]));
+    sameplePlaneHtml.append(getSamplePlaneHtml(true, directionArray[i], 0));
   }
   $(".infoSamplePlane").html(sameplePlaneHtml);
 }
 
 function showTestingDialog() {
-  var showContent = "！恭喜！</br><span class='showGameStepCount'>" + gameStepCount + "步</span></br>成功找出模型";
-  SHOW_ALERT("M", "SUCCESS", showContent, null, [], [], "bi-balloon-heart-fill");
+  var showContent = getSamplePlaneHtml(true, 1, 1);
+  SHOW_ALERT("M", "REMARK", "測試", showContent, [], [], "bi-balloon-heart-fill");
 }
 
 function createInstructionAirplane() {
@@ -226,10 +226,11 @@ function createInstructionAirplaneImplement(loopingNoOfPlaneHead) {
   var headDirection = instructionAirplaneLocation[loopingNoOfPlaneHead].direction;
   var xHead = instructionAirplaneLocation[loopingNoOfPlaneHead].xStart;
   var yHead = instructionAirplaneLocation[loopingNoOfPlaneHead].yStart;
+	var sampleGraphicId = instructionAirplaneLocation[loopingNoOfPlaneHead].graphicId;
 
   if (true) {
     var planeId = loopingNoOfPlaneHead;
-    var planeDemo = airplane[0][headDirection];
+    var planeDemo = airplane[sampleGraphicId][headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
       var xAdjust = xHead + planeDemo[i].x;
       var yAdjust = yHead - planeDemo[i].y;
