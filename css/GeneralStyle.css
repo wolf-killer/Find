@@ -51,6 +51,23 @@ body {
   /*cursor: pointer; /* Add a pointer on hover */
 }
 
+.HiddenSnackbar {
+  display: none;
+  /* Hidden by default */
+  overflow-y: hidden;
+  overflow-x: hidden;
+  /*position: relative;*/
+  position: absolute !important;
+  background: rgba(63, 68, 110, 0.95);
+  color: rgb(255, 255, 255);
+  border: 3px solid rgb(0, 41, 92);
+  width: 80% !important;
+  padding: 10px !important;
+  top: 50%;
+  left: 10% !important;
+  z-index: 100 !important;
+}
+
 .HiddenPopupInfo {
   display: none;
   /* Hidden by default */
@@ -166,4 +183,8 @@ body {
 
 .Tooltip:hover .Tooltiptext {
   visibility: visible;
+}
+
+.Text-Caption {
+  font-size: 8px;
 }

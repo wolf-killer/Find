@@ -15,12 +15,6 @@ function initTable() {
   setSquareLength = setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;
   setSquareLength = DECIMALADJUST("floor", setSquareLength - 50, 1);
   setSeatLength = setSquareLength / airportLength;
-  /*
-	$("#playground").css(
-    "height",
-    setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth
-  );
-	*/
   $("#airport").css("height", setSquareLength);
   $("#airport").css("width", setSquareLength);
   $(".airportGate").css("width", setSeatLength);

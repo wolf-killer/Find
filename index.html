@@ -71,13 +71,10 @@
         <i class="bi bi-recycle"></i>
         <span class="w3-hide-medium">重新開始遊戲</span>
       </a>
-      <!--<a
-					href="#"
-					class="w3-bar-item w3-button"
-					onclick="showTestingDialog();SHOW_V_MENU(false);">
-					<i class="bi bi-binoculars"></i>
-					<span class="w3-hide-medium">測試</span>
-				</a>-->
+      <!--<a href="#" class="w3-bar-item w3-button" onclick="showTestingDialog()">
+        <i class="bi bi-binoculars"></i>
+        <span class="w3-hide-medium">測試</span>
+      </a>-->
       <div id="VmenuOverlay" onclick="SHOW_V_MENU(false);"></div>
     </div>
   </div>
@@ -106,6 +103,49 @@
   <div id="PopupDialog" class="HiddenPopupInfo w3-container w3-center w3-round-xxlarge">
   </div>
 
+  <div id="Snackbar" class="HiddenSnackbar w3-container w3-center w3-round-large"></div>
+
+  <div id="updateDialog" class="HiddenPopupInfo HiddenPopupInfo-L w3-container w3-center w3-round-xxlarge Dialog-QUESTION">
+    <div class="PopupDialog_Title w3-container w3-large w3-leftbar w3-rightbar w3-pale-yellow w3-border-yellow">
+      <i class="bi bi-question-diamond w3-text-yellow" style="margin-right: 10px"></i>
+      <span>遊戲設置</span>
+    </div>
+    <div class="PopupDialog_Content w3-container w3-medium">
+      <div class="w3-center" style="margin-bottom: 10px;">
+        玩家可自行設定棋盤大小，圖案款式及數量。</br>
+        注意：圖案數量不得多於棋盤的三分之一。
+      </div>
+      <div class="contentInputSection">
+        <div>
+          圖案款式及數量
+        </div>
+        <div class="Text-Caption">
+          根據現時棋盤大小
+          <span class="showinputAirportLength"></span>
+          格，圖案數量不得多於
+          <span class="showMaxGraphic"></span>
+          個
+        </div>
+        <div id="graphicOptionList" class="flex-container" style="display:flex;">
+
+        </div>
+        <div>
+          棋盤闊度
+          <span class="showinputAirportLength"></span>
+        </div>
+        <input id="inputAirportLength" class="w3-input w3-border" type="range" value="airportLength" max=30 min=10 step=5 onchange="updateMaxGraphic()" />
+      </div>
+    </div>
+    <div class="PopupDialog_Action w3-container w3-medium">
+      <button class="PopupDialog_ActionBtn w3-btn w3-round-large w3-pale-yellow w3-border-yellow" onclick="updateDefaultSetting();">
+        確認
+      </button>
+      <button class="PopupDialog_ActionBtn w3-btn w3-round-large w3-pale-yellow w3-border-yellow" onclick="CLOSE_ALL_POPUP()">
+        關閉
+      </button>
+    </div>
+  </div>
+
   <div class="w3-container w3-bar w3-bottom w3-margin-top MenuBar">
     <span class="result">
       使用:
@@ -124,5 +164,6 @@
 <script>
   $(window).on("load", function() {
     main();
+    loadDefaultSettingDialog();
   });
 </script>

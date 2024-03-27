@@ -1,9 +1,16 @@
 function createAirplane() {
   gameStepCount = 0;
-  gameRemainHead = noOfPlaneHead;
+  gameRemainHead = totalNoOfGraphic;
   $(".showGameStepCount").text(gameStepCount);
   $(".showGameRemainHead").text(gameRemainHead);
-  var loopingNoOfPlaneHead = noOfPlaneHead;
+  var loopingNoOfPlaneHead = totalNoOfGraphic;
+  // get grapic model
+  gameGraphic = [];
+  for (var i = 0; i < noOfGraphic.length; i++) {
+    for (var j = 0; j < noOfGraphic[i]; j++) {
+      gameGraphic.push({ graphicModel: i })
+    }
+  }
   while (loopingNoOfPlaneHead > 0) {
     if (!createAirplaneImplement(loopingNoOfPlaneHead)) {
       continue;
@@ -13,13 +20,14 @@ function createAirplane() {
 }
 
 function createAirplaneImplement(loopingNoOfPlaneHead) {
+  var graphicModel = gameGraphic[loopingNoOfPlaneHead - 1].graphicModel;
   var headDirection = Math.floor(Math.random() * 4);
-  var tmpArea = airplanePossibleArea[0][headDirection];
+  var tmpArea = airplanePossibleArea[graphicModel][headDirection];
   var xHead = GETRANDOMBETWEEN(airportLength + tmpArea.xEnd, tmpArea.xStart);
   var yHead = GETRANDOMBETWEEN(airportLength + tmpArea.yEnd, tmpArea.yStart);
-  if (checkAirplaneValid(headDirection, xHead, yHead)) {
+  if (checkAirplaneValid(headDirection, xHead, yHead, graphicModel)) {
     var planeId = loopingNoOfPlaneHead;
-    var planeDemo = airplane[0][headDirection];
+    var planeDemo = airplane[graphicModel][headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
       var xAdjust = xHead + planeDemo[i].x;
       var yAdjust = yHead - planeDemo[i].y;
@@ -28,15 +36,18 @@ function createAirplaneImplement(loopingNoOfPlaneHead) {
     }
     airport[xHead][yHead].cellDefinition = planeHead;
     airport[xHead][yHead].planeId = planeId;
+    airport[xHead][yHead].graphicModel = graphicModel;
+    gameGraphic[loopingNoOfPlaneHead - 1].headDirection = headDirection;
+    gameGraphic[loopingNoOfPlaneHead - 1].headLocation = { x: xHead, y: yHead };
     return true;
   } else {
     return false;
   }
 }
 
-function checkAirplaneValid(headDirection, xHead, yHead) {
+function checkAirplaneValid(headDirection, xHead, yHead, graphicModel) {
   var valid = true;
-  var planeDemo = airplane[0][headDirection];
+  var planeDemo = airplane[graphicModel][headDirection];
   for (var i = 0; i < planeDemo.length; i++) {
     var xAdjust = xHead + planeDemo[i].x;
     var yAdjust = yHead - planeDemo[i].y;
@@ -70,57 +81,102 @@ function selectGate(row, col) {
   }
 }
 
+function loadDefaultSettingDialog() {
+
+  var newGraphicOptionTable = $("<table></table>");
+  newGraphicOptionTable.addClass("transparentSampleAirport w3-table");
+
+  // Show Graphic Option
+  var newGraphicOptionTableRow = $("<tr></tr>");
+  for (var i = 0; i < airplane.length; i++) {
+    var newGraphicOptionTableRowCol = $("<td></td>");
+    newGraphicOptionTableRowCol.append(getSamplePlaneHtml(false, 0, i));
+
+    var newContentInput = $("<select>");
+    newContentInput.addClass("w3-input w3-border");
+    newContentInput.attr("id", "inputGraphic" + i);
+    newContentInput.change(function(e) {
+      updateEachGraphicMax($(this));
+    })
+    for (var n = 0; n <= 10; n++) {
+      var newOption = $('<option />', { value: n, text: n });
+      newOption.prop('disabled', n > maxGraphic);
+      newOption.appendTo(newContentInput);
+    }
+    newGraphicOptionTableRowCol.append(newContentInput);
+    // Show Graphic Option
+    newGraphicOptionTableRow.append(newGraphicOptionTableRowCol);
+  }
+
+  newGraphicOptionTable.append(newGraphicOptionTableRow);
+  $("#graphicOptionList").append(newGraphicOptionTable);
+}
+
 function showUpdateDialog() {
-  var inputObject = [
-    {
-      id: "inputAirportLength",
-      type: "range",
-      desc: "棋盤闊度",
-      defaultValue: airportLength,
-      prop: {
-        max: 30,
-        min: 10,
-        step: 5,
-        affectValue: "inputNoOfPlaneHead",
-      },
-    },
-    {
-      id: "inputNoOfPlaneHead",
-      type: "range",
-      desc: "飛機數量",
-      defaultValue: noOfPlaneHead,
-      prop: {
-        max: Math.floor(airportLength / 3),
-        min: 1,
-        step: 1,
-      },
-    },
-  ];
+  SHOW_OVERLAY(true);
+  $("#inputAirportLength").val(airportLength);
+  $(".showinputAirportLength").text(airportLength);
+  $(".showMaxGraphic").text(maxGraphic);
+  for (var i = 0; i < noOfGraphic.length; i++) {
+    $("#inputGraphic" + i).val(noOfGraphic[i]);
+  }
+  $("#updateDialog").show();
+}
 
-  var newContent = $("<div></div>");
-  newContent.css("margin-bottom", "20px");
-  newContent.text("使用模板: ");
-  newContent.append(getSamplePlaneHtml(false, 0, 0));
+function updateEachGraphicMax(e) {
+  var updatingId = e ? e.attr('id') : "";
+  var updatingVal = e ? Number(e.val()) : 0;
+  var tmpMaxGraphic = DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0);
+  var remainGraphic = tmpMaxGraphic - updatingVal;
+  for (var i = 0; i < airplane.length; i++) {
+    var tmpId = "inputGraphic" + i;
+    if (tmpId == updatingId)
+      continue;
+    var tmpContentInput = $("#" + tmpId);
+    if (Number(tmpContentInput.val()) > remainGraphic) {
+      tmpContentInput.val(0);
+    }
+    $("#" + tmpId + " > option").each(function() {
+      $(this).prop('disabled', $(this).val() > remainGraphic);
+    });
+  }
+}
 
-  var actionList = [{
-    desc: "確認",
-    action: "updateDefaultSetting()",
-    closeDialog: true
-				}];
-  SHOW_ALERT(
-    "L",
-    "QUESTION",
-    "遊戲設置",
-    newContent,
-    actionList,
-    inputObject
-  );
+function updateMaxGraphic() {
+  $(".showinputAirportLength").text(Number($("#inputAirportLength").val()));
+  $(".showMaxGraphic").text(DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0));
+  //check total > available
+  var currentTotal = 0;
+  for (var i = 0; i < noOfGraphic.length; i++) {
+    currentTotal += Number($("#inputGraphic" + i).val());
+  }
+  if (currentTotal > DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0)) {
+    for (var i = 0; i < noOfGraphic.length; i++) {
+      $("#inputGraphic" + i).val(0);
+    }
+  }
+  updateEachGraphicMax();
 }
 
 function updateDefaultSetting() {
-  airportLength = Number($("#inputAirportLength").val());
-  noOfPlaneHead = $("#inputNoOfPlaneHead").val();
-  main();
+  //checking
+  var currentMaxGraphic = DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0);
+  var currentTotal = 0;
+  for (var i = 0; i < noOfGraphic.length; i++) {
+    currentTotal += Number($("#inputGraphic" + i).val());
+  }
+  if (currentTotal == 0 || currentTotal > currentMaxGraphic) {
+    SHOW_SNACKBAR("圖案數量錯誤！", 3);
+  } else {
+    airportLength = Number($("#inputAirportLength").val());
+    maxGraphic = DECIMALADJUST("floor", airportLength / 3, 0);
+    for (var i = 0; i < noOfGraphic.length; i++) {
+      noOfGraphic[i] = Number($("#inputGraphic" + i).val());
+    }
+    totalNoOfGraphic = noOfGraphic.reduce((partialSum, a) => partialSum + a, 0);
+    CLOSE_ALL_POPUP();
+    main();
+  }
 }
 
 function createSampleAirplane(direction, graphics) {
@@ -134,7 +190,7 @@ function createSampleAirplane(direction, graphics) {
   }
 
   var headDirection = direction;
-  var xHead = graphics == 0 && direction == 1 ? airplanePossibleArea[graphics][headDirection].xStart + 1 : airplanePossibleArea[graphics][headDirection].xStart;
+  var xHead = graphics == 0 && (direction == 1 || direction == 0) ? airplanePossibleArea[graphics][headDirection].xStart + 1 : airplanePossibleArea[graphics][headDirection].xStart;
   var yHead = graphics == 0 && direction == 2 ? airplanePossibleArea[graphics][headDirection].yStart + 1 : airplanePossibleArea[graphics][headDirection].yStart;
 
   var planeDemo = airplane[graphics][headDirection];
@@ -191,19 +247,19 @@ function getSamplePlaneHtml(transparent, direction, graphics) {
 }
 
 function displaySampleAirplane() {
-  var sameplePlaneHtml = $("<div></div>");
-  sameplePlaneHtml.addClass("flex-container");
-  sameplePlaneHtml.css("display", "flex");
+  var samplePlaneHtml = $("<div></div>");
+  samplePlaneHtml.addClass("flex-container");
+  samplePlaneHtml.css("display", "flex");
   var directionArray = [3, 0, 1, 2];
   for (var i = 0; i < directionArray.length; i++) {
-    sameplePlaneHtml.append(getSamplePlaneHtml(true, directionArray[i], 0));
+    samplePlaneHtml.append(getSamplePlaneHtml(true, directionArray[i], 0));
   }
-  $(".infoSamplePlane").html(sameplePlaneHtml);
+  //return samplePlaneHtml;
+  $(".infoSamplePlane").html(samplePlaneHtml);
 }
 
 function showTestingDialog() {
-  var showContent = getSamplePlaneHtml(true, 1, 1);
-  SHOW_ALERT("M", "REMARK", "測試", showContent, [], [], "bi-balloon-heart-fill");
+  SHOW_SNACKBAR("REMARK", 3);
 }
 
 function createInstructionAirplane() {
@@ -226,11 +282,11 @@ function createInstructionAirplaneImplement(loopingNoOfPlaneHead) {
   var headDirection = instructionAirplaneLocation[loopingNoOfPlaneHead].direction;
   var xHead = instructionAirplaneLocation[loopingNoOfPlaneHead].xStart;
   var yHead = instructionAirplaneLocation[loopingNoOfPlaneHead].yStart;
-	var sampleGraphicId = instructionAirplaneLocation[loopingNoOfPlaneHead].graphicId;
+  var sampleGraphicModel = instructionAirplaneLocation[loopingNoOfPlaneHead].graphicModel;
 
   if (true) {
     var planeId = loopingNoOfPlaneHead;
-    var planeDemo = airplane[sampleGraphicId][headDirection];
+    var planeDemo = airplane[sampleGraphicModel][headDirection];
     for (var i = 0; i < planeDemo.length; i++) {
       var xAdjust = xHead + planeDemo[i].x;
       var yAdjust = yHead - planeDemo[i].y;

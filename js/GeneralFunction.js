@@ -139,6 +139,7 @@ function CLOSE_ALL_POPUP() {
   SHOW_OVERLAY(false);
   SHOW_V_MENU(false);
   $(".HiddenPopupInfo").css("display", "none");
+  $(".HiddenSnackbar").css("display", "none");
   $(".ActionPopup").css("display", "none");
 }
 
@@ -303,8 +304,25 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
   }
 
   dialogDiv.append(newActionDiv);
+  dialogDiv.show();
+}
 
-  $("#PopupDialog").css("display", "block");
+function SHOW_SNACKBAR(content, second) {
+  // SNACKBAR AUTOCLOSE after ? second
+  var snackbarDiv = $("#Snackbar");
+  var newContentDiv = $("<div></div>");
+  newContentDiv.addClass("PopupDialog_Content w3-container w3-medium");
+
+  var newContentDesc = $("<div></div>");
+  newContentDesc.addClass("w3-center");
+  newContentDesc.append(content);
+  snackbarDiv.append(newContentDesc);
+  snackbarDiv.show();
+
+  setTimeout(() => {
+    snackbarDiv.hide();
+    snackbarDiv.empty();
+  }, second * 1000);
 }
 
 function UPDATERANGEDISPLAY(field, affectNextField) {

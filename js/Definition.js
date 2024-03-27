@@ -10,6 +10,7 @@ const emptyCell = 0;
 const defaultCell = {
   cellDefinition: emptyCell,
   planeId: null,
+  graphicModel: null,
   visited: false,
 };
 
@@ -20,18 +21,20 @@ var instructionAirport;
 var instructionAirportLength = 10;
 var noOfInstructionAirplane = 3;
 var instructionAirplaneLocation = [
-  { xStart: 0, yStart: 7, direction: 0, graphicId: 1 },
-  { xStart: 4, yStart: 0, direction: 2, graphicId: 0 },
-  { xStart: 9, yStart: 6, direction: 1, graphicId: 0 }
+  { xStart: 0, yStart: 7, direction: 0, graphicModel: 1 },
+  { xStart: 4, yStart: 0, direction: 2, graphicModel: 0 },
+  { xStart: 9, yStart: 6, direction: 1, graphicModel: 0 }
 ]
 
 var airport;
 var airportLength = 10;
-var noOfPlaneHead = 2;
-var selectedGraphic;
+var maxGraphic = DECIMALADJUST("floor", airportLength / 3, 0);
+var noOfGraphic = [2, 1]; // Model[0]: 2; Model[1]: 1; Total: 3;
+var totalNoOfGraphic = noOfGraphic.reduce((partialSum, a) => partialSum + a, 0);
 
 var gameStepCount = 0;
-var gameRemainHead = noOfPlaneHead;
+var gameRemainHead = totalNoOfGraphic;
+var gameGraphic = [];
 
 /* 
  Instruction
@@ -66,118 +69,117 @@ const screenInstruction = [
     }
   ]
 
-const airplane = 
-[
+const airplane = [
 	[ // graphic 1
 		[
 			//up
-				{ x: +0, y: +0 },
-				{ x: +1, y: +2 },
-				{ x: +1, y: +1 },
-				{ x: +1, y: +0 },
-				{ x: +1, y: -1 },
-				{ x: +1, y: -2 },
-				{ x: +2, y: +0 },
-				{ x: +3, y: +1 },
-				{ x: +3, y: +0 },
-				{ x: +3, y: -1 },
+      { x: +0, y: +0 },
+      { x: +1, y: +2 },
+      { x: +1, y: +1 },
+      { x: +1, y: +0 },
+      { x: +1, y: -1 },
+      { x: +1, y: -2 },
+      { x: +2, y: +0 },
+      { x: +3, y: +1 },
+      { x: +3, y: +0 },
+      { x: +3, y: -1 },
 		],
 		[
 			//down
-				{ x: +0, y: +0 },
-				{ x: -1, y: +2 },
-				{ x: -1, y: +1 },
-				{ x: -1, y: +0 },
-				{ x: -1, y: -1 },
-				{ x: -1, y: -2 },
-				{ x: -2, y: +0 },
-				{ x: -3, y: +1 },
-				{ x: -3, y: +0 },
-				{ x: -3, y: -1 },
+      { x: +0, y: +0 },
+      { x: -1, y: +2 },
+      { x: -1, y: +1 },
+      { x: -1, y: +0 },
+      { x: -1, y: -1 },
+      { x: -1, y: -2 },
+      { x: -2, y: +0 },
+      { x: -3, y: +1 },
+      { x: -3, y: +0 },
+      { x: -3, y: -1 },
 		],
 		[
 			//left
-				{ x: +0, y: +0 },
-				{ x: +0, y: -1 },
-				{ x: -1, y: -1 },
-				{ x: -2, y: -1 },
-				{ x: +1, y: -1 },
-				{ x: +2, y: -1 },
-				{ x: +0, y: -2 },
-				{ x: +0, y: -3 },
-				{ x: -1, y: -3 },
-				{ x: +1, y: -3 },
+      { x: +0, y: +0 },
+      { x: +0, y: -1 },
+      { x: -1, y: -1 },
+      { x: -2, y: -1 },
+      { x: +1, y: -1 },
+      { x: +2, y: -1 },
+      { x: +0, y: -2 },
+      { x: +0, y: -3 },
+      { x: -1, y: -3 },
+      { x: +1, y: -3 },
 		],
 		[
 			//right
-				{ x: +0, y: +0 },
-				{ x: +0, y: +1 },
-				{ x: -1, y: +1 },
-				{ x: -2, y: +1 },
-				{ x: +1, y: +1 },
-				{ x: +2, y: +1 },
-				{ x: +0, y: +2 },
-				{ x: +0, y: +3 },
-				{ x: -1, y: +3 },
-				{ x: +1, y: +3 },
+      { x: +0, y: +0 },
+      { x: +0, y: +1 },
+      { x: -1, y: +1 },
+      { x: -2, y: +1 },
+      { x: +1, y: +1 },
+      { x: +2, y: +1 },
+      { x: +0, y: +2 },
+      { x: +0, y: +3 },
+      { x: -1, y: +3 },
+      { x: +1, y: +3 },
 		]
 	],
 	[ // graphic 2
 		[
 			//up
-				{ x: +0, y: +0 },
-				{ x: +1, y: +1 },
-				{ x: +1, y: +0 },
-				{ x: +1, y: -1 },
-				{ x: +2, y: +2 },
-				{ x: +2, y: +0 },
-				{ x: +2, y: -2 },
-				{ x: +3, y: +0 },
-				{ x: +4, y: +1 },
-				{ x: +4, y: +0 },
-				{ x: +4, y: -1 },
+      { x: +0, y: +0 },
+      { x: +1, y: +1 },
+      { x: +1, y: +0 },
+      { x: +1, y: -1 },
+      { x: +2, y: +2 },
+      { x: +2, y: +0 },
+      { x: +2, y: -2 },
+      { x: +3, y: +0 },
+      { x: +4, y: +1 },
+      { x: +4, y: +0 },
+      { x: +4, y: -1 },
 		],
 		[
 			//down
-				{ x: +0, y: +0 },
-				{ x: -1, y: +1 },
-				{ x: -1, y: +0 },
-				{ x: -1, y: -1 },
-				{ x: -2, y: +2 },
-				{ x: -2, y: +0 },
-				{ x: -2, y: -2 },
-				{ x: -3, y: +0 },
-				{ x: -4, y: +1 },
-				{ x: -4, y: +0 },
-				{ x: -4, y: -1 },
+      { x: +0, y: +0 },
+      { x: -1, y: +1 },
+      { x: -1, y: +0 },
+      { x: -1, y: -1 },
+      { x: -2, y: +2 },
+      { x: -2, y: +0 },
+      { x: -2, y: -2 },
+      { x: -3, y: +0 },
+      { x: -4, y: +1 },
+      { x: -4, y: +0 },
+      { x: -4, y: -1 },
 		],
 		[
 			//left
-				{ x: +0, y: +0 },
-				{ x: +1, y: -1 },
-				{ x: +0, y: -1 },
-				{ x: -1, y: -1 },
-				{ x: +2, y: -2 },
-				{ x: +0, y: -2 },
-				{ x: -2, y: -2 },
-				{ x: +0, y: -3 },
-				{ x: +1, y: -4 },
-				{ x: +0, y: -4 },
-				{ x: -1, y: -4 },
+      { x: +0, y: +0 },
+      { x: +1, y: -1 },
+      { x: +0, y: -1 },
+      { x: -1, y: -1 },
+      { x: +2, y: -2 },
+      { x: +0, y: -2 },
+      { x: -2, y: -2 },
+      { x: +0, y: -3 },
+      { x: +1, y: -4 },
+      { x: +0, y: -4 },
+      { x: -1, y: -4 },
 		],
 		[
 			//right
-				{ x: +0, y: +0 },
-				{ x: +1, y: +1 },
-				{ x: +0, y: +1 },
-				{ x: -1, y: +1 },
-				{ x: +2, y: +2 },
-				{ x: +0, y: +2 },
-				{ x: -2, y: +2 },
-				{ x: +0, y: +3 },
-				{ x: +1, y: +4 },
-				{ x: +0, y: +4 },
-				{ x: -1, y: +4 },
+      { x: +0, y: +0 },
+      { x: +1, y: +1 },
+      { x: +0, y: +1 },
+      { x: -1, y: +1 },
+      { x: +2, y: +2 },
+      { x: +0, y: +2 },
+      { x: -2, y: +2 },
+      { x: +0, y: +3 },
+      { x: +1, y: +4 },
+      { x: +0, y: +4 },
+      { x: -1, y: +4 },
 		]
 	]
 ];
