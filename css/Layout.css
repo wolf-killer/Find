@@ -42,6 +42,9 @@ canvas {
     flex: 50%;
   }
 }
+.settingDialogGraphicTable{
+  max-height: 90px !important;
+}
 
 #airport,
 .sampleAirport {
