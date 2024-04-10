@@ -29,7 +29,7 @@ var instructionAirplaneLocation = [
 var airport;
 var airportLength = 10;
 var maxGraphic = DECIMALADJUST("floor", airportLength / 3, 0);
-var noOfGraphic = [1, 1]; // Model[0]: 1; Model[1]: 1; Total: 2;
+var noOfGraphic = [1, 1, 0]; // Model[0]: 1; Model[1]: 1; Total: 2;
 var totalNoOfGraphic = noOfGraphic.reduce((partialSum, a) => partialSum + a, 0);
 
 var gameStepCount = 0;
