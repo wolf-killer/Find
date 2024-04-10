@@ -29,7 +29,7 @@ var instructionAirplaneLocation = [
 var airport;
 var airportLength = 10;
 var maxGraphic = DECIMALADJUST("floor", airportLength / 3, 0);
-var noOfGraphic = [1, 1, 0]; // Model[0]: 1; Model[1]: 1; Total: 2;
+var noOfGraphic = [1, 1]; // Model[0]: 1; Model[1]: 1; Total: 2;
 var totalNoOfGraphic = noOfGraphic.reduce((partialSum, a) => partialSum + a, 0);
 
 var gameStepCount = 0;
@@ -181,64 +181,6 @@ const airplane = [
       { x: +0, y: +4 },
       { x: -1, y: +4 },
 		]
-	],
-	[ // graphic 3
-		[
-			//up
-      { x: +0, y: +0 },
-      { x: +1, y: +1 },
-      { x: +1, y: +0 },
-      { x: +1, y: -1 },
-      { x: +2, y: +2 },
-      { x: +2, y: +0 },
-      { x: +2, y: -2 },
-      { x: +3, y: +0 },
-      { x: +4, y: +1 },
-      { x: +4, y: +0 },
-      { x: +4, y: -1 },
-		],
-		[
-			//down
-      { x: +0, y: +0 },
-      { x: -1, y: +1 },
-      { x: -1, y: +0 },
-      { x: -1, y: -1 },
-      { x: -2, y: +2 },
-      { x: -2, y: +0 },
-      { x: -2, y: -2 },
-      { x: -3, y: +0 },
-      { x: -4, y: +1 },
-      { x: -4, y: +0 },
-      { x: -4, y: -1 },
-		],
-		[
-			//left
-      { x: +0, y: +0 },
-      { x: +1, y: -1 },
-      { x: +0, y: -1 },
-      { x: -1, y: -1 },
-      { x: +2, y: -2 },
-      { x: +0, y: -2 },
-      { x: -2, y: -2 },
-      { x: +0, y: -3 },
-      { x: +1, y: -4 },
-      { x: +0, y: -4 },
-      { x: -1, y: -4 },
-		],
-		[
-			//right
-      { x: +0, y: +0 },
-      { x: +1, y: +1 },
-      { x: +0, y: +1 },
-      { x: -1, y: +1 },
-      { x: +2, y: +2 },
-      { x: +0, y: +2 },
-      { x: -2, y: +2 },
-      { x: +0, y: +3 },
-      { x: +1, y: +4 },
-      { x: +0, y: +4 },
-      { x: -1, y: +4 },
-		]
 	]
 ];
 
@@ -250,12 +192,6 @@ const airplanePossibleArea = [
     { xStart: 2, xEnd: -3, yStart: 3, yEnd: -1 } //right
   ],
   [ // graphic 2
-    { xStart: 0, xEnd: -5, yStart: 2, yEnd: -3 }, //up
-    { xStart: 4, xEnd: -1, yStart: 2, yEnd: -3 }, //down
-    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5 }, //left
-    { xStart: 2, xEnd: -3, yStart: 4, yEnd: -1 } //right
-  ],
-	[ // graphic 3
     { xStart: 0, xEnd: -5, yStart: 2, yEnd: -3 }, //up
     { xStart: 4, xEnd: -1, yStart: 2, yEnd: -3 }, //down
     { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5 }, //left
