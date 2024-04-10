@@ -62,7 +62,7 @@ const screenInstruction = [
     },
   {
     id: 3,
-    text: "<i class='bi bi-1-square'></i> 選擇飛機模型</br>" +
+    text: "<i class='bi bi-1-square'></i> 選擇圖案款式</br>" +
       "<i class='bi bi-2-square'></i> 設定棋盤大小</br>" +
       "<i class='bi bi-3-square'></i> 設定模型數量</br>",
     img: "./image/ScreenSetting.png"

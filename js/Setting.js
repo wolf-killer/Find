@@ -90,7 +90,7 @@ function loadDefaultSettingDialog() {
   var newGraphicOptionTableRow = $("<tr></tr>");
   for (var i = 0; i < airplane.length; i++) {
     var newGraphicOptionTableRowCol = $("<td></td>");
-    newGraphicOptionTableRowCol.append(getSamplePlaneHtml(false, 0, i));
+    newGraphicOptionTableRowCol.append(getSamplePlaneHtml(false, 0, i, "settingDialogDisplay"));
 
     var newContentInput = $("<select>");
     newContentInput.addClass("w3-input w3-border");
@@ -202,21 +202,19 @@ function createSampleAirplane(direction, graphics) {
   sampleAirport[xHead][yHead].cellDefinition = planeHead;
 }
 
-function getSamplePlaneHtml(transparent, direction, graphics) {
+function getSamplePlaneHtml(transparent, direction, graphics, classname) {
   createSampleAirplane(direction, graphics);
-  var setSampleAirportWidth = setScreenWidth * 0.2;
-  var setSampleAirportHeight = setScreenWidth * 0.2;
-
+  var setSampleAirportLength = setScreenWidth * 0.2;
   var newSampleAirport = $("<table></table>");
   if (transparent) {
     newSampleAirport.addClass("transparentSampleAirport w3-table");
   } else {
     newSampleAirport.addClass("sampleAirport w3-table");
   }
-  newSampleAirport.css("width", setSampleAirportWidth + "px");
-  newSampleAirport.css("height", setSampleAirportHeight + "px");
+  newSampleAirport.addClass(classname);
+  newSampleAirport.css("width", setSampleAirportLength + "px");
+  newSampleAirport.css("height", setSampleAirportLength + "px");
   newSampleAirport.css("margin", "auto");
-
   for (var row = 0; row < sampleAirportLength; row++) {
     var newSampleAirportRow = $("<tr></tr>");
     for (var col = 0; col < sampleAirportLength; col++) {
@@ -250,12 +248,23 @@ function displaySampleAirplane() {
   var samplePlaneHtml = $("<div></div>");
   samplePlaneHtml.addClass("flex-container");
   samplePlaneHtml.css("display", "flex");
-  var directionArray = [3, 0, 1, 2];
-  for (var i = 0; i < directionArray.length; i++) {
-    samplePlaneHtml.append(getSamplePlaneHtml(true, directionArray[i], 0));
+  var numberDisplayHtml = $("<div></div>");
+  numberDisplayHtml.addClass("flex-container");
+  numberDisplayHtml.css("display", "flex");
+  for (var i = 0; i < noOfGraphic.length; i++) {
+    if (noOfGraphic[i] > 0) {
+      samplePlaneHtml.append(getSamplePlaneHtml(true, 0, i, "frontPageDisplay"));
+      var numberDisplay = $("<div></div>");
+      numberDisplay.html("x " + noOfGraphic[i]);
+      numberDisplay.css("width", (setScreenWidth * 0.2) + "px");
+      numberDisplay.css("margin", "auto");
+      numberDisplayHtml.append(numberDisplay);
+    }
   }
-  //return samplePlaneHtml;
-  $(".infoSamplePlane").html(samplePlaneHtml);
+  var infoSamplePlaneHtml = $("<div></div>");
+  infoSamplePlaneHtml.append(samplePlaneHtml);
+  infoSamplePlaneHtml.append(numberDisplayHtml);
+  $(".infoSamplePlane").html(infoSamplePlaneHtml);
 }
 
 function showTestingDialog() {
@@ -349,7 +358,7 @@ function showInstructionDialog() {
 
   var newInstructionText1 = $("<div></div>");
   newInstructionText1.addClass("instructionContent");
-  newInstructionText1.text("棋盤中隱藏多架如圖所示的飛機，玩家需透過推理，以最少的步數找出全部紅色的飛機頭。");
+  newInstructionText1.text("棋盤中隱藏多個如圖所示的圖案，玩家需透過推理，以最少的步數找出全部圖案的紅色重點。");
 
   var newInstructionAirport = $("<div></div>");
   newInstructionAirport.addClass("instructionContent");

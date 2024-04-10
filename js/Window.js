@@ -19,7 +19,6 @@ function initTable() {
   $("#airport").css("width", setSquareLength);
   $(".airportGate").css("width", setSeatLength);
   $(".airportGate").css("height", setSeatLength);
-
 }
 
 function appendSeat() {
