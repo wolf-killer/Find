@@ -209,13 +209,13 @@ body {
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #0b5394;
+  background: #f7b615;
   cursor: pointer;
 }
 
 .Slider::-moz-range-thumb {
   width: 25px;
   height: 25px;
-  background: #0b5394;
+  background: #f7b615;
   cursor: pointer;
 }
