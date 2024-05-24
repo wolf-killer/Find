@@ -89,6 +89,10 @@ function loadDefaultSettingDialog() {
   // Show Graphic Option
   var newGraphicOptionTableRow = $("<tr></tr>");
   for (var i = 0; i < airplane.length; i++) {
+    if (i % 3 == 0){
+      newGraphicOptionTable.append(newGraphicOptionTableRow);
+      newGraphicOptionTableRow = $("<tr></tr>");
+    }
     var newGraphicOptionTableRowCol = $("<td></td>");
     newGraphicOptionTableRowCol.append(getSamplePlaneHtml(false, 0, i, "settingDialogDisplay"));
 
@@ -106,6 +110,7 @@ function loadDefaultSettingDialog() {
     newGraphicOptionTableRowCol.append(newContentInput);
     // Show Graphic Option
     newGraphicOptionTableRow.append(newGraphicOptionTableRowCol);
+    
   }
 
   newGraphicOptionTable.append(newGraphicOptionTableRow);
