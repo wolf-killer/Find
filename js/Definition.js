@@ -29,7 +29,7 @@ var instructionAirplaneLocation = [
 var airport;
 var airportLength = 10;
 var maxGraphic = DECIMALADJUST("floor", airportLength / 3, 0);
-var noOfGraphic = [1, 1, 0, 0]; // Model[0]: 1; Model[1]: 1; Total: 2;
+var noOfGraphic = [1, 1, 0, 0, 0]; // Model[0]: 1; Model[1]: 1; Total: 2;
 var totalNoOfGraphic = noOfGraphic.reduce((partialSum, a) => partialSum + a, 0);
 
 var gameStepCount = 0;
@@ -285,6 +285,64 @@ const airplane = [
       { x: -1, y: +2 },
       { x: -2, y: -1 },
 		]
+	],
+	[ // graphic 5
+		[
+			//down
+      { x: +0, y: +0 },
+      { x: -1, y: +1 },
+      { x: -1, y: -1 },
+      { x: -1, y: +0 },
+      { x: -2, y: +2 },
+      { x: -2, y: +1 },
+      { x: -2, y: +0 },
+      { x: -2, y: -1 },
+			{ x: -2, y: -2 },
+      { x: -3, y: +1 },
+      { x: -3, y: -1 },
+		],
+		[
+			//up
+      { x: +0, y: +0 },
+      { x: +1, y: +1 },
+      { x: +1, y: -1 },
+      { x: +1, y: +0 },
+      { x: +2, y: +2 },
+      { x: +2, y: +1 },
+      { x: +2, y: +0 },
+      { x: +2, y: -1 },
+      { x: +2, y: -2 },
+			{ x: +3, y: +1 },
+      { x: +3, y: -1 },
+		],
+		[
+			//left
+      { x: +0, y: +0 },
+      { x: +0, y: -1 },
+      { x: +1, y: -1 },
+      { x: -1, y: -1 },
+      { x: +2, y: -2 },
+      { x: +1, y: -2 },
+      { x: +0, y: -2 },
+      { x: -1, y: -2 },
+      { x: -2, y: -2 },
+			{ x: +1, y: -3 },
+      { x: -1, y: -3 },
+		],
+		[
+			//right
+      { x: +0, y: +0 },
+      { x: +0, y: +1 },
+      { x: +1, y: +1 },
+      { x: -1, y: +1 },
+      { x: +2, y: +2 },
+      { x: +1, y: +2 },
+      { x: +0, y: +2 },
+      { x: -1, y: +2 },
+			{ x: -2, y: +2 },
+      { x: +1, y: +3 },
+      { x: -1, y: +3 },
+		]
 	]
 ];
 
@@ -312,5 +370,11 @@ const airplanePossibleArea = [
     { xStart: 2, xEnd: -3, yStart: 2, yEnd: -3 }, //down
     { xStart: 2, xEnd: -3, yStart: 2, yEnd: -3 }, //left
     { xStart: 2, xEnd: -3, yStart: 2, yEnd: -3 } //right
+  ],
+  [ // graphic 5
+    { xStart: 3, xEnd: -1, yStart: 2, yEnd: -3 }, //down
+    { xStart: 0, xEnd: -4, yStart: 2, yEnd: -3 }, //up
+    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -4 }, //left
+    { xStart: 2, xEnd: -3, yStart: 3, yEnd: -1 } //right
   ]
 ];
