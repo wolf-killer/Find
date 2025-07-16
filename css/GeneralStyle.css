@@ -121,7 +121,7 @@ body {
 
 .PopupDialog_Content {
   overflow-y: auto;
-  max-height: 50vh;
+  max-height: 70vh;
 }
 
 .PopupDialog_ActionBtn {

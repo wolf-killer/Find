@@ -72,7 +72,7 @@ function SET_WINDOW() {
   $("#FixScreen").css("height", setScreenHeight);
   $("#FixScreen").css("width", setScreenWidth);
   $(".PopupInfo").css("max-height", setScreenHeight - 10);
-  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 40);
+  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 30);
 }
 
 function MANUAL_ADJUST_SCREEN_SIZE_BY_DIALOG(x, y) {
@@ -93,7 +93,7 @@ function MANUAL_ADJUST_SCREEN_WIDTH(input) {
   $("#FixScreen").css("height", setScreenHeight);
   $("#FixScreen").css("width", setScreenWidth);
   $(".PopupInfo").css("max-height", setScreenHeight - 10);
-  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 40);
+  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 30);
 }
 
 function MANUAL_ADJUST_SCREEN_HEIGHT(input) {
@@ -107,7 +107,7 @@ function MANUAL_ADJUST_SCREEN_HEIGHT(input) {
   $("#FixScreen").css("height", setScreenHeight);
   $("#FixScreen").css("width", setScreenWidth);
   $(".PopupInfo").css("max-height", setScreenHeight - 10);
-  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 40);
+  $(".HiddenPopupInfo").css("max-height", setScreenHeight - 30);
 }
 
 function SHOW_OVERLAY(show) {
