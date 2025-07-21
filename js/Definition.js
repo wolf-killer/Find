@@ -69,6 +69,8 @@ const screenInstruction = [
 	}
 ];
 
+const airplaneDesc = ["飛機一", "飛機二", "飛機三", "風車", "愛心", "音符"];
+
 const airplane = [
 	[ // graphic 1
 		[
