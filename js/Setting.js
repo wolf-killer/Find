@@ -94,6 +94,11 @@ function loadDefaultSettingDialog() {
       newGraphicOptionTableRow = $("<tr></tr>");
     }
     var newGraphicOptionTableRowCol = $("<td></td>");
+		
+		var newContentDesc = $("<div></div>");
+		newContentDesc.html(airplaneDesc[i]);
+		newGraphicOptionTableRowCol.append(newContentDesc);
+		
     newGraphicOptionTableRowCol.append(getSamplePlaneHtml(false, 0, i, "settingDialogDisplay"));
 
     var newContentInput = $("<select>");
@@ -260,7 +265,7 @@ function displaySampleAirplane() {
     if (noOfGraphic[i] > 0) {
       samplePlaneHtml.append(getSamplePlaneHtml(true, 0, i, "frontPageDisplay"));
       var numberDisplay = $("<div></div>");
-      numberDisplay.html("x " + noOfGraphic[i]);
+      numberDisplay.html(airplaneDesc[i] + " x " + noOfGraphic[i]);
       numberDisplay.css("width", (setScreenWidth * 0.2) + "px");
       numberDisplay.css("margin", "auto");
       numberDisplayHtml.append(numberDisplay);
