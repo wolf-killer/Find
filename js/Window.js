@@ -59,6 +59,7 @@ function displayAllAirplane() {
         }
         case planeBody: {
           $("#airportGate_" + row + "_" + col).addClass("planeBody");
+					$("#airportGate_" + row + "_" + col).addClass("planeBody_" + airport[row][col].planeId);
           break;
         }
         default: {
