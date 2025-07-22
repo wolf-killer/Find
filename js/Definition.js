@@ -35,7 +35,7 @@ var totalNoOfGraphic = noOfGraphic.reduce((partialSum, a) => partialSum + a, 0);
 var gameStepCount = 0;
 var gameRemainHead = totalNoOfGraphic;
 var gameGraphic = [];
-var showAirplaneInDiffColor = false;
+var showAirplaneInDiffColor = true;
 
 /* 
  Instruction
