@@ -40,7 +40,7 @@ function dot() {
 }
 
 // drawing dot
-dot.prototype.draw = function() {
+dot.prototype.draw = function () {
   // calc polar coord to decart
   var dx = halfx + this.rad_x * Math.cos((this.alpha / 180) * Math.PI);
   var dy = halfy + this.rad_y * Math.sin((this.alpha / 180) * Math.PI);
@@ -60,7 +60,7 @@ dot.prototype.draw = function() {
 };
 
 // calc new position in polar coord
-dot.prototype.move = function() {
+dot.prototype.move = function () {
   this.alpha += this.speed;
   // change color
   if (Math.random() * 100 < 50) {

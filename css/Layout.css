@@ -13,7 +13,7 @@ canvas {
   align-content: center;
   display: flex;
   justify-content: center;
-  color: #FFFFFF;
+  color: #ffffff;
   flex-wrap: wrap;
 }
 
@@ -36,7 +36,6 @@ canvas {
 }
 
 @media (min-width: 992px) {
-
   #info,
   #playground {
     flex: 50%;
@@ -85,16 +84,36 @@ canvas {
   background-color: #946640 !important;
 }
 
-.planeBody_1  { background-color: #EF6C00 !important; }
-.planeBody_2  { background-color: #FFFF00 !important; }
-.planeBody_3  { background-color: #76FF03 !important; }
-.planeBody_4  { background-color: #2E7D32 !important; }
-.planeBody_5  { background-color: #00796B !important; }
-.planeBody_6  { background-color: #263238 !important; }
-.planeBody_7  { background-color: #0091EA !important; }
-.planeBody_8  { background-color: #1A237E !important; }
-.planeBody_9  { background-color: #512DA8 !important; }
-.planeBody_10 { background-color: #4E342E !important; }
+.planeBody_1 {
+  background-color: #ef6c00 !important;
+}
+.planeBody_2 {
+  background-color: #ffff00 !important;
+}
+.planeBody_3 {
+  background-color: #76ff03 !important;
+}
+.planeBody_4 {
+  background-color: #2e7d32 !important;
+}
+.planeBody_5 {
+  background-color: #00796b !important;
+}
+.planeBody_6 {
+  background-color: #263238 !important;
+}
+.planeBody_7 {
+  background-color: #0091ea !important;
+}
+.planeBody_8 {
+  background-color: #1a237e !important;
+}
+.planeBody_9 {
+  background-color: #512da8 !important;
+}
+.planeBody_10 {
+  background-color: #4e342e !important;
+}
 
 .emptyCell {
   background-color: white !important;
@@ -136,4 +155,8 @@ canvas {
   flex: 50%;
   margin-top: 4px;
   margin-bottom: 4px;
+}
+
+.instructionAirport {
+  margin: 4px 14px 4px 14px;
 }

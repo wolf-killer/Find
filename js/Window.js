@@ -12,7 +12,8 @@ function initTable() {
   //console.log("[DEBUG] >> ", setScreenHeight, "||", setScreenWidth);
   let setMaxLength = 700;
   setScreenWidth = setScreenWidth > setMaxLength ? 500 : setScreenWidth;
-  setSquareLength = setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;
+  setSquareLength =
+    setScreenHeight < setScreenWidth ? setScreenHeight - 150 : setScreenWidth;
   setSquareLength = DECIMALADJUST("floor", setSquareLength - 50, 1);
   setSeatLength = setSquareLength / airportLength;
   $("#airport").css("height", setSquareLength);
@@ -59,7 +60,9 @@ function displayAllAirplane() {
         }
         case planeBody: {
           $("#airportGate_" + row + "_" + col).addClass("planeBody");
-					$("#airportGate_" + row + "_" + col).addClass("planeBody_" + airport[row][col].planeId);
+          $("#airportGate_" + row + "_" + col).addClass(
+            "planeBody_" + airport[row][col].planeId
+          );
           break;
         }
         default: {

@@ -131,16 +131,19 @@ body {
 .Dialog-SUCCESS {
   background: rgba(255, 208, 208, 0.95);
   border: 3px solid red;
-  background-image: url('../image/SuccessFire.gif');
+  background-image: url("../image/SuccessFire.gif");
   background-size: cover;
 }
 
 .Dialog-SUCCESS .PopupDialog_Title {
   background: rgba(255, 208, 208, 0.7) !important;
-  border-color:
-    linear-gradient(217deg, rgba(255, 0, 0, .8), rgba(255, 0, 0, 0) 70.71%),
-    linear-gradient(127deg, rgba(0, 255, 0, .8), rgba(0, 255, 0, 0) 70.71%),
-    linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(0, 0, 255, 0) 70.71%) !important;
+  border-color: linear-gradient(
+      217deg,
+      rgba(255, 0, 0, 0.8),
+      rgba(255, 0, 0, 0) 70.71%
+    ),
+    linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
+    linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%) !important;
 }
 
 .Dialog-ALERT {
@@ -188,6 +191,9 @@ body {
 .Text-Caption {
   font-size: 8px;
 }
+.Text-Bold {
+  font-weight: bold;
+}
 
 .Slider {
   -webkit-appearance: none;
@@ -196,8 +202,8 @@ body {
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
-  -webkit-transition: .2s;
-  transition: opacity .2s;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
 }
 
 .Slider:hover {
@@ -221,8 +227,7 @@ body {
 }
 
 .Checkbox {
-	width: 14px !important;
+  width: 14px !important;
   height: 14px !important;
-	margin-right: 6px;
+  margin-right: 6px;
 }
-

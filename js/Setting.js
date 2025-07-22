@@ -8,7 +8,7 @@ function createAirplane() {
   gameGraphic = [];
   for (var i = 0; i < noOfGraphic.length; i++) {
     for (var j = 0; j < noOfGraphic[i]; j++) {
-      gameGraphic.push({ graphicModel: i })
+      gameGraphic.push({ graphicModel: i });
     }
   }
   while (loopingNoOfPlaneHead > 0) {
@@ -69,7 +69,8 @@ function selectGate(row, col) {
       }
       case planeBody: {
         selectCellNode.addClass("planeBody");
-				if (showAirplaneInDiffColor) selectCellNode.addClass("planeBody_" + selectCell.planeId);
+        if (showAirplaneInDiffColor)
+          selectCellNode.addClass("planeBody_" + selectCell.planeId);
         break;
       }
       default: {
@@ -83,40 +84,40 @@ function selectGate(row, col) {
 }
 
 function loadDefaultSettingDialog() {
-
   var newGraphicOptionTable = $("<table></table>");
   newGraphicOptionTable.addClass("transparentSampleAirport w3-table");
 
   // Show Graphic Option
   var newGraphicOptionTableRow = $("<tr></tr>");
   for (var i = 0; i < airplane.length; i++) {
-    if (i % 3 == 0){
+    if (i % 3 == 0) {
       newGraphicOptionTable.append(newGraphicOptionTableRow);
       newGraphicOptionTableRow = $("<tr></tr>");
     }
     var newGraphicOptionTableRowCol = $("<td></td>");
-		
-		var newContentDesc = $("<div></div>");
-		newContentDesc.html(airplaneDesc[i]);
-		newGraphicOptionTableRowCol.append(newContentDesc);
-		
-    newGraphicOptionTableRowCol.append(getSamplePlaneHtml(false, 0, i, "settingDialogDisplay"));
+
+    var newContentDesc = $("<div></div>");
+    newContentDesc.html(airplaneDesc[i]);
+    newGraphicOptionTableRowCol.append(newContentDesc);
+
+    newGraphicOptionTableRowCol.append(
+      getSamplePlaneHtml(false, 0, i, "settingDialogDisplay")
+    );
 
     var newContentInput = $("<select>");
     newContentInput.addClass("w3-input w3-border");
     newContentInput.attr("id", "inputGraphic" + i);
-    newContentInput.change(function(e) {
+    newContentInput.change(function (e) {
       updateEachGraphicMax($(this));
-    })
+    });
     for (var n = 0; n <= 10; n++) {
-      var newOption = $('<option />', { value: n, text: n });
-      newOption.prop('disabled', n > maxGraphic);
+      var newOption = $("<option />", { value: n, text: n });
+      newOption.prop("disabled", n > maxGraphic);
       newOption.appendTo(newContentInput);
     }
     newGraphicOptionTableRowCol.append(newContentInput);
     // Show Graphic Option
     newGraphicOptionTableRow.append(newGraphicOptionTableRowCol);
-    
   }
 
   newGraphicOptionTable.append(newGraphicOptionTableRow);
@@ -135,33 +136,41 @@ function showUpdateDialog() {
 }
 
 function updateEachGraphicMax(e) {
-  var updatingId = e ? e.attr('id') : "";
+  var updatingId = e ? e.attr("id") : "";
   var updatingVal = e ? Number(e.val()) : 0;
-  var tmpMaxGraphic = DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0);
+  var tmpMaxGraphic = DECIMALADJUST(
+    "floor",
+    Number($("#inputAirportLength").val()) / 3,
+    0
+  );
   var remainGraphic = tmpMaxGraphic - updatingVal;
   for (var i = 0; i < airplane.length; i++) {
     var tmpId = "inputGraphic" + i;
-    if (tmpId == updatingId)
-      continue;
+    if (tmpId == updatingId) continue;
     var tmpContentInput = $("#" + tmpId);
     if (Number(tmpContentInput.val()) > remainGraphic) {
       tmpContentInput.val(0);
     }
-    $("#" + tmpId + " > option").each(function() {
-      $(this).prop('disabled', $(this).val() > remainGraphic);
+    $("#" + tmpId + " > option").each(function () {
+      $(this).prop("disabled", $(this).val() > remainGraphic);
     });
   }
 }
 
 function updateMaxGraphic() {
   $(".showinputAirportLength").text(Number($("#inputAirportLength").val()));
-  $(".showMaxGraphic").text(DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0));
+  $(".showMaxGraphic").text(
+    DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0)
+  );
   //check total > available
   var currentTotal = 0;
   for (var i = 0; i < noOfGraphic.length; i++) {
     currentTotal += Number($("#inputGraphic" + i).val());
   }
-  if (currentTotal > DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0)) {
+  if (
+    currentTotal >
+    DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0)
+  ) {
     for (var i = 0; i < noOfGraphic.length; i++) {
       $("#inputGraphic" + i).val(0);
     }
@@ -170,8 +179,14 @@ function updateMaxGraphic() {
 }
 
 function updateDefaultSetting() {
-	showAirplaneInDiffColor = document.getElementById('showAirplaneInDiffColor').checked;
-  var currentMaxGraphic = DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0);
+  showAirplaneInDiffColor = document.getElementById(
+    "showAirplaneInDiffColor"
+  ).checked;
+  var currentMaxGraphic = DECIMALADJUST(
+    "floor",
+    Number($("#inputAirportLength").val()) / 3,
+    0
+  );
   var currentTotal = 0;
   for (var i = 0; i < noOfGraphic.length; i++) {
     currentTotal += Number($("#inputGraphic" + i).val());
@@ -201,8 +216,14 @@ function createSampleAirplane(direction, graphics) {
   }
 
   var headDirection = direction;
-  var xHead = graphics == 0 && (direction == 2 || direction == 0) ? airplanePossibleArea[graphics][headDirection].xStart + 1 : airplanePossibleArea[graphics][headDirection].xStart;
-  var yHead = graphics == 0 && (direction == 3 || direction == 4) ? airplanePossibleArea[graphics][headDirection].yStart + 1 : airplanePossibleArea[graphics][headDirection].yStart;
+  var xHead =
+    graphics == 0 && (direction == 2 || direction == 0)
+      ? airplanePossibleArea[graphics][headDirection].xStart + 1
+      : airplanePossibleArea[graphics][headDirection].xStart;
+  var yHead =
+    graphics == 0 && (direction == 3 || direction == 4)
+      ? airplanePossibleArea[graphics][headDirection].yStart + 1
+      : airplanePossibleArea[graphics][headDirection].yStart;
 
   var planeDemo = airplane[graphics][headDirection];
   for (var i = 0; i < planeDemo.length; i++) {
@@ -223,9 +244,12 @@ function getSamplePlaneHtml(transparent, direction, graphics, classname) {
     newSampleAirport.addClass("sampleAirport w3-table");
   }
   newSampleAirport.addClass(classname);
-	if(classname == "frontPageDisplay"){
-		newSampleAirport.attr("onclick", "displayGraphicWithRotation("+direction+","+graphics+")");
-	}
+  if (classname == "frontPageDisplay") {
+    newSampleAirport.attr(
+      "onclick",
+      "displayGraphicWithRotation(" + direction + "," + graphics + ")"
+    );
+  }
   newSampleAirport.css("width", setSampleAirportLength + "px");
   newSampleAirport.css("height", setSampleAirportLength + "px");
   newSampleAirport.css("margin", "auto");
@@ -267,10 +291,12 @@ function displaySampleAirplane() {
   numberDisplayHtml.css("display", "flex");
   for (var i = 0; i < noOfGraphic.length; i++) {
     if (noOfGraphic[i] > 0) {
-      samplePlaneHtml.append(getSamplePlaneHtml(true, 0, i, "frontPageDisplay"));
+      samplePlaneHtml.append(
+        getSamplePlaneHtml(true, 0, i, "frontPageDisplay")
+      );
       var numberDisplay = $("<div></div>");
       numberDisplay.html(airplaneDesc[i] + " x " + noOfGraphic[i]);
-      numberDisplay.css("width", (setScreenWidth * 0.25) + "px");
+      numberDisplay.css("width", setScreenWidth * 0.25 + "px");
       numberDisplay.css("margin", "auto");
       numberDisplayHtml.append(numberDisplay);
     }
@@ -302,10 +328,12 @@ function createInstructionAirplane() {
 }
 
 function createInstructionAirplaneImplement(loopingNoOfPlaneHead) {
-  var headDirection = instructionAirplaneLocation[loopingNoOfPlaneHead].direction;
+  var headDirection =
+    instructionAirplaneLocation[loopingNoOfPlaneHead].direction;
   var xHead = instructionAirplaneLocation[loopingNoOfPlaneHead].xStart;
   var yHead = instructionAirplaneLocation[loopingNoOfPlaneHead].yStart;
-  var sampleGraphicModel = instructionAirplaneLocation[loopingNoOfPlaneHead].graphicModel;
+  var sampleGraphicModel =
+    instructionAirplaneLocation[loopingNoOfPlaneHead].graphicModel;
 
   if (true) {
     var planeId = loopingNoOfPlaneHead;
@@ -372,10 +400,12 @@ function showInstructionDialog() {
 
   var newInstructionText1 = $("<div></div>");
   newInstructionText1.addClass("instructionContent");
-  newInstructionText1.text("棋盤中隱藏多個如圖所示的圖案，玩家需透過推理，以最少的步數找出全部圖案的紅色重點。");
+  newInstructionText1.html(
+    "棋盤中隱藏多個如圖所示的圖案，玩家需透過推理，以最少的步數找出全部圖案的<font color='red'>紅色</font>重點。"
+  );
 
   var newInstructionAirport = $("<div></div>");
-  newInstructionAirport.addClass("instructionContent");
+  newInstructionAirport.addClass("instructionAirport");
   newInstructionAirport.append(getInstructionAirportHtml());
 
   newInstructionTab.append(newInstructionTitle1);
@@ -393,11 +423,11 @@ function showInstructionDialog() {
     var newScreenText = $("<div></div>");
     newScreenText.addClass("instructionContent");
     newScreenText.html(screenInstruction[i].text);
-    var newScreenImage = $('<img />', {
-      id: 'screenImage' + i,
+    var newScreenImage = $("<img />", {
+      id: "screenImage" + i,
       src: screenInstruction[i].img,
-      alt: 'screenImage' + i,
-      width: setScreenWidth * 0.1
+      alt: "screenImage" + i,
+      width: setScreenWidth * 0.1,
     });
     newScreenImage.addClass("instructionContent");
 
@@ -419,15 +449,28 @@ function updateGameResult(cellDefinition) {
   $(".showGameStepCount").text(gameStepCount);
   $(".showGameRemainHead").text(gameRemainHead);
   if (gameRemainHead == 0) {
-    var showContent = "！恭喜！</br><span class='showGameStepCount'>" + gameStepCount + "步</span></br>成功找出模型";
+    var showContent =
+      "！恭喜！<br /><span class='showGameStepCount'>" +
+      gameStepCount +
+      "步</span><br />成功找出模型";
 
-    var actionList = [{
-      desc: "重新開始",
-      action: "main()",
-      closeDialog: true
-    				}];
+    var actionList = [
+      {
+        desc: "重新開始",
+        action: "main()",
+        closeDialog: true,
+      },
+    ];
 
-    SHOW_ALERT("M", "SUCCESS", showContent, null, actionList, [], "bi-balloon-heart-fill");
+    SHOW_ALERT(
+      "M",
+      "SUCCESS",
+      showContent,
+      null,
+      actionList,
+      [],
+      "bi-balloon-heart-fill"
+    );
     updateGameOver();
   }
 }
@@ -436,24 +479,26 @@ function updateGameOver() {
   displayAllAirplane();
 }
 
-function displayGraphicWithRotation(direction, graphics){
-	var logInfoSamplePlaneHtml = $(".infoSamplePlane").html();
-	var sampleGraphicWithRotationHtml = $("<div></div>");
-	var samplePlaneHtml = $("<div></div>");
+function displayGraphicWithRotation(direction, graphics) {
+  var logInfoSamplePlaneHtml = $(".infoSamplePlane").html();
+  var sampleGraphicWithRotationHtml = $("<div></div>");
+  var samplePlaneHtml = $("<div></div>");
   samplePlaneHtml.addClass("flex-container");
   samplePlaneHtml.css("display", "flex");
-	var numberDisplayHtml = $("<div></div>");
+  var numberDisplayHtml = $("<div></div>");
   numberDisplayHtml.addClass("flex-container");
   numberDisplayHtml.css("display", "flex");
-	numberDisplayHtml.css("margin", "auto");
-	numberDisplayHtml.html("不同方向的" + airplaneDesc[graphics]);
-	for(var i=0; i< 4; i++){
-		samplePlaneHtml.append(getSamplePlaneHtml(true, i, graphics, "sampleGraphicWithRotationHtml"));
-	}
-	sampleGraphicWithRotationHtml.append(numberDisplayHtml);
-	sampleGraphicWithRotationHtml.append(samplePlaneHtml);
-	$(".infoSamplePlane").html(sampleGraphicWithRotationHtml);
-	setTimeout(() => {
+  numberDisplayHtml.css("margin", "auto");
+  numberDisplayHtml.html("不同方向的" + airplaneDesc[graphics]);
+  for (var i = 0; i < 4; i++) {
+    samplePlaneHtml.append(
+      getSamplePlaneHtml(true, i, graphics, "sampleGraphicWithRotationHtml")
+    );
+  }
+  sampleGraphicWithRotationHtml.append(numberDisplayHtml);
+  sampleGraphicWithRotationHtml.append(samplePlaneHtml);
+  $(".infoSamplePlane").html(sampleGraphicWithRotationHtml);
+  setTimeout(() => {
     $(".infoSamplePlane").html(logInfoSamplePlaneHtml);
   }, 3 * 1000);
 }

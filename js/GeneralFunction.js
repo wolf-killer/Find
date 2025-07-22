@@ -8,7 +8,9 @@ const d = {};
 document.addEventListener("mousedown", (e) => {
   const closestDialog = e.target.closest("#PopupDialog");
   const isCardTitle = e.target.classList.contains("PopupDialog_Title");
-  const isCardTitleSpan = e.target.tagName == "SPAN" && e.target.parentElement.classList.contains("PopupDialog_Title");
+  const isCardTitleSpan =
+    e.target.tagName == "SPAN" &&
+    e.target.parentElement.classList.contains("PopupDialog_Title");
   const isTargetCorrect = isCardTitle || isCardTitleSpan;
   if (e.button === 0 && closestDialog != null && isTargetCorrect) {
     // element which can be used to move element
@@ -25,8 +27,16 @@ document.addEventListener("mousedown", (e) => {
 });
 document.addEventListener("mousemove", (e) => {
   if (d.el === undefined) return;
-  d.el.style.left = Math.min(Math.max(d.elStartX + e.clientX - d.mouseStartX, 0), window.innerWidth - d.el.getBoundingClientRect().width) + "px";
-  d.el.style.top = Math.min(Math.max(d.elStartY + e.clientY - d.mouseStartY, 0), window.innerHeight - d.el.getBoundingClientRect().height) + "px";
+  d.el.style.left =
+    Math.min(
+      Math.max(d.elStartX + e.clientX - d.mouseStartX, 0),
+      window.innerWidth - d.el.getBoundingClientRect().width
+    ) + "px";
+  d.el.style.top =
+    Math.min(
+      Math.max(d.elStartY + e.clientY - d.mouseStartY, 0),
+      window.innerHeight - d.el.getBoundingClientRect().height
+    ) + "px";
 });
 document.addEventListener("mouseup", () => {
   if (d.el === undefined) return;
@@ -43,13 +53,13 @@ function GET_URL_PARAM(sParam) {
     sParameterName = sURLVariables[i].split("=");
 
     if (sParameterName[0] === sParam) {
-      return sParameterName[1] === undefined ?
-        true :
-        decodeURIComponent(sParameterName[1]);
+      return sParameterName[1] === undefined
+        ? true
+        : decodeURIComponent(sParameterName[1]);
     }
   }
   return false;
-};
+}
 
 function GO_PAGE(pageName, param) {
   path = "./" + pageName + ".html?";
@@ -62,12 +72,12 @@ function GO_PAGE(pageName, param) {
 
 function SET_WINDOW() {
   // Auto set full screen for $("#FixScrren")
-  setScreenWidth = GET_URL_PARAM("setScreenWidth") ?
-    GET_URL_PARAM("setScreenWidth") :
-    screenWidth;
-  setScreenHeight = GET_URL_PARAM("setScreenHeight") ?
-    GET_URL_PARAM("setScreenHeight") :
-    screenHeight;
+  setScreenWidth = GET_URL_PARAM("setScreenWidth")
+    ? GET_URL_PARAM("setScreenWidth")
+    : screenWidth;
+  setScreenHeight = GET_URL_PARAM("setScreenHeight")
+    ? GET_URL_PARAM("setScreenHeight")
+    : screenHeight;
   //console.log("Available width/height: " + setScreenWidth + "*" + screen.availHeight);
   $("#FixScreen").css("height", setScreenHeight);
   $("#FixScreen").css("width", setScreenWidth);
@@ -143,8 +153,17 @@ function CLOSE_ALL_POPUP() {
   $(".ActionPopup").css("display", "none");
 }
 
-function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = [], icon = null) {
-  /* Support Type: 
+function SHOW_ALERT(
+  size,
+  type,
+  title,
+  content,
+  actionBtn = [],
+  inputObject = [],
+  icon = null
+) {
+  /* 
+    Support Type: 
   		1. ALERT
   		2. QUESTION
   		3. REMARK
@@ -160,7 +179,8 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
   			}
   		]
   */
-  /* Sample inputObject
+  /* 
+    Sample inputObject
 			var inputObject = [{
 			id: id,
 			type: type,
@@ -178,8 +198,12 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
   $("#Overlay").show();
   var dialogDiv = $("#PopupDialog");
 
-  dialogDiv.removeClass("Dialog-ALERT Dialog-QUESTION Dialog-REMARK Dialog-SUCCESS");
-  dialogDiv.removeClass("HiddenPopupInfo-S HiddenPopupInfo-M HiddenPopupInfo-L");
+  dialogDiv.removeClass(
+    "Dialog-ALERT Dialog-QUESTION Dialog-REMARK Dialog-SUCCESS"
+  );
+  dialogDiv.removeClass(
+    "HiddenPopupInfo-S HiddenPopupInfo-M HiddenPopupInfo-L"
+  );
   dialogDiv.addClass("Dialog-" + type);
   dialogDiv.addClass("HiddenPopupInfo-" + size);
 
@@ -201,7 +225,9 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
 
   /* ADD DIALOG TITLE SECTION */
   var newTitleDiv = $("<div></div>");
-  newTitleDiv.addClass("PopupDialog_Title w3-container w3-large w3-leftbar w3-rightbar");
+  newTitleDiv.addClass(
+    "PopupDialog_Title w3-container w3-large w3-leftbar w3-rightbar"
+  );
   newTitleDiv.addClass("w3-pale-" + color);
   newTitleDiv.addClass("w3-border-" + color);
 
@@ -221,13 +247,12 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
   newTitleDesc.html(title);
 
   var newCloseBtn = $("<i></i>");
-  newCloseBtn.addClass("PopupDialog_CloseBtn bi bi-x")
-  newCloseBtn.attr('onClick', "CLOSE_ALL_POPUP()");
+  newCloseBtn.addClass("PopupDialog_CloseBtn bi bi-x");
+  newCloseBtn.attr("onClick", "CLOSE_ALL_POPUP()");
 
   newTitleDiv.append(newTitleIcon);
   newTitleDiv.append(newTitleDesc);
-  if (type == "SUCCESS")
-    newTitleDiv.append(newTitleIcon2)
+  if (type == "SUCCESS") newTitleDiv.append(newTitleIcon2);
   newTitleDiv.append(newCloseBtn);
 
   dialogDiv.prepend(newTitleDiv);
@@ -263,9 +288,18 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
         newContentInput.attr("max", inputObject[i].prop.max);
         newContentInput.attr("min", inputObject[i].prop.min);
         newContentInput.attr("step", inputObject[i].prop.step);
-        var affectValue = inputObject[i].prop['affectValue'] ? inputObject[i].prop['affectValue'] : '';
+        var affectValue = inputObject[i].prop["affectValue"]
+          ? inputObject[i].prop["affectValue"]
+          : "";
         console.log(affectValue);
-        newContentInput.attr('oninput', "UPDATERANGEDISPLAY('" + inputObject[i].id + "', '" + affectValue + "' )");
+        newContentInput.attr(
+          "oninput",
+          "UPDATERANGEDISPLAY('" +
+            inputObject[i].id +
+            "', '" +
+            affectValue +
+            "' )"
+        );
         newContentInputSection.append(newContentInput);
       }
     }
@@ -290,7 +324,7 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
   actionBtn.push({
     desc: "關閉",
     action: "CLOSE_ALL_POPUP();",
-    closeDialog: true
+    closeDialog: true,
   });
 
   for (let i = 0; i < actionBtn.length; i++) {
@@ -298,7 +332,7 @@ function SHOW_ALERT(size, type, title, content, actionBtn = [], inputObject = []
     newActionBtn.addClass("PopupDialog_ActionBtn w3-btn w3-round-large");
     newActionBtn.addClass("w3-pale-" + color);
     newActionBtn.addClass("w3-border-" + color);
-    newActionBtn.attr('onClick', actionBtn[i].action);
+    newActionBtn.attr("onClick", actionBtn[i].action);
     newActionBtn.text(actionBtn[i].desc);
     newActionDiv.append(newActionBtn);
   }
@@ -332,7 +366,7 @@ function UPDATERANGEDISPLAY(field, affectNextField) {
   if (affectNextField.length > 0) {
     var nextInputField = $("#" + affectNextField);
     var nextInputFieldOutput = $("#show" + affectNextField);
-    if (affectNextField = "inputNoOfPlaneHead") {
+    if ((affectNextField = "inputNoOfPlaneHead")) {
       var maxPlane = Math.floor(slider.val() / 3);
       if (nextInputField.val() > maxPlane) {
         nextInputFieldOutput.html(maxPlane);
@@ -343,7 +377,7 @@ function UPDATERANGEDISPLAY(field, affectNextField) {
   }
 }
 
-// -- MATHS FUNCTION -- 
+// -- MATHS FUNCTION --
 function GETRANDOMBETWEEN(max, min) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
