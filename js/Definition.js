@@ -63,9 +63,11 @@ const screenInstruction = [
   },
   {
     id: 3,
-    text: "<i class='bi bi-1-square'></i> 選擇圖案款式</br>" +
-      "<i class='bi bi-2-square'></i> 設定棋盤大小</br>" +
-      "<i class='bi bi-3-square'></i> 設定模型數量</br>",
+    text: "<i class='bi bi-1-square'></i>  選擇遊戲途中是否以不同顏色顯示圖案</br>" +
+    "<img id='airplaneSameColorPng' src='./image/AirplaneSameColor.png' alt='airplaneSameColorPng' width='"+setScreenWidth*0.1+"'>或" +
+    "<img id='airplaneDiffColorPng' src='./image/AirplaneDiffColor.png' alt='airplaneDiffColorPng' width='"+setScreenWidth*0.1+"'></br>" +
+      "<i class='bi bi-2-square'></i> 選擇圖案及其數量</br>" +
+      "<i class='bi bi-3-square'></i> 設定遊戲棋盤大小</br>",
     img: "./image/ScreenSetting.png"
 	}
 ];
