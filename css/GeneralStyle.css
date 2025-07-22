@@ -219,3 +219,32 @@ body {
   background: #f7b615;
   cursor: pointer;
 }
+
+input[type="checkbox"] {
+	margin-right: 8px;
+	width: 20px;
+	height: 20px;
+	-moz-appearance: none;
+	background-color: #fff;
+	border: 2px solid #f7b615; /* Checkbox border color */
+	border-radius: 3px;
+	position: relative;
+	cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+	background-color: #f7b615; /* Checkbox fill color when checked */
+}
+
+input[type="checkbox"]:checked::after {
+	content: '\2714'; /* Unicode for checkmark */
+	font-size: 14px;
+	color: #FFFFFF; /* White tick color */
+	position: absolute;
+	top: 55%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
