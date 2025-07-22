@@ -201,8 +201,8 @@ function createSampleAirplane(direction, graphics) {
   }
 
   var headDirection = direction;
-  var xHead = graphics == 0 && (direction == 1 || direction == 0) ? airplanePossibleArea[graphics][headDirection].xStart + 1 : airplanePossibleArea[graphics][headDirection].xStart;
-  var yHead = graphics == 0 && direction == 2 ? airplanePossibleArea[graphics][headDirection].yStart + 1 : airplanePossibleArea[graphics][headDirection].yStart;
+  var xHead = graphics == 0 && (direction == 2 || direction == 0) ? airplanePossibleArea[graphics][headDirection].xStart + 1 : airplanePossibleArea[graphics][headDirection].xStart;
+  var yHead = graphics == 0 && (direction == 3 || direction == 4) ? airplanePossibleArea[graphics][headDirection].yStart + 1 : airplanePossibleArea[graphics][headDirection].yStart;
 
   var planeDemo = airplane[graphics][headDirection];
   for (var i = 0; i < planeDemo.length; i++) {
@@ -223,6 +223,9 @@ function getSamplePlaneHtml(transparent, direction, graphics, classname) {
     newSampleAirport.addClass("sampleAirport w3-table");
   }
   newSampleAirport.addClass(classname);
+	if(classname == "frontPageDisplay"){
+		newSampleAirport.attr("onclick", "displayGraphicWithRotation("+direction+","+graphics+")");
+	}
   newSampleAirport.css("width", setSampleAirportLength + "px");
   newSampleAirport.css("height", setSampleAirportLength + "px");
   newSampleAirport.css("margin", "auto");
@@ -431,4 +434,26 @@ function updateGameResult(cellDefinition) {
 
 function updateGameOver() {
   displayAllAirplane();
+}
+
+function displayGraphicWithRotation(direction, graphics){
+	var logInfoSamplePlaneHtml = $(".infoSamplePlane").html();
+	var sampleGraphicWithRotationHtml = $("<div></div>");
+	var samplePlaneHtml = $("<div></div>");
+  samplePlaneHtml.addClass("flex-container");
+  samplePlaneHtml.css("display", "flex");
+	var numberDisplayHtml = $("<div></div>");
+  numberDisplayHtml.addClass("flex-container");
+  numberDisplayHtml.css("display", "flex");
+	numberDisplayHtml.css("margin", "auto");
+	numberDisplayHtml.html("不同方向的" + airplaneDesc[graphics]);
+	for(var i=0; i< 4; i++){
+		samplePlaneHtml.append(getSamplePlaneHtml(true, i, graphics, "sampleGraphicWithRotationHtml"));
+	}
+	sampleGraphicWithRotationHtml.append(numberDisplayHtml);
+	sampleGraphicWithRotationHtml.append(samplePlaneHtml);
+	$(".infoSamplePlane").html(sampleGraphicWithRotationHtml);
+	setTimeout(() => {
+    $(".infoSamplePlane").html(logInfoSamplePlaneHtml);
+  }, 3 * 1000);
 }
