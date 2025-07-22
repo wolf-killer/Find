@@ -121,7 +121,7 @@ body {
 
 .PopupDialog_Content {
   overflow-y: auto;
-  max-height: 50vh;
+  max-height: 70vh;
 }
 
 .PopupDialog_ActionBtn {
@@ -219,3 +219,10 @@ body {
   background: #f7b615;
   cursor: pointer;
 }
+
+.Checkbox {
+	width: 14px !important;
+  height: 14px !important;
+	margin-right: 6px;
+}
+

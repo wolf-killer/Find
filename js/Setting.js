@@ -69,6 +69,7 @@ function selectGate(row, col) {
       }
       case planeBody: {
         selectCellNode.addClass("planeBody");
+				if (showAirplaneInDiffColor) selectCellNode.addClass("planeBody_" + selectCell.planeId);
         break;
       }
       default: {
@@ -89,7 +90,16 @@ function loadDefaultSettingDialog() {
   // Show Graphic Option
   var newGraphicOptionTableRow = $("<tr></tr>");
   for (var i = 0; i < airplane.length; i++) {
+    if (i % 3 == 0){
+      newGraphicOptionTable.append(newGraphicOptionTableRow);
+      newGraphicOptionTableRow = $("<tr></tr>");
+    }
     var newGraphicOptionTableRowCol = $("<td></td>");
+		
+		var newContentDesc = $("<div></div>");
+		newContentDesc.html(airplaneDesc[i]);
+		newGraphicOptionTableRowCol.append(newContentDesc);
+		
     newGraphicOptionTableRowCol.append(getSamplePlaneHtml(false, 0, i, "settingDialogDisplay"));
 
     var newContentInput = $("<select>");
@@ -106,6 +116,7 @@ function loadDefaultSettingDialog() {
     newGraphicOptionTableRowCol.append(newContentInput);
     // Show Graphic Option
     newGraphicOptionTableRow.append(newGraphicOptionTableRowCol);
+    
   }
 
   newGraphicOptionTable.append(newGraphicOptionTableRow);
@@ -159,7 +170,7 @@ function updateMaxGraphic() {
 }
 
 function updateDefaultSetting() {
-  //checking
+	showAirplaneInDiffColor = document.getElementById('showAirplaneInDiffColor').checked;
   var currentMaxGraphic = DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0);
   var currentTotal = 0;
   for (var i = 0; i < noOfGraphic.length; i++) {
@@ -255,8 +266,8 @@ function displaySampleAirplane() {
     if (noOfGraphic[i] > 0) {
       samplePlaneHtml.append(getSamplePlaneHtml(true, 0, i, "frontPageDisplay"));
       var numberDisplay = $("<div></div>");
-      numberDisplay.html("x " + noOfGraphic[i]);
-      numberDisplay.css("width", (setScreenWidth * 0.2) + "px");
+      numberDisplay.html(airplaneDesc[i] + " x " + noOfGraphic[i]);
+      numberDisplay.css("width", (setScreenWidth * 0.25) + "px");
       numberDisplay.css("margin", "auto");
       numberDisplayHtml.append(numberDisplay);
     }
