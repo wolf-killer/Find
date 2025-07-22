@@ -85,6 +85,17 @@ canvas {
   background-color: #946640 !important;
 }
 
+.planeBody_1  { background-color: #EF6C00 !important; }
+.planeBody_2  { background-color: #FFFF00 !important; }
+.planeBody_3  { background-color: #76FF03 !important; }
+.planeBody_4  { background-color: #2E7D32 !important; }
+.planeBody_5  { background-color: #00796B !important; }
+.planeBody_6  { background-color: #263238 !important; }
+.planeBody_7  { background-color: #0091EA !important; }
+.planeBody_8  { background-color: #1A237E !important; }
+.planeBody_9  { background-color: #512DA8 !important; }
+.planeBody_10 { background-color: #4E342E !important; }
+
 .emptyCell {
   background-color: white !important;
 }
