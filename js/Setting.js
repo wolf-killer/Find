@@ -69,6 +69,7 @@ function selectGate(row, col) {
       }
       case planeBody: {
         selectCellNode.addClass("planeBody");
+				if (showAirplaneInDiffColor) selectCellNode.addClass("planeBody_" + selectCell.planeId);
         break;
       }
       default: {
@@ -169,7 +170,7 @@ function updateMaxGraphic() {
 }
 
 function updateDefaultSetting() {
-  //checking
+	showAirplaneInDiffColor = document.getElementById('showAirplaneInDiffColor').checked;
   var currentMaxGraphic = DECIMALADJUST("floor", Number($("#inputAirportLength").val()) / 3, 0);
   var currentTotal = 0;
   for (var i = 0; i < noOfGraphic.length; i++) {
@@ -266,7 +267,7 @@ function displaySampleAirplane() {
       samplePlaneHtml.append(getSamplePlaneHtml(true, 0, i, "frontPageDisplay"));
       var numberDisplay = $("<div></div>");
       numberDisplay.html(airplaneDesc[i] + " x " + noOfGraphic[i]);
-      numberDisplay.css("width", (setScreenWidth * 0.2) + "px");
+      numberDisplay.css("width", (setScreenWidth * 0.25) + "px");
       numberDisplay.css("margin", "auto");
       numberDisplayHtml.append(numberDisplay);
     }
