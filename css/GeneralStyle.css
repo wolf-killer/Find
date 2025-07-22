@@ -79,7 +79,7 @@ body {
   border: 3px solid blue;
   width: 90%;
   padding: 10px !important;
-  top: 7%;
+  top: 3%;
   left: 5%;
   z-index: 99;
 }
@@ -121,7 +121,7 @@ body {
 
 .PopupDialog_Content {
   overflow-y: auto;
-  max-height: 70vh;
+  max-height: 60vh;
 }
 
 .PopupDialog_ActionBtn {
