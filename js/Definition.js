@@ -22,8 +22,8 @@ var instructionAirportLength = 10;
 var noOfInstructionAirplane = 3;
 var instructionAirplaneLocation = [
   { xStart: 0, yStart: 7, direction: 0, graphicModel: 1},
-  { xStart: 4, yStart: 0, direction: 2, graphicModel: 0},
-  { xStart: 9, yStart: 6, direction: 1, graphicModel: 0 }
+  { xStart: 4, yStart: 0, direction: 3, graphicModel: 0},
+  { xStart: 9, yStart: 6, direction: 2, graphicModel: 0}
 ]
 
 var airport;
@@ -90,6 +90,18 @@ const airplane = [
 		],
 		[
       {x:+0,y:+0},
+      {x:+0,y:+1},
+      {x:-1,y:+1},
+      {x:-2,y:+1},
+      {x:+1,y:+1},
+      {x:+2,y:+1},
+      {x:+0,y:+2},
+      {x:+0,y:+3},
+      {x:-1,y:+3},
+      {x:+1,y:+3},
+		],
+		[
+      {x:+0,y:+0},
       {x:-1,y:+2},
       {x:-1,y:+1},
       {x:-1,y:+0},
@@ -111,18 +123,6 @@ const airplane = [
       {x:+0,y:-3},
       {x:-1,y:-3},
       {x:+1,y:-3},
-		],
-		[
-      {x:+0,y:+0},
-      {x:+0,y:+1},
-      {x:-1,y:+1},
-      {x:-2,y:+1},
-      {x:+1,y:+1},
-      {x:+2,y:+1},
-      {x:+0,y:+2},
-      {x:+0,y:+3},
-      {x:-1,y:+3},
-      {x:+1,y:+3},
 		]
 	],
 	[ // graphic 2
@@ -138,6 +138,19 @@ const airplane = [
       {x:+4,y:+1},
       {x:+4,y:+0},
       {x:+4,y:-1},
+		],
+		[
+			{x:+0,y:+0},
+      {x:+1,y:+1},
+      {x:+0,y:+1},
+      {x:-1,y:+1},
+      {x:+2,y:+2},
+      {x:+0,y:+2},
+      {x:-2,y:+2},
+      {x:+0,y:+3},
+      {x:+1,y:+4},
+      {x:+0,y:+4},
+      {x:-1,y:+4},
 		],
 		[
 			{x:+0,y:+0},
@@ -164,19 +177,6 @@ const airplane = [
       {x:+1,y:-4},
       {x:+0,y:-4},
       {x:-1,y:-4},
-		],
-		[
-			{x:+0,y:+0},
-      {x:+1,y:+1},
-      {x:+0,y:+1},
-      {x:-1,y:+1},
-      {x:+2,y:+2},
-      {x:+0,y:+2},
-      {x:-2,y:+2},
-      {x:+0,y:+3},
-      {x:+1,y:+4},
-      {x:+0,y:+4},
-      {x:-1,y:+4},
 		]
 	],
 	[ // graphic 3
@@ -191,6 +191,18 @@ const airplane = [
       {x:+3,y:+0},
       {x:+4,y:+1},
       {x:+4,y:-1},
+		],
+		[
+			{x:+0,y:+0},
+      {x:+0,y:+1},
+      {x:+2,y:+2},
+      {x:+1,y:+2},
+      {x:+0,y:+2},
+      {x:-1,y:+2},
+      {x:-2,y:+2},
+      {x:+0,y:+3},
+      {x:+1,y:+4},
+      {x:-1,y:+4},
 		],
 		[
 			{x:+0,y:+0},
@@ -215,18 +227,6 @@ const airplane = [
       {x:+0,y:-3},
       {x:+1,y:-4},
       {x:-1,y:-4},
-		],
-		[
-			{x:+0,y:+0},
-      {x:+0,y:+1},
-      {x:+2,y:+2},
-      {x:+1,y:+2},
-      {x:+0,y:+2},
-      {x:-1,y:+2},
-      {x:-2,y:+2},
-      {x:+0,y:+3},
-      {x:+1,y:+4},
-      {x:-1,y:+4},
 		]
 	],
 	[ // graphic 4
@@ -296,24 +296,6 @@ const airplane = [
 		],
 		[
 			{x:+0,y:+0},
-      {x:+1,y:+1},
-      {x:+1,y:-1},
-      {x:+1,y:+0},
-      {x:+2,y:+2},
-      {x:+2,y:+1},
-      {x:+2,y:+0},
-      {x:+2,y:-1},
-      {x:+2,y:-2},
-			{x:+3,y:+2},
-      {x:+3,y:+1},
-      {x:+3,y:+0},
-      {x:+3,y:-1},
-      {x:+3,y:-2},
-			{x:+4,y:+1},
-      {x:+4,y:-1},
-		],
-		[
-			{x:+0,y:+0},
       {x:+0,y:-1},
       {x:+1,y:-1},
       {x:-1,y:-1},
@@ -329,6 +311,24 @@ const airplane = [
       {x:-2,y:-3},
 			{x:+1,y:-4},
       {x:-1,y:-4},
+		],
+		[
+			{x:+0,y:+0},
+      {x:+1,y:+1},
+      {x:+1,y:-1},
+      {x:+1,y:+0},
+      {x:+2,y:+2},
+      {x:+2,y:+1},
+      {x:+2,y:+0},
+      {x:+2,y:-1},
+      {x:+2,y:-2},
+			{x:+3,y:+2},
+      {x:+3,y:+1},
+      {x:+3,y:+0},
+      {x:+3,y:-1},
+      {x:+3,y:-2},
+			{x:+4,y:+1},
+      {x:+4,y:-1},
 		],
 		[
 			{x:+0,y:+0},
@@ -349,7 +349,7 @@ const airplane = [
       {x:-1,y:+4},
 		]
 	],
-	/*[ // graphic 6 //佔地面積太大 [已停用]
+/*[ // graphic 6 //佔地面積太大 [已停用]
 		[
 			{x:+0,y:+0},
 			{x:+0,y:+1},
@@ -482,21 +482,22 @@ const airplane = [
 const airplanePossibleArea = [
   [ // graphic 1
     { xStart: 0, xEnd: -4, yStart: 2, yEnd: -3}, 
-    { xStart: 3, xEnd: -1, yStart: 2, yEnd: -3}, 
-    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -4}, 
-    { xStart: 2, xEnd: -3, yStart: 3, yEnd: -1}
+    { xStart: 2, xEnd: -3, yStart: 3, yEnd: -1},
+		{ xStart: 3, xEnd: -1, yStart: 2, yEnd: -3}, 
+    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -4} 
+    
   ],
   [ // graphic 2
     { xStart: 0, xEnd: -5, yStart: 2, yEnd: -3}, 
+    { xStart: 2, xEnd: -3, yStart: 4, yEnd: -1}, 
     { xStart: 4, xEnd: -1, yStart: 2, yEnd: -3}, 
-    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5}, 
-    { xStart: 2, xEnd: -3, yStart: 4, yEnd: -1}
+    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5}
   ],
   [ // graphic 3
     { xStart: 0, xEnd: -5, yStart: 2, yEnd: -3}, 
+    { xStart: 2, xEnd: -3, yStart: 4, yEnd: -1}, 
     { xStart: 4, xEnd: -1, yStart: 2, yEnd: -3}, 
-    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5}, 
-    { xStart: 2, xEnd: -3, yStart: 4, yEnd: -1} 
+    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5} 
   ],
   [ // graphic 4
     { xStart: 2, xEnd: -3, yStart: 2, yEnd: -3}, 
@@ -506,15 +507,15 @@ const airplanePossibleArea = [
   ],
 	[ // graphic 5
     { xStart: 4, xEnd: -1, yStart: 2, yEnd: -3}, 
+		{ xStart: 2, xEnd: -3, yStart: 0, yEnd: -5}, 
 		{ xStart: 0, xEnd: -5, yStart: 2, yEnd: -3}, 
-    { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5}, 
     { xStart: 2, xEnd: -3, yStart: 4, yEnd: -1} 
   ],
 /*[ // graphic 6 佔地面積太大 [已停用]
-{ xStart: 0, xEnd: -5, yStart: 4, yEnd: -1},
-{ xStart: 4, xEnd: -1, yStart: 0, yEnd: -5},
-{ xStart: 0, xEnd: -5, yStart: 0, yEnd: -5},
-{ xStart: 4, xEnd: -1, yStart: 4, yEnd: -1},
+		{ xStart: 0, xEnd: -5, yStart: 4, yEnd: -1},
+		{ xStart: 4, xEnd: -1, yStart: 0, yEnd: -5},
+		{ xStart: 0, xEnd: -5, yStart: 0, yEnd: -5},
+		{ xStart: 4, xEnd: -1, yStart: 4, yEnd: -1},
   ],*/
 	[ // graphic 7
 		{ xStart: 0, xEnd:-5, yStart: 4, yEnd:-1},
