@@ -3,7 +3,7 @@ const down = 1;
 const left = 2;
 const right = 3;
 
-const planeHead = 2;
+const planeHead = -1;
 const planeBody = 1;
 const emptyCell = 0;
 
@@ -29,12 +29,13 @@ var instructionAirplaneLocation = [
 var airport;
 var airportLength = 10;
 var maxGraphic = DECIMALADJUST("floor", airportLength / 3, 0);
-var noOfGraphic = [1, 1, 0, 0, 0, 0]; // Model[0]: 1; Model[1]: 1; Total: 2;
+var noOfGraphic = [1, 0, 0, 0, 1, 1]; 
 var totalNoOfGraphic = noOfGraphic.reduce((partialSum, a) => partialSum + a, 0);
 
 var gameStepCount = 0;
 var gameRemainHead = totalNoOfGraphic;
 var gameGraphic = [];
+var showAirplaneInDiffColor = false;
 
 /* 
  Instruction
@@ -69,7 +70,7 @@ const screenInstruction = [
 	}
 ];
 
-const airplaneDesc = ["飛機一", "飛機二", "飛機三", "風車", "愛心", "音符"];
+const airplaneDesc = ["飛機一", "飛機二", "飛機三", "風車", "愛心", /*"音符", */"大頭恐龍"];
 
 const airplane = [
 	[ // graphic 1
@@ -229,47 +230,47 @@ const airplane = [
 	[ // graphic 4
 		[
 			{x:+0,y:+0},
-      {x:+1,y:-1},
-      {x:+1,y:-2},
-      {x:+1,y:+1},
-      {x:+2,y:+1},
       {x:-1,y:-1},
+      {x:-1,y:-2},
       {x:-1,y:+1},
-      {x:-1,y:+2},
-      {x:-2,y:-1},
+      {x:-2,y:+1},
+      {x:+1,y:-1},
+      {x:+1,y:+1},
+      {x:+1,y:+2},
+      {x:+2,y:-1},
 		],
 		[
 			{x:+0,y:+0},
-      {x:+1,y:-1},
-      {x:+1,y:-2},
-      {x:+1,y:+1},
-      {x:+2,y:+1},
       {x:-1,y:-1},
+      {x:-1,y:-2},
       {x:-1,y:+1},
-      {x:-1,y:+2},
-      {x:-2,y:-1},
+      {x:-2,y:+1},
+      {x:+1,y:-1},
+      {x:+1,y:+1},
+      {x:+1,y:+2},
+      {x:+2,y:-1},
 		],
 		[
 			{x:+0,y:+0},
-      {x:+1,y:-1},
-      {x:+1,y:-2},
-      {x:+1,y:+1},
-      {x:+2,y:+1},
       {x:-1,y:-1},
+      {x:-1,y:-2},
       {x:-1,y:+1},
-      {x:-1,y:+2},
-      {x:-2,y:-1},
+      {x:-2,y:+1},
+      {x:+1,y:-1},
+      {x:+1,y:+1},
+      {x:+1,y:+2},
+      {x:+2,y:-1},
 		],
 		[
 			{x:+0,y:+0},
-      {x:+1,y:-1},
-      {x:+1,y:-2},
-      {x:+1,y:+1},
-      {x:+2,y:+1},
       {x:-1,y:-1},
+      {x:-1,y:-2},
       {x:-1,y:+1},
-      {x:-1,y:+2},
-      {x:-2,y:-1},
+      {x:-2,y:+1},
+      {x:+1,y:-1},
+      {x:+1,y:+1},
+      {x:+1,y:+2},
+      {x:+2,y:-1},
 		]
 	],
 	[ // graphic 5
@@ -346,7 +347,7 @@ const airplane = [
       {x:-1,y:+4},
 		]
 	],
-	[ // graphic 6
+	/*[ // graphic 6 //佔地面積太大 [已停用]
 		[
 			{x:+0,y:+0},
 			{x:+0,y:+1},
@@ -415,6 +416,64 @@ const airplane = [
 			{x:-3,y:+4},
 			{x:-4,y:+4},
 		]
+	],*/
+	[ // graphic 7
+		[
+			{x:+0,y:+0},
+			{x:+1,y:+0},
+			{x:+0,y:+1},
+			{x:+1,y:+1},
+			{x:+0,y:+2},
+			{x:+1,y:+2},
+			{x:+2,y:+2},
+			{x:+3,y:+2},
+			{x:+4,y:+2},
+			{x:+3,y:+3},
+			{x:+3,y:+4},
+			{x:+4,y:+4},
+		],
+		[
+			{x:+0,y:+0},
+			{x:-1,y:+0},
+			{x:-2,y:+0},
+			{x:+0,y:+1},
+			{x:-1,y:+1},
+			{x:-2,y:+1},
+			{x:-2,y:+2},
+			{x:-2,y:+3},
+			{x:-3,y:+3},
+			{x:-4,y:+3},
+			{x:-2,y:+4},
+			{x:-4,y:+4},
+		],
+		[
+			{x:+0,y:+0},
+			{x:+0,y:-1},
+			{x:+0,y:-2},
+			{x:-1,y:+0},
+			{x:-1,y:-1},
+			{x:-1,y:-2},
+			{x:-2,y:-2},
+			{x:-3,y:-2},
+			{x:-3,y:-3},
+			{x:-3,y:-4},
+			{x:-4,y:-2},
+			{x:-4,y:-4},
+		],
+		[
+			{x:+0,y:+0},
+			{x:+0,y:-1},
+			{x:+1,y:+0},
+			{x:+1,y:-1},
+			{x:+2,y:+0},
+			{x:+2,y:-1},
+			{x:+2,y:-2},
+			{x:+2,y:-3},
+			{x:+2,y:-4},
+			{x:+3,y:-3},
+			{x:+4,y:-3},
+			{x:+4,y:-4},
+		]		
 	]
 ];
 
@@ -449,10 +508,16 @@ const airplanePossibleArea = [
     { xStart: 2, xEnd: -3, yStart: 0, yEnd: -5}, 
     { xStart: 2, xEnd: -3, yStart: 4, yEnd: -1} 
   ],
-	[ // graphic 6
-		{ xStart: 0, xEnd: -5, yStart: 4, yEnd: -1},
-		{ xStart: 4, xEnd: -1, yStart: 0, yEnd: -5},
-		{ xStart: 0, xEnd: -5, yStart: 0, yEnd: -5},
-		{ xStart: 4, xEnd: -1, yStart: 4, yEnd: -1},
+/*[ // graphic 6 佔地面積太大 [已停用]
+{ xStart: 0, xEnd: -5, yStart: 4, yEnd: -1},
+{ xStart: 4, xEnd: -1, yStart: 0, yEnd: -5},
+{ xStart: 0, xEnd: -5, yStart: 0, yEnd: -5},
+{ xStart: 4, xEnd: -1, yStart: 4, yEnd: -1},
+  ],*/
+	[ // graphic 7
+		{ xStart: 0, xEnd:-5, yStart: 4, yEnd:-1},
+		{ xStart: 4, xEnd:-1, yStart: 4, yEnd:-1},
+		{ xStart: 4, xEnd:-1, yStart: 0, yEnd:-5},
+		{ xStart: 0, xEnd:-5, yStart: 0, yEnd:-5}
   ]
 ];
