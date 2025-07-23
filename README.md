@@ -1,8 +1,8 @@
-# Find Main Point - A Grid-Based Deduction Web Game
+# Find - A Grid-Based Deduction Web Game
 <img src="image/ScreenResult.png" alt="Page" width="300">
 
 ## Overview
-Find Main Point is an interactive web-based puzzle game built with HTML, JavaScript, and W3.CSS. Players use logical deduction to uncover hidden patterns' **red key points** on a grid-based board, aiming to find all points in the fewest clicks possible. The game features a customizable grid (default 10x10), and selectable graphics provided (each containing one red key point), all configurable via a settings menu. The responsive design, powered by W3.CSS, ensures a seamless experience across devices.
+Find is an interactive web-based puzzle game built with HTML, JavaScript, and W3.CSS. Players use logical deduction to uncover hidden patterns' **red key points** on a grid-based board, aiming to find all points in the fewest clicks possible. The game features a customizable grid (default 10x10), and selectable graphics provided (each containing one red key point), all configurable via a settings menu. The responsive design, powered by W3.CSS, ensures a seamless experience across devices.
 
 ## Game Rules
 <img src="image/GameRule.png" alt="Game Rule" width="300">
